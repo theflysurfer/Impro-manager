@@ -1,0 +1,138 @@
+================================================================================
+RAPPORT DE LA BIBLIOTHEQUE MUSICALE IMPRO
+================================================================================
+
+Total de pistes: 777
+Version: 1.0
+
+================================================================================
+GENRES
+================================================================================
+  rock                 :   43 pistes
+  country              :   16 pistes
+  pop                  :   14 pistes
+  electronic           :   12 pistes
+  hip-hop              :    5 pistes
+  soul                 :    3 pistes
+  reggae               :    1 pistes
+  classical            :    1 pistes
+
+================================================================================
+AMBIANCES (MOODS)
+================================================================================
+  effet-sonore         :  202 pistes
+  calme                :   75 pistes
+  atmosphérique        :   68 pistes
+  sombre               :   35 pistes
+  inquiétant           :   35 pistes
+  reconnaissable       :   32 pistes
+  épique               :   20 pistes
+  aventure             :   18 pistes
+  romantique           :   13 pistes
+  doux                 :   13 pistes
+  relaxant             :    9 pistes
+  intense              :    7 pistes
+  dynamique            :    7 pistes
+  festif               :    5 pistes
+  dansant              :    5 pistes
+  transition           :    4 pistes
+  tension              :    3 pistes
+  suspense             :    3 pistes
+  énergique            :    2 pistes
+  joyeux               :    2 pistes
+  grandiose            :    2 pistes
+  mélancolique         :    1 pistes
+  triste               :    1 pistes
+
+================================================================================
+NIVEAU D'ENERGIE
+================================================================================
+  Energie  3/10 :  165 pistes ################
+  Energie  4/10 :   59 pistes #####
+  Energie  5/10 :  397 pistes #######################################
+  Energie  6/10 :   75 pistes #######
+  Energie  7/10 :   26 pistes ##
+  Energie  8/10 :   31 pistes ###
+  Energie  9/10 :   24 pistes ##
+
+================================================================================
+TEMPO
+================================================================================
+  medium               :  636 pistes
+  slow                 :   86 pistes
+  fast                 :   55 pistes
+
+================================================================================
+SCENARIOS D'IMPRO
+================================================================================
+  guerre                         :   37 pistes
+  cabaret-télé                   :   31 pistes
+  western                        :   28 pistes
+  zoo                            :   26 pistes
+  nature                         :   26 pistes
+  ferme                          :   26 pistes
+  action                         :   25 pistes
+  match-impro                    :   22 pistes
+  aventure                       :   19 pistes
+  horreur                        :   19 pistes
+  mystère                        :   19 pistes
+  enquête                        :   19 pistes
+  voyage                         :   18 pistes
+  exploration                    :   18 pistes
+  amour                          :   13 pistes
+  romance                        :   13 pistes
+  conflit                        :   12 pistes
+  celebration                    :    5 pistes
+  fête                           :    5 pistes
+  jungle                         :    3 pistes
+  far-west                       :    3 pistes
+  science-fiction                :    2 pistes
+  espace                         :    2 pistes
+  océan                          :    2 pistes
+  mer                            :    2 pistes
+  plage                          :    2 pistes
+  compétition                    :    2 pistes
+  sport                          :    2 pistes
+  funérailles                    :    1 pistes
+  deuil                          :    1 pistes
+
+================================================================================
+DOSSIERS
+================================================================================
+  Entre les impros - coupé                           :  153 pistes
+  impro musique                                      :   81 pistes
+  Divers                                             :   58 pistes
+  Ambiance et Attente                                :   50 pistes
+  Musiques spectacle Italiens                        :   46 pistes
+  root                                               :   37 pistes
+  Horreur                                            :   32 pistes
+  Animaux                                            :   26 pistes
+  Burton                                             :   23 pistes
+  2025.03.14 - Match Fondus                          :   22 pistes
+  musiques spectacle italiens coupées                :   22 pistes
+  Génériques Films Series                            :   20 pistes
+  Son Sirenes cornes alarmes police (OK)             :   17 pistes
+  Vaisseau Spatial                                   :   16 pistes
+  aventure                                           :   15 pistes
+
+================================================================================
+EXEMPLES DE PISTES PAR CATEGORIE
+================================================================================
+
+ROCK:
+  - Queen - Another One Bites the Dust (energie: 8)
+  - ACDC - Highway to Hell (energie: 9)
+  - Aerosmith - Gypsy Boots (with lyrics) (energie: 8)
+  - Aerosmith - Walk This Way (energie: 8)
+  - Bon Jovi - Livin On A Prayer (energie: 8)
+
+BRUITAGES (EFFET-SONORE):
+  - EFFET REMBOBINAGE  BRUITAGE EFFECT (duree: 10s)
+  - alpage CLOCHE vache (duree: 10s)
+Traceback (most recent call last):
+  File "C:\Users\JulienFernandez\OneDrive\Coding\_Projets de code\2025.10 Music Impro chooser\library_report.py", line 102, in <module>
+    print(f"  - {track['title']} (duree: {track['duration']}s)")
+  File "C:\Users\JulienFernandez\scoop\apps\python311\current\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f431' in position 18: character maps to <undefined>

@@ -1,0 +1,1549 @@
+{
+  "high_energy_rock": [
+    {
+      "id": "b7d2d8ee93bf",
+      "filename": "02.Queen - Another One Bites the Dust (Official Video).mp3",
+      "title": "Another One Bites the Dust",
+      "artist": "Queen",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\02.Queen - Another One Bites the Dust (Official Video).mp3",
+      "duration": 210,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 200,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [
+          "rock"
+        ],
+        "energy": 8,
+        "tempo": "fast"
+      },
+      "impro_context": {
+        "scenarios": [],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "root",
+        "subfolder": "",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "d8224d5a2cda",
+      "filename": "ACDC - Highway to Hell (lyrics).mp3",
+      "title": "Highway to Hell",
+      "artist": "ACDC",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\ACDC - Highway to Hell (lyrics).mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [
+          "rock"
+        ],
+        "energy": 9,
+        "tempo": "fast"
+      },
+      "impro_context": {
+        "scenarios": [],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "root",
+        "subfolder": "",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "a79056247312",
+      "filename": "Aerosmith - Gypsy Boots (with lyrics).mp3",
+      "title": "Gypsy Boots (with lyrics)",
+      "artist": "Aerosmith",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Aerosmith - Gypsy Boots (with lyrics).mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [
+          "rock"
+        ],
+        "energy": 8,
+        "tempo": "fast"
+      },
+      "impro_context": {
+        "scenarios": [],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "root",
+        "subfolder": "",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "97f41008db5c",
+      "filename": "Aerosmith - Walk This Way (Audio).mp3",
+      "title": "Walk This Way",
+      "artist": "Aerosmith",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Aerosmith - Walk This Way (Audio).mp3",
+      "duration": 210,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 200,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [
+          "rock"
+        ],
+        "energy": 8,
+        "tempo": "fast"
+      },
+      "impro_context": {
+        "scenarios": [],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "root",
+        "subfolder": "",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "74a08d4bf811",
+      "filename": "Bon Jovi - Livin On A Prayer.mp3",
+      "title": "Livin On A Prayer",
+      "artist": "Bon Jovi",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Bon Jovi - Livin On A Prayer.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [
+          "rock"
+        ],
+        "energy": 8,
+        "tempo": "fast"
+      },
+      "impro_context": {
+        "scenarios": [],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "root",
+        "subfolder": "",
+        "date": null,
+        "extension": "mp3"
+      }
+    }
+  ],
+  "calm_ambient": [
+    {
+      "id": "5f2e967b6165",
+      "filename": "ABBA - Gimme! Gimme! Gimme! (A Man After Midnight).mp3",
+      "title": "Gimme! Gimme! Gimme! (A Man After Midnight)",
+      "artist": "ABBA",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Ambiance\\ABBA - Gimme! Gimme! Gimme! (A Man After Midnight).mp3",
+      "duration": 240,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 230,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "atmosphérique",
+          "calme"
+        ],
+        "genre": [
+          "pop"
+        ],
+        "energy": 4,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [
+          "sérénité"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Ambiance",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "291d68da6d12",
+      "filename": "Cant Hold Us - Macklemore & Ryan Lewis (feat. Ray Dalton).mp3",
+      "title": "Macklemore & Ryan Lewis (feat. Ray Dalton)",
+      "artist": "Cant Hold Us",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Ambiance\\Cant Hold Us - Macklemore & Ryan Lewis (feat. Ray Dalton).mp3",
+      "duration": 240,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 230,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "atmosphérique",
+          "calme"
+        ],
+        "genre": [],
+        "energy": 4,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [
+          "sérénité"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Ambiance",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "dfc268a3120c",
+      "filename": "Dua Lipa - Dance The Night (Radio Disney-like Edit).mp3",
+      "title": "Dance The Night (Radio Disney-like Edit)",
+      "artist": "Dua Lipa",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Ambiance\\Dua Lipa - Dance The Night (Radio Disney-like Edit).mp3",
+      "duration": 240,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 230,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "atmosphérique",
+          "calme"
+        ],
+        "genre": [
+          "pop"
+        ],
+        "energy": 9,
+        "tempo": "fast"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [
+          "sérénité"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Ambiance",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "433e4e06d84f",
+      "filename": "Elton John - Im Still Standing.mp3",
+      "title": "Im Still Standing",
+      "artist": "Elton John",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Ambiance\\Elton John - Im Still Standing.mp3",
+      "duration": 240,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 230,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "atmosphérique",
+          "calme"
+        ],
+        "genre": [
+          "pop"
+        ],
+        "energy": 4,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [
+          "sérénité"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Ambiance",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "019ca8c3902a",
+      "filename": "OutKast - Hey Ya! (Clean - Lyrics).mp3",
+      "title": "Hey Ya! (Clean - Lyrics)",
+      "artist": "OutKast",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Ambiance\\OutKast - Hey Ya! (Clean - Lyrics).mp3",
+      "duration": 240,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 230,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "atmosphérique",
+          "calme"
+        ],
+        "genre": [],
+        "energy": 4,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [
+          "sérénité"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Ambiance",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    }
+  ],
+  "sound_effects": [
+    {
+      "id": "634487110c42",
+      "filename": "EFFET REMBOBINAGE  BRUITAGE EFFECT.mp3",
+      "title": "EFFET REMBOBINAGE  BRUITAGE EFFECT",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\EFFET REMBOBINAGE  BRUITAGE EFFECT.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "2025.02.25 Cabaret émissions télé",
+        "subfolder": "Music",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "9fbb0f63e1f4",
+      "filename": "alpage CLOCHE vache.mp3",
+      "title": "alpage CLOCHE vache",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Animaux\\alpage CLOCHE vache.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "zoo",
+          "nature",
+          "ferme"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Animaux",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "e30375653539",
+      "filename": "bruit de CHAT 🐱 (miaulement).mp3",
+      "title": "bruit de CHAT 🐱 (miaulement)",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Animaux\\bruit de CHAT 🐱 (miaulement).mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "zoo",
+          "nature",
+          "ferme"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Animaux",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "94b65d3ea3f2",
+      "filename": "bruit de CHEVAL 🐴 (hénissement).mp3",
+      "title": "bruit de CHEVAL 🐴 (hénissement)",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Animaux\\bruit de CHEVAL 🐴 (hénissement).mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "zoo",
+          "nature",
+          "ferme"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Animaux",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "9b7d401e56fd",
+      "filename": "Bruit de LÂNE ( BRAIEMENT ) 🔊.mp3",
+      "title": "Bruit de LÂNE ( BRAIEMENT ) 🔊",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Animaux\\Bruit de LÂNE ( BRAIEMENT ) 🔊.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "zoo",
+          "nature",
+          "ferme"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Animaux",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    }
+  ],
+  "tv_themes": [
+    {
+      "id": "73daa3e329b0",
+      "filename": "30 millions damis - Générique (2004).mp3",
+      "title": "Générique (2004)",
+      "artist": "30 millions damis",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Génériques\\30 millions damis - Générique (2004).mp3",
+      "duration": 30,
+      "cues": {
+        "start": 0,
+        "hook": 7,
+        "climax": 15,
+        "outro": 30,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "reconnaissable"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Génériques",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "94e110399683",
+      "filename": "Club Dorothée  le générique nuages (1994).mp3",
+      "title": "Club Dorothée  le générique nuages (1994)",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Génériques\\Club Dorothée  le générique nuages (1994).mp3",
+      "duration": 30,
+      "cues": {
+        "start": 0,
+        "hook": 7,
+        "climax": 15,
+        "outro": 30,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "reconnaissable"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Génériques",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "a8b1eb5d8603",
+      "filename": "Danse avec les Stars  Musique officielle (version intégrale).mp3",
+      "title": "Danse avec les Stars  Musique officielle (version intégrale)",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Génériques\\Danse avec les Stars  Musique officielle (version intégrale).mp3",
+      "duration": 30,
+      "cues": {
+        "start": 0,
+        "hook": 7,
+        "climax": 15,
+        "outro": 30,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "reconnaissable"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Génériques",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "fd954de865ce",
+      "filename": "Fort Boyard 1999 - Générique.mp3",
+      "title": "Générique",
+      "artist": "Fort Boyard 1999",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Génériques\\Fort Boyard 1999 - Générique.mp3",
+      "duration": 30,
+      "cues": {
+        "start": 0,
+        "hook": 7,
+        "climax": 15,
+        "outro": 30,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "reconnaissable"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Génériques",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "e0377adb302f",
+      "filename": "Fort Boyard 2024 - Générique.mp3",
+      "title": "Générique",
+      "artist": "Fort Boyard 2024",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\Génériques\\Fort Boyard 2024 - Générique.mp3",
+      "duration": 30,
+      "cues": {
+        "start": 0,
+        "hook": 7,
+        "climax": 15,
+        "outro": 30,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "reconnaissable"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "cabaret-télé"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Génériques",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    }
+  ],
+  "match_impro": [
+    {
+      "id": "101f5f77f79b",
+      "filename": "0. musique attente - Douce Musique Pour Travailler, Étudier et Se Concentrer Attention, Productivité et Concentration.mp3",
+      "title": "Douce Musique Pour Travailler, Étudier et Se Concentrer Attention, Productivité et Concentration",
+      "artist": "musique attente",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.03.14 - Match Fondus\\0. musique attente - Douce Musique Pour Travailler, Étudier et Se Concentrer Attention, Productivité et Concentration.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "atmosphérique",
+          "calme"
+        ],
+        "genre": [],
+        "energy": 4,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "match-impro"
+        ],
+        "emotions": [
+          "sérénité"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "2025.03.14 - Match Fondus",
+        "subfolder": "Music",
+        "date": "2025.03.14",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "0cdab3e1e151",
+      "filename": "1.Entrée Marie - MC - Rihanna - Diamonds (Lyrics) Shine bright like a diamond, Were beautiful, like diamonds in the sky.mp3",
+      "title": "MC - Rihanna - Diamonds  Shine bright like a diamond, Were beautiful, like diamonds in the sky",
+      "artist": "Entrée Marie",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.03.14 - Match Fondus\\1.Entrée Marie - MC - Rihanna - Diamonds (Lyrics) Shine bright like a diamond, Were beautiful, like diamonds in the sky.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [],
+        "energy": 5,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "match-impro"
+        ],
+        "emotions": [],
+        "contraintes": [
+          "entrée-personnage"
+        ]
+      },
+      "metadata": {
+        "folder": "2025.03.14 - Match Fondus",
+        "subfolder": "Music",
+        "date": "2025.03.14",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "db6fc91400d7",
+      "filename": "2.Entrée arbitre Pascal -Theme STAR WARS .mp3",
+      "title": "Entrée arbitre Pascal -Theme STAR WARS",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.03.14 - Match Fondus\\2.Entrée arbitre Pascal -Theme STAR WARS .mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [],
+        "energy": 5,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "match-impro",
+          "conflit",
+          "guerre"
+        ],
+        "emotions": [],
+        "contraintes": [
+          "entrée-personnage"
+        ]
+      },
+      "metadata": {
+        "folder": "2025.03.14 - Match Fondus",
+        "subfolder": "Music",
+        "date": "2025.03.14",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "df18e22ce3c3",
+      "filename": "3.Joan Jett I Love Rock n Roll.mp3",
+      "title": "Joan Jett I Love Rock n Roll",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.03.14 - Match Fondus\\3.Joan Jett I Love Rock n Roll.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "romantique",
+          "doux"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "match-impro",
+          "amour",
+          "romance"
+        ],
+        "emotions": [
+          "amour"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "2025.03.14 - Match Fondus",
+        "subfolder": "Music",
+        "date": "2025.03.14",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "1793513e025e",
+      "filename": "4.The White Stripes - Seven Nation Army (Official Music Video).mp3",
+      "title": "Seven Nation Army",
+      "artist": "The White Stripes",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.03.14 - Match Fondus\\4.The White Stripes - Seven Nation Army (Official Music Video).mp3",
+      "duration": 210,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 200,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [],
+        "genre": [
+          "rock"
+        ],
+        "energy": 8,
+        "tempo": "fast"
+      },
+      "impro_context": {
+        "scenarios": [
+          "match-impro"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "2025.03.14 - Match Fondus",
+        "subfolder": "Music",
+        "date": "2025.03.14",
+        "extension": "mp3"
+      }
+    }
+  ],
+  "western": [
+    {
+      "id": "d75832253952",
+      "filename": "avion largue bombe.mp3",
+      "title": "avion largue bombe",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Armes\\avion largue bombe.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "western",
+          "guerre",
+          "action"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Armes",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "99b80a94a2ff",
+      "filename": "bombardement.mp3",
+      "title": "bombardement",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Armes\\bombardement.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "western",
+          "guerre",
+          "action"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Armes",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "1d945f28f221",
+      "filename": "bruit de coup de feu fort.mp3",
+      "title": "bruit de coup de feu fort",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Armes\\bruit de coup de feu fort.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "western",
+          "guerre",
+          "action"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Armes",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "911079196e57",
+      "filename": "canon feu.mp3",
+      "title": "canon feu",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Armes\\canon feu.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "western",
+          "guerre",
+          "action"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Armes",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "2e6306c414fc",
+      "filename": "chargeur pistolet.mp3",
+      "title": "chargeur pistolet",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Armes\\chargeur pistolet.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "western",
+          "guerre",
+          "action"
+        ],
+        "emotions": [],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Armes",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    }
+  ],
+  "horror": [
+    {
+      "id": "76bdf0535024",
+      "filename": "musique dhorreur.mp3",
+      "title": "musique dhorreur",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Divers\\musique dhorreur.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore",
+          "sombre",
+          "inquiétant"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "horreur",
+          "mystère",
+          "enquête"
+        ],
+        "emotions": [
+          "peur"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Divers",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "14a3777753a5",
+      "filename": "bruitage porte qui grince.mp3",
+      "title": "bruitage porte qui grince",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Horreur\\bruitage porte qui grince.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore",
+          "sombre",
+          "inquiétant"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "horreur",
+          "mystère",
+          "enquête"
+        ],
+        "emotions": [
+          "peur"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Horreur",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "286900ebbaa5",
+      "filename": "Bruitages fantômes 😱 Pack Gratuit ✅.mp3",
+      "title": "Bruitages fantômes 😱 Pack Gratuit ✅",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Horreur\\Bruitages fantômes 😱 Pack Gratuit ✅.mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore",
+          "sombre",
+          "inquiétant"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "horreur",
+          "mystère",
+          "enquête"
+        ],
+        "emotions": [
+          "peur"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Horreur",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "e053b6073db0",
+      "filename": "CRI HUMAIN #12 Cri aigu de peur, fille (bruitage gratuit).mp3",
+      "title": "CRI HUMAIN #12 Cri aigu de peur, fille (bruitage gratuit)",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Horreur\\CRI HUMAIN #12 Cri aigu de peur, fille (bruitage gratuit).mp3",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore",
+          "sombre",
+          "inquiétant"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "horreur",
+          "mystère",
+          "enquête"
+        ],
+        "emotions": [
+          "peur"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Horreur",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "d97afe3c7c75",
+      "filename": "GOUTTEGROUTE.wav",
+      "title": "GOUTTEGROUTE",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\bruitage\\Horreur\\GOUTTEGROUTE.wav",
+      "duration": 10,
+      "cues": {
+        "start": 0,
+        "hook": 2,
+        "climax": 5,
+        "outro": 10,
+        "fade_duration": 3
+      },
+      "tags": {
+        "mood": [
+          "effet-sonore",
+          "sombre",
+          "inquiétant"
+        ],
+        "genre": [],
+        "energy": 6,
+        "tempo": "medium"
+      },
+      "impro_context": {
+        "scenarios": [
+          "horreur",
+          "mystère",
+          "enquête"
+        ],
+        "emotions": [
+          "peur"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Horreur",
+        "subfolder": "bruitage",
+        "date": null,
+        "extension": "wav"
+      }
+    }
+  ],
+  "romance": [
+    {
+      "id": "ec9fcaab0efc",
+      "filename": "Michael Bolton - When a Man Loves a Woman.mp3",
+      "title": "When a Man Loves a Woman",
+      "artist": "Michael Bolton",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Michael Bolton - When a Man Loves a Woman.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "romantique",
+          "doux"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "amour",
+          "romance"
+        ],
+        "emotions": [
+          "amour"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "root",
+        "subfolder": "",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "bac5d9e24cd5",
+      "filename": "Theme From Love Story.mp3",
+      "title": "Theme From Love Story",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.02.25 Cabaret émissions télé\\ça mérite une danse\\Theme From Love Story.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "romantique",
+          "doux"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "amour",
+          "cabaret-télé",
+          "romance"
+        ],
+        "emotions": [
+          "amour"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "ça mérite une danse",
+        "subfolder": "2025.02.25 Cabaret émissions télé",
+        "date": "2025.02.25",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "df18e22ce3c3",
+      "filename": "3.Joan Jett I Love Rock n Roll.mp3",
+      "title": "Joan Jett I Love Rock n Roll",
+      "artist": "",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\2025.03.14 - Match Fondus\\3.Joan Jett I Love Rock n Roll.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "romantique",
+          "doux"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "match-impro",
+          "amour",
+          "romance"
+        ],
+        "emotions": [
+          "amour"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "2025.03.14 - Match Fondus",
+        "subfolder": "Music",
+        "date": "2025.03.14",
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "31d678b788ac",
+      "filename": "7th Heaven - The Cardigans - Lovefool (Lyrics).mp3",
+      "title": "The Cardigans - Lovefool",
+      "artist": "7th Heaven",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\Entre les impros - coupé\\7th Heaven - The Cardigans - Lovefool (Lyrics).mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "romantique",
+          "doux"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "amour",
+          "romance"
+        ],
+        "emotions": [
+          "amour"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Entre les impros - coupé",
+        "subfolder": "Music",
+        "date": null,
+        "extension": "mp3"
+      }
+    },
+    {
+      "id": "698e7482c3aa",
+      "filename": "Eminem - Love The Way You Lie (Lyrics) ft. Rihanna.mp3",
+      "title": "Love The Way You Lie  ft. Rihanna",
+      "artist": "Eminem",
+      "file_path": "C:\\Users\\JulienFernandez\\OneDrive\\Zic impro\\Music\\Entre les impros - coupé\\Eminem - Love The Way You Lie (Lyrics) ft. Rihanna.mp3",
+      "duration": 180,
+      "cues": {
+        "start": 0,
+        "hook": 30,
+        "climax": 60,
+        "outro": 170,
+        "fade_duration": 8
+      },
+      "tags": {
+        "mood": [
+          "romantique",
+          "doux"
+        ],
+        "genre": [],
+        "energy": 3,
+        "tempo": "slow"
+      },
+      "impro_context": {
+        "scenarios": [
+          "amour",
+          "romance"
+        ],
+        "emotions": [
+          "amour"
+        ],
+        "contraintes": []
+      },
+      "metadata": {
+        "folder": "Entre les impros - coupé",
+        "subfolder": "Music",
+        "date": null,
+        "extension": "mp3"
+      }
+    }
+  ]
+}

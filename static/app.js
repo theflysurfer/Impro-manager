@@ -711,10 +711,22 @@ const SoundInterface = {
     <div class="sound-interface">
       <!-- En-tête avec sélection de match -->
       <div class="sound-header card">
-        <h2 class="card-title">
-          <i class="fas fa-volume-up"></i>
-          Mode Son - Responsable Sonorisation
-        </h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <h2 class="card-title">
+            <i class="fas fa-volume-up"></i>
+            Mode Son - {{ liveMode ? 'LIVE' : 'Préparation' }}
+          </h2>
+
+          <!-- Toggle Live/Préparation -->
+          <div class="mode-toggle" style="display: flex; align-items: center; gap: 10px;">
+            <span :style="{ color: liveMode ? '#666' : '#4ade80' }">Préparation</span>
+            <label class="switch">
+              <input type="checkbox" v-model="liveMode">
+              <span class="slider round"></span>
+            </label>
+            <span :style="{ color: liveMode ? '#ef4444' : '#666' }">LIVE</span>
+          </div>
+        </div>
 
         <div class="match-selector" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
           <label class="form-label" style="margin: 0;">Match actuel :</label>
@@ -731,7 +743,9 @@ const SoundInterface = {
         </div>
       </div>
 
-      <!-- Lecteur audio principal -->
+      <!-- Mode Préparation -->
+      <div v-if="!liveMode" class="preparation-mode">
+        <!-- Lecteur audio principal -->
       <div class="audio-player card">
         <h3 class="card-title" style="color: white;">
           <i class="fas fa-play"></i>
@@ -995,6 +1009,109 @@ const SoundInterface = {
           </div>
         </div>
       </div>
+      </div>
+
+      <!-- Mode Live -->
+      <div v-if="liveMode" class="live-mode">
+        <!-- Vue compacte du match en cours -->
+        <div v-if="currentMatch" class="live-match card">
+          <h3 class="card-title" style="color: #ef4444;">
+            <i class="fas fa-broadcast-tower"></i>
+            {{ currentMatch.title }} - EN DIRECT
+          </h3>
+
+          <div class="live-improvs" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
+            <div v-for="improv in currentMatch.improvs" :key="improv.id"
+                 class="live-improv"
+                 :class="{ 'active': improv.status === 'in-progress', 'completed': improv.status === 'completed' }"
+                 style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; border-left: 4px solid #666;">
+              <h4 style="margin: 0 0 10px 0; color: white;">{{ improv.title }}</h4>
+              <div v-if="improv.music" class="assigned-music" style="margin-bottom: 10px;">
+                <button @click="playImprovMusic(improv)" class="btn btn-success btn-sm">
+                  <i class="fas fa-play"></i> {{ getMusicTitle(improv.music) }}
+                </button>
+              </div>
+              <div v-else style="color: rgba(255,255,255,0.6); font-size: 0.9em;">
+                Aucune musique assignée
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Set de bruitages préparés -->
+        <div class="live-sound-set card">
+          <h3 class="card-title">
+            <i class="fas fa-palette"></i>
+            Set de Bruitages Préparés
+            <button @click="prepareSoundSet" class="btn btn-secondary btn-sm" style="margin-left: auto;">
+              <i class="fas fa-magic"></i> Auto-générer
+            </button>
+          </h3>
+
+          <div class="sound-set-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin-top: 15px;">
+            <button v-for="sound in soundSet" :key="sound.id"
+                    @click="quickPlaySound(sound)"
+                    class="sound-button btn"
+                    :style="{ background: getSoundColor(sound.tags.mood[0] || 'neutral') }"
+                    style="aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 10px; font-size: 0.8em;">
+              <i :class="getSoundIcon(sound)" style="font-size: 1.5em; margin-bottom: 5px;"></i>
+              {{ sound.title.substring(0, 12) }}{{ sound.title.length > 12 ? '...' : '' }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Recherche rapide de bruitages -->
+        <div class="live-search card">
+          <h3 class="card-title">
+            <i class="fas fa-search"></i>
+            Recherche Rapide Bruitages
+          </h3>
+
+          <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+            <input v-model="liveSearchQuery"
+                   @input="performLiveSearch"
+                   placeholder="Tapez pour chercher un bruitage..."
+                   class="form-input"
+                   style="flex: 1;">
+            <button @click="clearLiveSearch" class="btn btn-secondary">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+
+          <div class="live-search-results" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; max-height: 200px; overflow-y: auto;">
+            <button v-for="result in liveSearchResults" :key="result.id"
+                    @click="quickPlaySound(result)"
+                    class="sound-result btn btn-sm"
+                    style="text-align: left; padding: 8px; background: rgba(255,255,255,0.1);">
+              <div style="font-weight: bold; font-size: 0.9em;">{{ result.title }}</div>
+              <div style="font-size: 0.7em; opacity: 0.7;">{{ result.tags.mood.join(', ') }}</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Lecteur principal en mode compact -->
+        <div class="live-player card">
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <div style="flex: 1;">
+              <h4 v-if="currentTrack" style="margin: 0; color: white;">{{ currentTrack.title }}</h4>
+              <p v-else style="margin: 0; color: rgba(255,255,255,0.6);">Aucune piste en cours</p>
+            </div>
+            <div class="live-controls" style="display: flex; gap: 10px;">
+              <button @click="togglePlay" class="btn btn-primary">
+                <i :class="isPlaying ? 'fas fa-pause' : 'fas fa-play'"></i>
+              </button>
+              <button @click="stop" class="btn btn-secondary">
+                <i class="fas fa-stop"></i>
+              </button>
+              <div style="display: flex; align-items: center; gap: 5px;">
+                <i class="fas fa-volume-up" style="color: white;"></i>
+                <input type="range" v-model="volume" min="0" max="100"
+                       style="width: 80px;" @input="updateVolume">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   `,
   setup(props) {
@@ -1009,6 +1126,12 @@ const SoundInterface = {
     const currentTime = ref(0);
     const volume = ref(80);
     const playbackMode = ref('hook');
+
+    // Mode Live/Préparation
+    const liveMode = ref(false);
+    const soundSet = ref([]);  // Set de bruitages préparés pour le live
+    const liveSearchQuery = ref('');
+    const liveSearchResults = ref([]);
 
     // Filtres
     const searchQuery = ref('');
@@ -1155,31 +1278,35 @@ const SoundInterface = {
     const loadAudioTrack = () => {
       if (!currentTrack.value) return;
 
-      // Simuler le chargement - en réalité, il faudrait l'URL du fichier
+      // Charger le fichier audio
       console.log('Chargement de:', currentTrack.value.filename);
-      // audioPlayer.value.src = `/uploads/${currentTrack.value.filename}`;
-      // audioPlayer.value.volume = volume.value / 100;
+      audioPlayer.value.src = currentTrack.value.web_url;
+      audioPlayer.value.volume = volume.value / 100;
     };
 
     const play = () => {
-      if (!currentTrack.value) return;
-
-      // Simuler la lecture pour la démo
-      isPlaying.value = true;
+      if (!currentTrack.value || !audioPlayer.value) return;
 
       // Positionner selon le mode de lecture
       switch (playbackMode.value) {
         case 'hook':
-          currentTime.value = currentTrack.value.cues.hook;
+          audioPlayer.value.currentTime = currentTrack.value.cues.hook;
           break;
         case 'climax':
-          currentTime.value = currentTrack.value.cues.climax;
+          audioPlayer.value.currentTime = currentTrack.value.cues.climax;
           break;
         case 'full':
         default:
-          currentTime.value = currentTrack.value.cues.start;
+          audioPlayer.value.currentTime = currentTrack.value.cues.start;
           break;
       }
+
+      // Lancer la lecture
+      audioPlayer.value.play().then(() => {
+        isPlaying.value = true;
+      }).catch(error => {
+        console.error('Erreur lors de la lecture:', error);
+      });
 
       // Notifier les autres interfaces
       if (socket.value && currentMatch.value) {
@@ -1192,7 +1319,10 @@ const SoundInterface = {
     };
 
     const togglePlay = () => {
+      if (!audioPlayer.value) return;
+
       if (isPlaying.value) {
+        audioPlayer.value.pause();
         isPlaying.value = false;
       } else {
         play();
@@ -1200,6 +1330,10 @@ const SoundInterface = {
     };
 
     const stop = () => {
+      if (!audioPlayer.value) return;
+
+      audioPlayer.value.pause();
+      audioPlayer.value.currentTime = 0;
       isPlaying.value = false;
       currentTime.value = 0;
     };
@@ -1365,6 +1499,72 @@ const SoundInterface = {
       music.favorite = !music.favorite;
     };
 
+    // Fonctions du mode Live
+    const prepareSoundSet = () => {
+      if (!currentMatch.value) return;
+
+      // Auto-générer un set de bruitages basé sur les thèmes des improvs
+      const themes = currentMatch.value.improvs.map(improv => improv.theme).filter(Boolean);
+      const bruitages = musicLibrary.value.filter(music =>
+        music.tags.mood.includes('effet-sonore') ||
+        music.metadata.folder.toLowerCase().includes('bruitage')
+      );
+
+      // Sélectionner des bruitages pertinents
+      soundSet.value = bruitages.slice(0, 12); // Limiter à 12 pour l'affichage
+    };
+
+    const quickPlaySound = (sound) => {
+      selectMusic(sound);
+      play();
+    };
+
+    const performLiveSearch = () => {
+      if (!liveSearchQuery.value.trim()) {
+        liveSearchResults.value = [];
+        return;
+      }
+
+      const query = liveSearchQuery.value.toLowerCase();
+      liveSearchResults.value = musicLibrary.value.filter(music =>
+        music.title.toLowerCase().includes(query) ||
+        music.artist.toLowerCase().includes(query) ||
+        music.tags.mood.some(mood => mood.toLowerCase().includes(query)) ||
+        music.metadata.folder.toLowerCase().includes(query)
+      ).slice(0, 20); // Limiter les résultats
+    };
+
+    const clearLiveSearch = () => {
+      liveSearchQuery.value = '';
+      liveSearchResults.value = [];
+    };
+
+    const getSoundColor = (mood) => {
+      const colors = {
+        'effet-sonore': '#8b5cf6',
+        'sombre': '#374151',
+        'joyeux': '#10b981',
+        'épique': '#f59e0b',
+        'calme': '#6366f1',
+        'neutral': '#6b7280'
+      };
+      return colors[mood] || colors.neutral;
+    };
+
+    const getSoundIcon = (sound) => {
+      if (sound.tags.mood.includes('effet-sonore')) return 'fas fa-volume-up';
+      if (sound.tags.mood.includes('sombre')) return 'fas fa-skull';
+      if (sound.tags.mood.includes('joyeux')) return 'fas fa-smile';
+      if (sound.tags.mood.includes('épique')) return 'fas fa-bolt';
+      return 'fas fa-music';
+    };
+
+    const updateVolume = () => {
+      if (audioPlayer.value) {
+        audioPlayer.value.volume = volume.value / 100;
+      }
+    };
+
     const formatTime = (seconds) => {
       const mins = Math.floor(seconds / 60);
       const secs = Math.floor(seconds % 60);
@@ -1380,6 +1580,23 @@ const SoundInterface = {
       if (props.matchId) {
         selectedMatchId.value = props.matchId;
         await loadMatch();
+      }
+
+      // Event listeners pour l'audio player
+      if (audioPlayer.value) {
+        audioPlayer.value.addEventListener('timeupdate', () => {
+          currentTime.value = audioPlayer.value.currentTime;
+        });
+
+        audioPlayer.value.addEventListener('ended', () => {
+          isPlaying.value = false;
+        });
+
+        audioPlayer.value.addEventListener('loadedmetadata', () => {
+          if (currentTrack.value) {
+            currentTrack.value.duration = audioPlayer.value.duration;
+          }
+        });
       }
     });
 
@@ -1409,6 +1626,12 @@ const SoundInterface = {
       filteredMusic,
       availableMoods,
 
+      // Mode Live
+      liveMode,
+      soundSet,
+      liveSearchQuery,
+      liveSearchResults,
+
       // Méthodes
       loadMatch,
       syncWithMC,
@@ -1433,7 +1656,15 @@ const SoundInterface = {
       playImprovMusic,
       previewCue,
       addToFavorites,
-      formatTime
+      formatTime,
+
+      // Fonctions mode Live
+      prepareSoundSet,
+      quickPlaySound,
+      performLiveSearch,
+      clearLiveSearch,
+      getSoundColor,
+      getSoundIcon
     };
   }
 };
@@ -1461,7 +1692,6 @@ const App = {
           <h1>
             <i class="fas fa-theater-masks"></i>
             Impro Manager
-            <span class="badge">{{ currentMode }}</span>
           </h1>
 
           <div class="nav-links" style="margin-top: 10px;">
@@ -1484,16 +1714,7 @@ const App = {
     </div>
   `,
   setup() {
-    const currentMode = computed(() => {
-      const route = router.currentRoute.value;
-      if (route.path.startsWith('/mc')) return 'MC';
-      if (route.path.startsWith('/sound')) return 'Son';
-      return 'Accueil';
-    });
-
-    return {
-      currentMode
-    };
+    return {};
   }
 };
 

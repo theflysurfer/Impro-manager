@@ -8,7 +8,14 @@
       "Bash(npm install:*)",
       "Bash(node:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Read(//c/Users/JulienFernandez/OneDrive/Zic impro/**)",
+      "Bash(find:*)",
+      "Bash(python:*)",
+      "Bash(touch:*)",
+      "WebFetch(domain:ludo-impro.fr)",
+      "WebFetch(domain:match.impro.free.fr)",
+      "WebFetch(domain:impropulse.fr)"
     ],
     "deny": [],
     "ask": []

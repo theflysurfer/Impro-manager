@@ -1,190 +1,132 @@
 # 🎭 Impro Manager
 
-Application web complète pour la gestion de matchs d'improvisation théâtrale avec bibliothèque musicale intégrée.
+Application web complète pour la gestion des matchs d'improvisation théâtrale, développée spécifiquement pour optimiser la préparation et le déroulement des spectacles d'impro.
 
-## 🎯 Fonctionnalités
+## 🚀 Fonctionnalités
 
-### Mode MC (Maître de Cérémonie)
-- ✅ Création et gestion de feuilles de match
-- ✅ Templates de match prédéfinis
-- ✅ Timer intégré avec alertes visuelles
-- ✅ Gestion des équipes et scores
-- ✅ Assignment de musiques aux improvisations
+### Interface MC (Maître de Cérémonie)
+- ✅ Création et gestion de matchs d'improvisation
+- ✅ Gestion des équipes et joueurs
+- ✅ Chronomètre intégré avec contrôles
+- ✅ Assignation de musiques par thème
 - ✅ Synchronisation temps réel avec l'interface Son
 
-### Mode Son (Responsable Sonorisation)
-- ✅ Bibliothèque musicale avec métadonnées enrichies
-- ✅ Lecteur audio HTML5 avec points de lecture (Hook, Climax, Outro)
-- ✅ Modes de lecture : Complet, Hook Start, Version courte, Boucle
-- ✅ Filtres et recherche avancée (ambiance, énergie, genre)
-- ✅ Glisser-déposer pour assignment aux improvisations
-- ✅ Raccourcis clavier et boutons de lancement rapide
-- ✅ Synchronisation avec l'interface MC
+### Interface Son (Responsable Audio)
+- ✅ Bibliothèque musicale complète (777 pistes indexées)
+- ✅ Lecteur audio professionnel avec cue points
+- ✅ Mode Live pour performance temps réel
+- ✅ Recherche rapide de bruitages et musiques
+- ✅ Set de bruitages préparés par match
 
 ### Synchronisation Temps Réel
-- ✅ WebSocket pour communication MC ↔ Son
-- ✅ Partage d'état des matchs et musiques
-- ✅ Notifications d'assignment musical
+- ✅ Communication WebSocket MC ↔ Son
+- ✅ Toggle Préparation/Live synchronisé
+- ✅ Mise à jour automatique des états
 
-## 🚀 Installation
+## 🛠️ Installation
 
 ### Prérequis
-- Node.js (version 16+)
-- npm
+- Node.js 18+
+- Python 3.8+ (pour scan musical)
 
-### Étapes d'installation
-
-1. **Cloner et installer les dépendances serveur :**
+### Démarrage rapide
 ```bash
+# Installation des dépendances
 npm install
+
+# Génération de la bibliothèque musicale (optionnel)
+python generate_music_library.py
+
+# Démarrage du serveur
+npm start
 ```
 
-2. **Installer les dépendances client :**
-```bash
-cd client
-npm install
-cd ..
-```
+L'application sera accessible sur `http://localhost:3000`
 
-3. **Démarrer l'application :**
-```bash
-npm run dev
-```
+## 📚 Utilisation
 
-Cela lancera :
-- Serveur Express sur http://localhost:3000
-- Interface Vue.js sur http://localhost:5173
+### Mode Préparation
+1. **MC** : Créer un nouveau match, ajouter équipes et improvisations
+2. **Son** : Associer musiques aux thèmes, préparer set de bruitages
+3. **Synchronisation** : Les deux interfaces se mettent à jour automatiquement
 
-## 🎵 Structure des Données Musicales
+### Mode Live
+1. Basculer en Mode Live via le toggle
+2. **MC** : Interface compacte de suivi du match
+3. **Son** : Accès rapide aux musiques et recherche de bruitages imprévus
 
-Chaque fichier audio contient des métadonnées complètes :
+## 🎵 Bibliothèque Musicale
 
-```json
-{
-  "id": "music-001",
-  "filename": "jazz-cool-cafe.mp3",
-  "title": "Jazz Cool Café",
-  "artist": "Django's Cats",
-  "duration": 245,
-  "cues": {
-    "start": 0,
-    "hook": 32,
-    "climax": 98,
-    "outro": 210,
-    "fade_duration": 8
-  },
-  "tags": {
-    "mood": ["énergique", "joyeux", "décontracté"],
-    "genre": ["jazz", "swing"],
-    "energy": 7,
-    "tempo": "medium"
-  },
-  "impro_context": {
-    "scenarios": ["café", "années-20", "détective"],
-    "emotions": ["nostalgie", "légèreté", "sophistication"]
-  }
-}
-```
+Le système scanne automatiquement votre collection musicale et catégorise :
+- **Genres** : Classique, Rock, Jazz, Électro, etc.
+- **Ambiances** : Mystérieux, Joyeux, Dramatique, etc.
+- **Énergie** : Échelle de 1 à 10
+- **Scenarios d'impro** : Action, Romance, Comédie, etc.
 
-## 📁 Structure du Projet
+## 📱 Interfaces
 
-```
-impro-manager/
-├── server/
-│   ├── app.js              # Serveur Express + Socket.IO
-│   └── ...
-├── client/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Home.vue           # Page d'accueil
-│   │   │   ├── MCInterface.vue    # Interface MC
-│   │   │   └── SoundInterface.vue # Interface Son
-│   │   ├── App.vue
-│   │   └── main.js
-│   └── ...
-├── data/
-│   ├── matches.json        # Données des matchs
-│   ├── music.json          # Bibliothèque musicale
-│   └── templates.json      # Templates de match
-├── uploads/               # Fichiers audio uploadés
-└── package.json
-```
+### Navigation
+- **Accueil** : Vue d'ensemble et accès rapide
+- **Mode MC** : Gestion complète des matchs
+- **Mode Son** : Contrôle audio et musical
 
-## 🎮 Utilisation
+### Design
+- Interface glassmorphisme moderne
+- Responsive design
+- Animations fluides
+- Indicateurs visuels Mode Live
 
-### Workflow Typique
+## 🔧 Architecture Technique
 
-1. **Préparation (Mode MC) :**
-   - Créer un nouveau match avec template
-   - Définir les équipes
-   - Ajouter/modifier les improvisations
+- **Frontend** : Vue.js 3 avec Composition API
+- **Backend** : Express.js + Socket.IO
+- **Stockage** : Fichiers JSON pour flexibilité
+- **Audio** : HTML5 Audio API
+- **Temps réel** : WebSocket pour synchronisation
 
-2. **Configuration Son :**
-   - Sélectionner le match actuel
-   - Assigner les musiques par glisser-déposer
-   - Tester les points de lecture
+## 📈 Changelog
 
-3. **Pendant le Match :**
-   - **MC :** Gère la progression, timer, scores
-   - **Son :** Lance les musiques au bon moment
-   - Synchronisation automatique entre les deux
+### v0.3.0 - 2025-10-03
+- ✨ Recherche complète des micro-étapes feuille de match d'impro
+- 📋 Identification des besoins Phase "Préparation" MC
+- 🏗️ Restructuration projet avec documentation obligatoire
+- 📊 Gap analysis : 40% des besoins standards couverts
 
-### Raccourcis Clavier (Mode Son)
-- `Espace` : Play/Pause
-- `Échap` : Stop
-- `1-6` : Lancement rapide (Applause, Gong, etc.)
+### v0.2.1 - 2025-10-03
+- 🚀 Restauration complète Mode Live après régression critique
+- 🐛 Fix erreur duplicate updateVolume()
+- ✅ Validation fonctionnement complet MC + Son + Live
+- 🔒 Point de sauvegarde sans régression
 
-## 🔧 Configuration
+### v0.2.0 - 2025-10-03
+- ✨ Implémentation Mode Live avec toggle Préparation/Live
+- 🎵 Set de bruitages préparés automatiquement
+- 🔍 Recherche rapide de bruitages pendant spectacle
+- 🎨 Animations et styles spécifiques Mode Live
+- ⚡ Interface compacte optimisée performance temps réel
 
-### Ajouter des Musiques
-1. Placer les fichiers audio dans `/uploads/`
-2. Ajouter les métadonnées dans `/data/music.json`
-3. Redémarrer l'application
+### v0.1.0 - 2025-10-03
+- 🎭 Interfaces MC et Son complètes selon wireframes
+- 🎵 Intégration bibliothèque musicale (777 pistes)
+- 🔄 Synchronisation WebSocket temps réel
+- ⏱️ Système de chronomètre et timer
+- 🎧 Lecteur audio avec contrôles complets
+- 🖱️ Drag-and-drop pour assignation musiques
 
-### Créer des Templates
-Modifier `/data/templates.json` pour ajouter de nouveaux templates de match.
+## 🤝 Contribution
 
-## 🤝 Workflow de Troupe
+Application développée spécifiquement pour les besoins d'une troupe d'improvisation théâtrale.
 
-### Rôles
-- **MC :** Maître de cérémonie, gère le match
-- **Son :** Responsable sonorisation, gère la musique
-- **Équipes :** Peuvent consulter en lecture seule
+### Standards de développement
+- Documentation obligatoire : `action_plan.md`, `readme.md`, `best_practices_current_project.md`
+- Tests unitaires dans `/tests` (1 seul test actif)
+- Logs détaillés dans `/logs` pour debugging LLM
+- Commits détaillés avec contexte complet
 
-### Synchronisation
-Les deux interfaces se synchronisent automatiquement :
-- Assignment de musiques → visible côté MC
-- Progression du match → visible côté Son
-- État temps réel via WebSocket
+## 📞 Support
 
-## 📱 Accès Multi-Appareils
-
-- **MC :** `http://localhost:3000/mc`
-- **Son :** `http://localhost:3000/sound`
-- **Accueil :** `http://localhost:3000/`
-
-Compatible tablettes et mobiles pour utilisation en direct.
-
-## 🛠️ Développement
-
-### Technologies
-- **Backend :** Node.js, Express, Socket.IO
-- **Frontend :** Vue.js 3, Vue Router
-- **Styling :** CSS3 avec design moderne
-- **Audio :** HTML5 Audio API
-
-### Améliorations Futures
-- [ ] Upload de fichiers audio via interface
-- [ ] Détection automatique des points de lecture
-- [ ] Statistiques de match
-- [ ] Mode hors-ligne
-- [ ] Export PDF des feuilles
-- [ ] Gestion utilisateurs multi-troupes
-
-## 📄 License
-
-MIT - Libre d'utilisation pour votre troupe d'impro !
+Pour toute question ou suggestion d'amélioration, consulter le `action_plan.md` pour les prochaines étapes de développement.
 
 ---
 
-🎭 **Créé avec passion pour la communauté théâtrale d'improvisation** 🎭
+*Développé avec ❤️ pour la communauté d'improvisation théâtrale*
