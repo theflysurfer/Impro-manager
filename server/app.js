@@ -21,6 +21,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use('/static', express.static(path.join(__dirname, '../static')));
+app.use('/music', express.static('C:\\Users\\JulienFernandez\\OneDrive\\Zic impro'));
 app.use(express.static(path.join(__dirname, '../static')));
 
 // Données JSON en mémoire
@@ -37,6 +38,24 @@ async function initializeData() {
   } catch (error) {
     console.log('Création des données d\'exemple...');
     await createSampleData();
+  }
+
+  // Charger la vraie bibliothèque musicale
+  try {
+    const musicData = await fs.readFile(path.join(__dirname, '../music_library.json'), 'utf8');
+    const musicLibraryData = JSON.parse(musicData);
+    musicLibrary = musicLibraryData.tracks || [];
+    console.log(`📚 Bibliothèque musicale chargée: ${musicLibrary.length} pistes`);
+  } catch (error) {
+    console.log('📚 Aucune bibliothèque musicale trouvée, utilisation des données d\'exemple');
+  }
+
+  // Charger les templates
+  try {
+    const templatesData = await fs.readFile(path.join(__dirname, '../data/templates.json'), 'utf8');
+    templates = JSON.parse(templatesData);
+  } catch (error) {
+    console.log('Aucun template trouvé, utilisation des templates par défaut');
   }
 }
 
