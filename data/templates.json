@@ -1,0 +1,29 @@
+[
+  {
+    "id": "template-match-classique",
+    "name": "Match Classique",
+    "description": "Structure standard de match d'impro",
+    "improvs": [
+      {
+        "title": "Libre",
+        "duration": 120,
+        "type": "libre"
+      },
+      {
+        "title": "Contrainte",
+        "duration": 180,
+        "type": "contrainte"
+      },
+      {
+        "title": "Émotion",
+        "duration": 120,
+        "type": "emotion"
+      },
+      {
+        "title": "Finale",
+        "duration": 240,
+        "type": "finale"
+      }
+    ]
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "name": "impro-manager",
+  "version": "1.0.0",
+  "description": "Application de gestion de matchs d'improvisation théâtrale",
+  "main": "server/app.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/app.js",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "node server/app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "multer": "^1.4.5-lts.1",
+    "socket.io": "^4.7.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2",
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["impro", "theatre", "music", "match"],
+  "author": "Votre Troupe d'Impro",
+  "license": "MIT"
+}
