@@ -1,0 +1,202 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "match.schema.json",
+  "title": "Match Schema",
+  "description": "Schéma de validation pour les feuilles de match d'improvisation",
+  "type": "object",
+  "required": ["match_id", "title", "date", "teams", "lines", "created_at"],
+  "properties": {
+    "match_id": {
+      "type": "string",
+      "pattern": "^match_[0-9]{3,}$",
+      "description": "Identifiant unique du match (match_001, match_002, ...)"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Titre du match"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date et heure du match (ISO 8601)"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Lieu du match"
+    },
+    "teams": {
+      "type": "object",
+      "required": ["home", "away"],
+      "properties": {
+        "home": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": {"type": "string"},
+            "color": {"type": "string"},
+            "score": {"type": "integer", "minimum": 0, "default": 0}
+          }
+        },
+        "away": {
+          "type": "object",
+          "required": ["name"],
+          "properties": {
+            "name": {"type": "string"},
+            "color": {"type": "string"},
+            "score": {"type": "integer", "minimum": 0, "default": 0}
+          }
+        }
+      }
+    },
+    "personnel": {
+      "type": "object",
+      "properties": {
+        "mc": {
+          "type": "object",
+          "required": ["personnel_id", "name"],
+          "properties": {
+            "personnel_id": {"type": "string"},
+            "name": {"type": "string"}
+          }
+        },
+        "sound": {
+          "type": "object",
+          "required": ["personnel_id", "name"],
+          "properties": {
+            "personnel_id": {"type": "string"},
+            "name": {"type": "string"}
+          }
+        },
+        "referees": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["personnel_id", "name"],
+            "properties": {
+              "personnel_id": {"type": "string"},
+              "name": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "lines": {
+      "type": "array",
+      "description": "Lignes de la feuille de match",
+      "items": {
+        "type": "object",
+        "required": ["line_id", "order", "type"],
+        "properties": {
+          "line_id": {
+            "type": "string",
+            "pattern": "^line_[0-9]{3,}$"
+          },
+          "order": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "ARRIVEE",
+              "ECHAUFFEMENT",
+              "PRESENTATION",
+              "SEQUENCE",
+              "ANNONCE_INTERMEDIAIRE",
+              "PAUSE",
+              "ANNONCE_FIN",
+              "FIN"
+            ]
+          },
+          "title": {"type": "string"},
+          "duration_planned": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Durée planifiée en secondes"
+          },
+          "duration_actual": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Durée réelle en secondes"
+          },
+          "team": {
+            "type": "string",
+            "enum": ["home", "away", "both", "none"]
+          },
+          "category": {
+            "type": "string",
+            "description": "Catégorie de séquence (libre, comparée, mixte, caucus)"
+          },
+          "theme": {"type": "string"},
+          "music": {
+            "type": "object",
+            "properties": {
+              "intro": {
+                "type": ["object", "null"],
+                "properties": {
+                  "music_id": {"type": "string"},
+                  "settings": {
+                    "type": "object",
+                    "properties": {
+                      "play_type": {
+                        "type": "string",
+                        "enum": ["full", "clip_auto", "clip_custom"]
+                      },
+                      "clip_start": {"type": "number", "minimum": 0},
+                      "clip_end": {"type": "number", "minimum": 0},
+                      "fade_in": {"type": "number", "minimum": 0, "maximum": 10},
+                      "fade_out": {"type": "number", "minimum": 0, "maximum": 10},
+                      "volume": {"type": "number", "minimum": 0, "maximum": 100}
+                    }
+                  }
+                }
+              },
+              "outro": {
+                "type": ["object", "null"],
+                "properties": {
+                  "music_id": {"type": "string"},
+                  "settings": {"type": "object"}
+                }
+              },
+              "transition": {
+                "type": ["object", "null"],
+                "properties": {
+                  "music_id": {"type": "string"},
+                  "settings": {"type": "object"}
+                }
+              }
+            }
+          },
+          "notes": {"type": "string"}
+        }
+      }
+    },
+    "live_state": {
+      "type": "object",
+      "properties": {
+        "current_line_id": {"type": ["string", "null"]},
+        "chrono_elapsed": {"type": "integer", "minimum": 0},
+        "chrono_status": {
+          "type": "string",
+          "enum": ["stopped", "running", "paused"]
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "ready", "live", "completed"],
+      "default": "draft"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}
