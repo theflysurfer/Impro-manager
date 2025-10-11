@@ -15,7 +15,18 @@
       "Bash(touch:*)",
       "WebFetch(domain:ludo-impro.fr)",
       "WebFetch(domain:match.impro.free.fr)",
-      "WebFetch(domain:impropulse.fr)"
+      "WebFetch(domain:impropulse.fr)",
+      "Bash(rm:*)",
+      "Bash(git init:*)",
+      "Bash(git mv:*)",
+      "Bash(git rm:*)",
+      "Bash(gh:*)",
+      "Bash(curl http://localhost:3001/api/health)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(bash:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm run backend:*)"
     ],
     "deny": [],
     "ask": []
