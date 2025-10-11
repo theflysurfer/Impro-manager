@@ -26,7 +26,8 @@
       "Bash(pkill:*)",
       "Bash(bash:*)",
       "Bash(taskkill:*)",
-      "Bash(npm run backend:*)"
+      "Bash(npm run backend:*)",
+      "Bash(npm run dev)"
     ],
     "deny": [],
     "ask": []

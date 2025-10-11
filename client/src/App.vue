@@ -18,6 +18,9 @@
           <router-link to="/sound" class="btn btn-small">
             <i class="fas fa-volume-up"></i> Mode Son
           </router-link>
+          <router-link to="/music" class="btn btn-small">
+            <i class="fas fa-compact-disc"></i> Bibliothèque
+          </router-link>
         </div>
       </div>
     </nav>
@@ -36,6 +39,7 @@ export default {
       const path = this.$route.path;
       if (path.startsWith('/mc')) return 'MC';
       if (path.startsWith('/sound')) return 'Son';
+      if (path.startsWith('/music')) return 'Bibliothèque';
       return 'Accueil';
     }
   }
