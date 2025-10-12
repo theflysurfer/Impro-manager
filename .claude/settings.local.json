@@ -27,7 +27,9 @@
       "Bash(bash:*)",
       "Bash(taskkill:*)",
       "Bash(npm run backend:*)",
-      "Bash(npm run dev)"
+      "Bash(npm run dev)",
+      "Bash(npx vite)",
+      "Bash(npx playwright install:*)"
     ],
     "deny": [],
     "ask": []

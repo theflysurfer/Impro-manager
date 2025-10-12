@@ -19,6 +19,7 @@
     "socket.io": "^4.7.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.0",
     "concurrently": "^8.2.2",
     "nodemon": "^3.0.2"
   },
