@@ -11,7 +11,7 @@
         <label class="form-label" style="margin: 0;">Match actuel :</label>
         <select v-model="selectedMatchId" @change="loadMatch" class="form-input" style="width: auto;">
           <option value="">Sélectionner un match...</option>
-          <option v-for="match in availableMatches" :key="match.id" :value="match.id">
+          <option v-for="match in availableMatches" :key="match.match_id || match.id" :value="match.match_id || match.id">
             {{ match.title }}
           </option>
         </select>
