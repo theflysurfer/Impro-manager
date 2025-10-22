@@ -51,7 +51,7 @@
       </div>
 
       <div v-else class="matches-list">
-        <div v-for="match in matches" :key="match.id" class="match-item" style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+        <div v-for="match in matches" :key="match.match_id || match.id" class="match-item" style="background: rgba(255,255,255,0.7); padding: 15px; border-radius: 10px; margin-bottom: 10px;">
           <div class="match-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
             <h4 style="color: #2d3748;">{{ match.title }}</h4>
             <span :class="getStatusClass(match.status)" style="padding: 4px 8px; border-radius: 12px; font-size: 0.8em;">
@@ -60,15 +60,15 @@
           </div>
 
           <div class="match-info" style="display: flex; justify-content: space-between; align-items: center; color: #718096; font-size: 0.9em;">
-            <span>{{ match.teamA.name }} vs {{ match.teamB.name }}</span>
+            <span>{{ getTeamName(match, 'home') }} vs {{ getTeamName(match, 'away') }}</span>
             <span>{{ formatDate(match.date) }}</span>
           </div>
 
           <div style="margin-top: 15px; display: flex; gap: 10px;">
-            <router-link :to="`/mc/${match.id}`" class="btn btn-small">
+            <router-link :to="`/mc/${match.match_id || match.id}`" class="btn btn-small">
               <i class="fas fa-edit"></i> Gérer (MC)
             </router-link>
-            <router-link :to="`/sound/${match.id}`" class="btn btn-small btn-secondary">
+            <router-link :to="`/sound/${match.match_id || match.id}`" class="btn btn-small btn-secondary">
               <i class="fas fa-volume-up"></i> Son
             </router-link>
           </div>
@@ -113,6 +113,14 @@ export default {
         'draft': 'Brouillon'
       };
       return texts[status] || 'Inconnu';
+    },
+    getTeamName(match, side) {
+      // Support both old schema (teamA/teamB) and new schema (teams.home/away)
+      if (side === 'home') {
+        return match.teamA?.name || match.teams?.home?.name || 'Équipe A';
+      } else {
+        return match.teamB?.name || match.teams?.away?.name || 'Équipe B';
+      }
     },
     formatDate(dateString) {
       const date = new Date(dateString);
