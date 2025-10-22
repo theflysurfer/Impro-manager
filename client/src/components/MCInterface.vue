@@ -252,7 +252,7 @@ export default {
   },
   methods: {
     async initializeSocket() {
-      this.socket = io('http://localhost:3000');
+      this.socket = io(window.location.origin.replace(/^http/, 'ws'));
 
       this.socket.on('connect', () => {
         console.log('Connecté au serveur en tant que MC');
@@ -274,9 +274,11 @@ export default {
     async loadTemplates() {
       try {
         const response = await fetch('/api/templates');
-        this.templates = await response.json();
+        const data = await response.json();
+        this.templates = Array.isArray(data) ? data : [];
       } catch (error) {
         console.error('Erreur lors du chargement des templates:', error);
+        this.templates = [];
       }
     },
 
@@ -308,7 +310,7 @@ export default {
         return;
       }
 
-      const template = this.templates.find(t => t.id === this.newMatch.template);
+      const template = Array.isArray(this.templates) ? this.templates.find(t => t.id === this.newMatch.template) : null;
 
       const matchData = {
         title: this.newMatch.title,

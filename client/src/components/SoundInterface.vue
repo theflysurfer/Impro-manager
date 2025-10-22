@@ -392,7 +392,7 @@ export default {
   },
   methods: {
     async initializeSocket() {
-      this.socket = io('http://localhost:3000');
+      this.socket = io(window.location.origin.replace(/^http/, 'ws'));
 
       this.socket.on('connect', () => {
         console.log('Connecté au serveur en tant que responsable son');
