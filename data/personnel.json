@@ -1,0 +1,145 @@
+[
+  {
+    "personnel_id": "person_001",
+    "name": "Julie Renard",
+    "email": "julie@troupe-impro.fr",
+    "phone": "+33 6 12 34 56 78",
+    "roles": [
+      "player",
+      "mc"
+    ],
+    "status": "active",
+    "bio": "MC expérimentée depuis 5 ans, spécialisée en gestion de spectacle et animation.",
+    "joined_date": "2019-09-01",
+    "notes": "Disponible tous les vendredis et samedis",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_002",
+    "name": "Marc Dupont",
+    "email": "marc@troupe-impro.fr",
+    "phone": "+33 6 98 76 54 32",
+    "roles": [
+      "sound"
+    ],
+    "status": "active",
+    "bio": "Régisseur son passionné de musique, expert en création d'ambiances musicales pour impro.",
+    "joined_date": "2020-03-15",
+    "notes": "Possède tout le matériel son nécessaire",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_003",
+    "name": "Sophie Martin",
+    "email": "sophie@troupe-impro.fr",
+    "phone": "+33 6 45 67 89 01",
+    "roles": [
+      "player",
+      "referee"
+    ],
+    "status": "active",
+    "bio": "Improvisatrice et arbitre certifiée LIFI.",
+    "joined_date": "2018-11-20",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_004",
+    "name": "Thomas Bernard",
+    "email": "thomas@troupe-impro.fr",
+    "phone": "+33 6 23 45 67 89",
+    "roles": [
+      "player"
+    ],
+    "status": "active",
+    "bio": "Comédien improvisateur depuis 3 ans.",
+    "joined_date": "2021-01-10",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_005",
+    "name": "Emma Rousseau",
+    "email": "emma@troupe-impro.fr",
+    "phone": "+33 6 11 22 33 44",
+    "roles": [
+      "player",
+      "mc"
+    ],
+    "status": "active",
+    "bio": "Improvisatrice polyvalente, peut également assurer le MC en backup.",
+    "joined_date": "2020-06-01",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_006",
+    "name": "Lucas Petit",
+    "email": "lucas@troupe-impro.fr",
+    "roles": [
+      "player",
+      "referee"
+    ],
+    "status": "active",
+    "joined_date": "2019-04-15",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_007",
+    "name": "Chloé Dubois",
+    "email": "chloe@troupe-impro.fr",
+    "roles": [
+      "player"
+    ],
+    "status": "active",
+    "joined_date": "2022-09-01",
+    "notes": "Nouvelle dans la troupe, très motivée",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_008",
+    "name": "Antoine Moreau",
+    "email": "antoine@troupe-impro.fr",
+    "roles": [
+      "player",
+      "coach"
+    ],
+    "status": "active",
+    "bio": "Comédien improvisateur et formateur, anime les ateliers de la troupe.",
+    "joined_date": "2017-03-20",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_009",
+    "name": "Léa Garnier",
+    "email": "lea@troupe-impro.fr",
+    "roles": [
+      "referee"
+    ],
+    "status": "active",
+    "bio": "Arbitre principale de la troupe.",
+    "joined_date": "2019-01-15",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  },
+  {
+    "personnel_id": "person_010",
+    "name": "Paul Vincent",
+    "email": "paul@troupe-impro.fr",
+    "roles": [
+      "player",
+      "admin"
+    ],
+    "status": "active",
+    "bio": "Président de la troupe et improvisateur.",
+    "joined_date": "2016-09-01",
+    "notes": "Contact principal pour l'administration",
+    "created_at": "2025-10-10T00:00:00Z",
+    "updated_at": "2025-10-10T00:00:00Z"
+  }
+]

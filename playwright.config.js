@@ -20,9 +20,10 @@ module.exports = defineConfig({
     },
   ],
 
-  webServer: {
-    command: 'cd client && npm run dev',
-    url: 'http://localhost:5173',
-    reuseExistingServer: !process.env.CI,
-  },
+  // webServer: {
+  //   command: 'npm --prefix ./client run dev',
+  //   url: 'http://localhost:5173',
+  //   reuseExistingServer: !process.env.CI,
+  //   timeout: 120000,
+  // },
 });
