@@ -28,16 +28,14 @@ Thumbs.db
 uploads/*
 !uploads/.gitkeep
 
-# Data files (JSON runtime data)
+# Data files (JSON runtime data - matches/personnel created at runtime)
 data/matches/*.json
 data/personnel/*.json
-data/music/*.json
 !data/templates.json
 
-# Music files (too large for Git)
+# Music files (MP3/WAV files too large for Git)
 music/
 public/music/
-music_library.json
 
 # Test results
 playwright-report/
