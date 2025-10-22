@@ -122,10 +122,52 @@ app.get('/api/music', (req, res) => {
       filtered = filtered.filter(track => track.vocal === isVocal);
     }
 
+    if (req.query.type) {
+      // Filtre par type: 'music' ou 'sound_effect'
+      // Si pas de field type, on détermine par durée: <30s = bruitage
+      filtered = filtered.filter(track => {
+        const trackType = track.type || (track.duration < 30 ? 'sound_effect' : 'music');
+        return trackType === req.query.type;
+      });
+    }
+
     res.json(filtered);
   } catch (error) {
     console.error('Error fetching music:', error);
     res.status(500).json({ error: 'Erreur lors de la récupération de la bibliothèque musicale' });
+  }
+});
+
+// Route pour servir un fichier musical spécifique
+app.get('/api/music/:id/file', async (req, res) => {
+  try {
+    const musicId = req.params.id;
+    const music = musicLibrary.find(m => m.id === musicId);
+
+    if (!music) {
+      return res.status(404).json({ error: 'Musique introuvable' });
+    }
+
+    const MUSIC_PATH = '/app/public/music';  // Path dans le container Docker
+    const filePath = path.join(MUSIC_PATH, music.filename);
+
+    // Vérifier que le fichier existe
+    try {
+      await fs.access(filePath);
+    } catch (error) {
+      console.error(`Fichier musical introuvable: ${filePath}`);
+      return res.status(404).json({ error: 'Fichier musical introuvable' });
+    }
+
+    // Définir les headers appropriés pour l'audio
+    res.setHeader('Content-Type', 'audio/mpeg');
+    res.setHeader('Accept-Ranges', 'bytes');
+
+    // Envoyer le fichier
+    res.sendFile(filePath);
+  } catch (error) {
+    console.error('Error serving music file:', error);
+    res.status(500).json({ error: 'Erreur lors de la lecture du fichier musical' });
   }
 });
 

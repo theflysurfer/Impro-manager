@@ -8,6 +8,13 @@
       </h2>
 
       <div class="match-controls" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
+        <select v-model="selectedMatchId" @change="loadMatch()" class="form-input" style="width: auto; min-width: 250px;">
+          <option value="">Sélectionner un match...</option>
+          <option v-for="match in availableMatches" :key="match.match_id || match.id" :value="match.match_id || match.id">
+            {{ match.title }} - {{ formatDate(match.date) }}
+          </option>
+        </select>
+
         <button @click="showNewMatchModal = true" class="btn">
           <i class="fas fa-plus"></i> Nouveau Match
         </button>
@@ -21,6 +28,10 @@
 
         <button v-if="currentMatch" @click="saveMatch" class="btn btn-success">
           <i class="fas fa-save"></i> Sauvegarder
+        </button>
+
+        <button v-if="currentMatch" @click="goToLiveMode" class="btn btn-primary" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); border: none;">
+          <i class="fas fa-circle" style="color: #fff; animation: pulse 2s infinite;"></i> Passer en Mode Live
         </button>
       </div>
     </div>
@@ -195,6 +206,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Audio Player (caché) pour preview -->
+    <audio ref="audioPlayer"></audio>
   </div>
 </template>
 
@@ -208,6 +222,8 @@ export default {
     return {
       socket: null,
       currentMatch: null,
+      availableMatches: [],
+      selectedMatchId: '',
       templates: [],
       musicLibrary: [],
       selectedTemplate: '',
@@ -271,9 +287,11 @@ export default {
     await this.initializeSocket();
     await this.loadTemplates();
     await this.loadMusicLibrary();
+    await this.loadAvailableMatches();
 
     if (this.matchId) {
       await this.loadMatch(this.matchId);
+      this.selectedMatchId = this.matchId;
     }
   },
   beforeUnmount() {
@@ -281,6 +299,12 @@ export default {
       this.socket.disconnect();
     }
     this.clearTimer();
+
+    // Arrêter l'audio preview
+    if (this.$refs.audioPlayer) {
+      this.$refs.audioPlayer.pause();
+      this.$refs.audioPlayer.src = '';
+    }
   },
   methods: {
     async initializeSocket() {
@@ -323,10 +347,24 @@ export default {
       }
     },
 
-    async loadMatch(matchId) {
+    async loadAvailableMatches() {
       try {
-        const response = await fetch(`/api/matches/${matchId}`);
+        const response = await fetch('/api/matches');
+        this.availableMatches = await response.json();
+      } catch (error) {
+        console.error('Erreur lors du chargement des matchs:', error);
+      }
+    },
+
+    async loadMatch(matchId = null) {
+      try {
+        // Si pas de matchId fourni, utiliser le selectedMatchId
+        const idToLoad = matchId || this.selectedMatchId;
+        if (!idToLoad) return;
+
+        const response = await fetch(`/api/matches/${idToLoad}`);
         this.currentMatch = await response.json();
+        this.selectedMatchId = idToLoad;
 
         if (this.socket) {
           this.socket.emit('join-match', this.currentMatch.id);
@@ -368,8 +406,12 @@ export default {
         });
 
         this.currentMatch = await response.json();
+        this.selectedMatchId = this.currentMatch.id || this.currentMatch.match_id;
         this.showNewMatchModal = false;
         this.newMatch = { title: '', teamB: '', template: '' };
+
+        // Recharger la liste des matchs disponibles
+        await this.loadAvailableMatches();
 
         // Naviguer vers le nouveau match
         this.$router.push(`/mc/${this.currentMatch.id}`);
@@ -514,13 +556,41 @@ export default {
     },
 
     previewMusic(musicId) {
-      // TODO: Implémenter la prévisualisation
-      console.log('Preview music:', musicId);
+      if (!this.$refs.audioPlayer) return;
+
+      const audio = this.$refs.audioPlayer;
+
+      // Si déjà en lecture, arrêter
+      if (!audio.paused && audio.src.includes(musicId)) {
+        audio.pause();
+        audio.currentTime = 0;
+        return;
+      }
+
+      // Charger et jouer la nouvelle musique
+      audio.src = `/api/music/${musicId}/file`;
+      audio.volume = 0.5; // Volume à 50% pour preview
+      audio.play().catch(err => {
+        console.error('Erreur lecture audio:', err);
+        alert('Impossible de lire la musique. Vérifiez que le fichier existe.');
+      });
     },
 
     openMusicSelector(improvIndex) {
       // TODO: Ouvrir un modal de sélection musicale
       console.log('Open music selector for improv:', improvIndex);
+    },
+
+    goToLiveMode() {
+      // Vérifier que le match est sauvegardé
+      if (!this.currentMatch || !this.currentMatch.id) {
+        alert('Veuillez d\'abord sauvegarder le match avant de passer en mode live.');
+        return;
+      }
+
+      // Naviguer vers la page Mode Live MC
+      const matchId = this.currentMatch.match_id || this.currentMatch.id;
+      window.location.href = `/mc/${matchId}/live`;
     },
 
     // Utility methods

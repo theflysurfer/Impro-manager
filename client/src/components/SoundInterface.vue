@@ -19,6 +19,10 @@
         <button v-if="currentMatch" @click="syncWithMC" class="btn btn-success">
           <i class="fas fa-sync"></i> Sync MC
         </button>
+
+        <button v-if="currentMatch" @click="goToLiveMode" class="btn btn-primary" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); border: none;">
+          <i class="fas fa-circle" style="color: #fff; animation: pulse 2s infinite;"></i> Passer en Mode Live
+        </button>
       </div>
     </div>
 
@@ -133,10 +137,38 @@
           Bibliothèque Musicale
         </h3>
 
-        <div class="library-controls" style="display: flex; gap: 15px; align-items: center;">
+        <div class="library-controls" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+          <!-- Filtres Type Musique / Bruitage -->
+          <div class="type-filter" style="display: flex; gap: 5px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 4px;">
+            <button
+              @click="filterType = ''"
+              class="btn btn-small"
+              :class="{ 'active': filterType === '' }"
+              style="padding: 5px 15px;"
+            >
+              <i class="fas fa-list"></i> Tout
+            </button>
+            <button
+              @click="filterType = 'music'"
+              class="btn btn-small"
+              :class="{ 'active': filterType === 'music' }"
+              style="padding: 5px 15px;"
+            >
+              <i class="fas fa-music"></i> Musiques
+            </button>
+            <button
+              @click="filterType = 'sound_effect'"
+              class="btn btn-small"
+              :class="{ 'active': filterType === 'sound_effect' }"
+              style="padding: 5px 15px;"
+            >
+              <i class="fas fa-volume-up"></i> Bruitages
+            </button>
+          </div>
+
           <input
             v-model="searchQuery"
-            placeholder="Rechercher musiques..."
+            placeholder="Rechercher..."
             class="form-input"
             style="width: 200px;"
           >
@@ -171,7 +203,17 @@
           draggable="true"
         >
           <div class="music-info">
-            <div class="music-title">{{ music.title }}</div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <i v-if="(music.type || (music.duration < 30 ? 'sound_effect' : 'music')) === 'sound_effect'"
+                 class="fas fa-volume-up"
+                 style="color: #f6ad55; font-size: 0.9em;"
+                 title="Bruitage"></i>
+              <i v-else
+                 class="fas fa-music"
+                 style="color: #667eea; font-size: 0.9em;"
+                 title="Musique"></i>
+              <div class="music-title">{{ music.title }}</div>
+            </div>
             <div class="music-artist">{{ music.artist || 'Artiste inconnu' }}</div>
             <div class="music-duration">{{ formatTime(music.duration) }}</div>
           </div>
@@ -310,6 +352,7 @@ export default {
       searchQuery: '',
       filterMood: '',
       filterEnergy: '',
+      filterType: '',  // '' = tout, 'music' = musiques, 'sound_effect' = bruitages
 
       // Drag & Drop
       draggedMusic: null,
@@ -358,6 +401,15 @@ export default {
         filtered = filtered.filter(music =>
           music.tags.energy >= min && music.tags.energy <= max
         );
+      }
+
+      // Filtre par type (musique vs bruitage)
+      if (this.filterType) {
+        filtered = filtered.filter(music => {
+          // Si pas de field type, on détermine par durée: <30s = bruitage
+          const trackType = music.type || (music.duration < 30 ? 'sound_effect' : 'music');
+          return trackType === this.filterType;
+        });
       }
 
       return filtered;
@@ -516,6 +568,18 @@ export default {
       console.log('Synchronisation avec MC effectuée');
     },
 
+    goToLiveMode() {
+      // Vérifier qu'un match est chargé
+      if (!this.currentMatch || !this.currentMatch.id) {
+        alert('Veuillez d\'abord sélectionner un match avant de passer en mode live.');
+        return;
+      }
+
+      // Naviguer vers la page Mode Live Son
+      const matchId = this.currentMatch.match_id || this.currentMatch.id;
+      window.location.href = `/sound/${matchId}/live`;
+    },
+
     // Audio player methods
     selectMusic(music) {
       this.currentTrack = music;
@@ -538,8 +602,8 @@ export default {
       if (!this.currentTrack) return;
 
       const audio = this.$refs.audioPlayer;
-      // Simuler le chargement - en réalité, il faudrait l'URL du fichier
-      audio.src = `/uploads/${this.currentTrack.filename}`;
+      // Charger via l'API
+      audio.src = `/api/music/${this.currentTrack.id}/file`;
       audio.volume = this.volume / 100;
     },
 
@@ -873,5 +937,16 @@ export default {
 .quick-buttons .btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.type-filter .btn-small.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: #fff;
+  font-weight: 600;
 }
 </style>

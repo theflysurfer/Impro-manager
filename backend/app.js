@@ -31,8 +31,12 @@ app.use(express.json());
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use('/static', express.static(path.join(__dirname, '../static')));
 
-// Musiques - Servir depuis OneDrive
-app.use('/audio/songs', express.static('C:\\Users\\JulienFernandez\\OneDrive\\Zic impro'));
+// Musiques - Chemins différents selon environnement
+const MUSIC_PATH = process.env.NODE_ENV === 'production'
+  ? path.join(__dirname, '../music')
+  : 'C:\\Users\\JulienFernandez\\OneDrive\\Zic impro';
+
+app.use('/audio/songs', express.static(MUSIC_PATH));
 
 // ======================
 // DONNÉES EN MÉMOIRE
@@ -88,13 +92,58 @@ app.get('/api/music', (req, res) => {
       // TODO: Filtrer par tempo
     }
     if (req.query.search) {
-      // TODO: Recherche texte
+      const searchLower = req.query.search.toLowerCase();
+      filtered = filtered.filter(track =>
+        (track.title && track.title.toLowerCase().includes(searchLower)) ||
+        (track.artist && track.artist.toLowerCase().includes(searchLower))
+      );
+    }
+
+    if (req.query.type) {
+      // Filtre par type: 'music' ou 'sound_effect'
+      // Si pas de field type, on détermine par durée: <30s = bruitage
+      filtered = filtered.filter(track => {
+        const trackType = track.type || (track.duration < 30 ? 'sound_effect' : 'music');
+        return trackType === req.query.type;
+      });
     }
 
     res.json(filtered);
   } catch (error) {
     console.error('Error fetching music:', error);
     res.status(500).json({ error: 'Erreur lors de la récupération de la bibliothèque musicale' });
+  }
+});
+
+// Route pour servir un fichier musical spécifique
+app.get('/api/music/:id/file', async (req, res) => {
+  try {
+    const musicId = req.params.id;
+    const music = musicLibrary.find(m => m.id === musicId);
+
+    if (!music) {
+      return res.status(404).json({ error: 'Musique introuvable' });
+    }
+
+    const filePath = path.join(MUSIC_PATH, music.filename);
+
+    // Vérifier que le fichier existe
+    try {
+      await fs.access(filePath);
+    } catch (error) {
+      console.error(`Fichier musical introuvable: ${filePath}`);
+      return res.status(404).json({ error: 'Fichier musical introuvable' });
+    }
+
+    // Définir les headers appropriés pour l'audio
+    res.setHeader('Content-Type', 'audio/mpeg');
+    res.setHeader('Accept-Ranges', 'bytes');
+
+    // Envoyer le fichier
+    res.sendFile(filePath);
+  } catch (error) {
+    console.error('Error serving music file:', error);
+    res.status(500).json({ error: 'Erreur lors de la lecture du fichier musical' });
   }
 });
 
