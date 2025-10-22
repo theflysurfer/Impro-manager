@@ -10,7 +10,7 @@
       <div class="match-controls" style="display: flex; gap: 15px; flex-wrap: wrap; align-items: center;">
         <select v-model="selectedMatchId" @change="loadMatch()" class="form-input" style="width: auto; min-width: 250px;">
           <option value="">Sélectionner un match...</option>
-          <option v-for="match in availableMatches" :key="match.match_id || match.id" :value="match.match_id || match.id">
+          <option v-for="match in availableMatches" :key="match.match_id" :value="match.match_id">
             {{ match.title }} - {{ formatDate(match.date) }}
           </option>
         </select>
