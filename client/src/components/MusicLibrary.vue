@@ -260,7 +260,7 @@ export default {
 
 <style scoped>
 .music-library {
-  padding-bottom: 200px; /* Space for fixed player */
+  padding-bottom: 80px; /* Space for fixed player */
 }
 
 .library-header {

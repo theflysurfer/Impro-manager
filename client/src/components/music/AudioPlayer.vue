@@ -89,7 +89,7 @@ export default {
       const audio = this.$refs.audioElement;
 
       // Construct the URL for the audio file
-      const audioUrl = `http://localhost:3001${track.web_url}`;
+      const audioUrl = track.web_url;
       audio.src = audioUrl;
 
       try {
@@ -163,22 +163,25 @@ export default {
   background: white;
   border: 1px solid #e2e8f0;
   border-radius: 8px;
-  padding: 16px;
+  padding: 12px 16px;
   position: sticky;
   bottom: 0;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
+  max-height: 60px;
+  overflow: hidden;
 }
 
 .player-active {
   border-color: #4299e1;
+  max-height: 500px;
 }
 
 .player-info {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .player-icon {
@@ -221,7 +224,7 @@ export default {
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .btn-control {
@@ -253,7 +256,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .time-display {
