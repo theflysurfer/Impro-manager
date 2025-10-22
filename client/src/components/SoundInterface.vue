@@ -570,14 +570,14 @@ export default {
 
     goToLiveMode() {
       // Vérifier qu'un match est chargé
-      if (!this.currentMatch || !this.currentMatch.id) {
+      if (!this.currentMatch || (!this.currentMatch.match_id && !this.currentMatch.id)) {
         alert('Veuillez d\'abord sélectionner un match avant de passer en mode live.');
         return;
       }
 
       // Naviguer vers la page Mode Live Son
       const matchId = this.currentMatch.match_id || this.currentMatch.id;
-      window.location.href = `/sound/${matchId}/live`;
+      this.$router.push(`/matches/${matchId}/live/sound`);
     },
 
     // Audio player methods

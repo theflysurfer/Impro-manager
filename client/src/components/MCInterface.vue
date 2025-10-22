@@ -583,14 +583,14 @@ export default {
 
     goToLiveMode() {
       // Vérifier que le match est sauvegardé
-      if (!this.currentMatch || !this.currentMatch.id) {
+      if (!this.currentMatch || (!this.currentMatch.match_id && !this.currentMatch.id)) {
         alert('Veuillez d\'abord sauvegarder le match avant de passer en mode live.');
         return;
       }
 
       // Naviguer vers la page Mode Live MC
       const matchId = this.currentMatch.match_id || this.currentMatch.id;
-      window.location.href = `/mc/${matchId}/live`;
+      this.$router.push(`/matches/${matchId}/live/mc`);
     },
 
     // Utility methods
