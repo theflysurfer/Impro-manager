@@ -28,12 +28,12 @@ COPY backend/ ./backend/
 # Copy built frontend from stage 1
 COPY --from=frontend-builder /app/client/dist ./backend/public/client
 
+# Create necessary directories
+RUN mkdir -p /app/data/music /app/public/music /app/logs /app/uploads
+
 # Copy data files
 COPY data/ ./data/
 COPY music_library.json ./data/music/
-
-# Create necessary directories
-RUN mkdir -p /app/public/music /app/logs /app/uploads
 
 # Set working directory to backend
 WORKDIR /app/backend
