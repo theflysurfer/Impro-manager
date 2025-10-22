@@ -86,7 +86,7 @@
         <div class="card-title">
           <i class="fas fa-list"></i>
           Improvisations
-          <button @click="addImprov" class="btn btn-small" style="margin-left: auto;">
+          <button @click="openLineEditorForNew" class="btn btn-small" style="margin-left: auto;">
             <i class="fas fa-plus"></i> Ajouter
           </button>
         </div>
@@ -207,6 +207,21 @@
       </div>
     </div>
 
+    <!-- Line Editor Modal -->
+    <div v-if="showLineEditorModal" class="modal-overlay" @click="closeLineEditor">
+      <div class="modal-content" @click.stop>
+        <div class="modal-header">
+          <h3>{{ editingLineIndex === -1 ? 'Ajouter une Ligne' : 'Modifier la Ligne' }}</h3>
+          <button @click="closeLineEditor" class="btn-close">×</button>
+        </div>
+        <LineEditor
+          :line="editingLine"
+          @save="saveLineFromEditor"
+          @cancel="closeLineEditor"
+        />
+      </div>
+    </div>
+
     <!-- Audio Player (caché) pour preview -->
     <audio ref="audioPlayer"></audio>
   </div>
@@ -214,9 +229,13 @@
 
 <script>
 import { io } from 'socket.io-client';
+import LineEditor from './LineEditor.vue';
 
 export default {
   name: 'MCInterface',
+  components: {
+    LineEditor
+  },
   props: ['matchId'],
   data() {
     return {
@@ -238,7 +257,11 @@ export default {
       targetTime: 0,
       isTimerRunning: false,
       timerInterval: null,
-      activeImprovIndex: -1
+      activeImprovIndex: -1,
+      // Line Editor Modal
+      showLineEditorModal: false,
+      editingLine: null,
+      editingLineIndex: -1
     }
   },
   computed: {
@@ -441,19 +464,50 @@ export default {
       }
     },
 
-    addImprov() {
+    // Line Editor Methods
+    openLineEditorForNew() {
+      this.editingLine = null; // null means new line
+      this.editingLineIndex = -1;
+      this.showLineEditorModal = true;
+    },
+
+    openLineEditorForEdit(index) {
+      if (!this.currentMatch || !this.currentMatch.lines) return;
+
+      this.editingLine = { ...this.currentMatch.lines[index] };
+      this.editingLineIndex = index;
+      this.showLineEditorModal = true;
+    },
+
+    closeLineEditor() {
+      this.showLineEditorModal = false;
+      this.editingLine = null;
+      this.editingLineIndex = -1;
+    },
+
+    saveLineFromEditor(line) {
       if (!this.currentMatch) return;
 
-      const newImprov = {
-        id: `improv-${Date.now()}`,
-        title: `Improv ${this.currentMatch.improvs.length + 1}`,
-        duration: 120,
-        status: 'pending',
-        music: null,
-        theme: ''
-      };
+      // Ensure lines array exists
+      if (!this.currentMatch.lines) {
+        this.currentMatch.lines = [];
+      }
 
-      this.currentMatch.improvs.push(newImprov);
+      if (this.editingLineIndex === -1) {
+        // Adding new line
+        this.currentMatch.lines.push(line);
+      } else {
+        // Updating existing line
+        this.currentMatch.lines[this.editingLineIndex] = line;
+      }
+
+      this.closeLineEditor();
+      this.saveMatch();
+    },
+
+    // Legacy method kept for backward compatibility
+    addImprov() {
+      this.openLineEditorForNew();
     },
 
     setActiveImprov(index) {
@@ -699,5 +753,58 @@ export default {
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
+}
+
+/* Line Editor Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #2d3748;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 2em;
+  color: #a0aec0;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+}
+
+.btn-close:hover {
+  color: #4a5568;
 }
 </style>
