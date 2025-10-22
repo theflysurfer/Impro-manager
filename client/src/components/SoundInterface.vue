@@ -248,38 +248,15 @@
         </div>
       </div>
 
-      <!-- Zone de drop pour assignment -->
-      <div v-if="currentMatch" class="drop-zone" style="margin-top: 20px; padding: 15px; border: 2px dashed #667eea; border-radius: 10px; background: rgba(102, 126, 234, 0.1);">
-        <h4 style="margin-bottom: 10px; color: #4a5568;">
-          <i class="fas fa-hand-point-right"></i>
-          Glisser-déposer vers les improvisations
-        </h4>
-        <div class="improv-slots" style="display: flex; flex-wrap: wrap; gap: 10px;">
-          <div
-            v-for="(improv, index) in currentMatch.improvs"
-            :key="improv.id"
-            class="improv-slot"
-            :class="{ 'has-music': improv.music, 'active': improv.status === 'in-progress' }"
-            @drop="onDrop($event, index)"
-            @dragover.prevent
-            @dragenter.prevent
-            style="flex: 1; min-width: 200px; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; text-align: center; border: 2px dashed transparent; transition: all 0.3s ease;"
-          >
-            <div style="font-weight: 600; margin-bottom: 5px;">{{ index + 1 }}. {{ improv.title }}</div>
-            <div style="font-size: 0.9em; color: rgba(255,255,255,0.8); margin-bottom: 5px;">{{ formatTime(improv.duration) }}</div>
-            <div v-if="improv.music" style="color: #48bb78;">
-              <i class="fas fa-music"></i> {{ getMusicTitle(improv.music) }}
-              <button @click="removeMusic(index)" class="btn btn-small btn-danger" style="margin-left: 5px;">
-                <i class="fas fa-times"></i>
-              </button>
-            </div>
-            <div v-else style="color: rgba(255,255,255,0.5);">
-              <i class="fas fa-plus"></i> Glissez une musique ici
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
+
+    <!-- Music Assignment Panel (3 Points: INTRO/OUTRO/TRANSITION) -->
+    <MusicAssignmentPanel
+      v-if="currentMatch && currentMatch.lines"
+      :lines="currentMatch.lines"
+      :musicLibrary="musicLibrary"
+      @update:lines="updateMatchLines"
+    />
 
     <!-- Feuille MC (lecture seule) -->
     <div v-if="currentMatch" class="mc-sync card">
@@ -331,9 +308,13 @@
 
 <script>
 import { io } from 'socket.io-client';
+import MusicAssignmentPanel from './MusicAssignmentPanel.vue';
 
 export default {
   name: 'SoundInterface',
+  components: {
+    MusicAssignmentPanel
+  },
   props: ['matchId'],
   data() {
     return {
@@ -424,63 +405,19 @@ export default {
     }
   },
   watch: {
-    // Adapt backend schema to frontend expectations
     currentMatch: {
       handler(newMatch) {
         if (!newMatch) return;
 
-        // Add compatibility fields if using new backend schema
-        if (newMatch.lines && !newMatch.improvs) {
-          newMatch.improvs = newMatch.lines.map(line => ({
-            id: line.line_id,
-            title: line.title,
-            duration: line.duration_planned,
-            theme: line.theme,
-            status: line.status,
-            music: line.music,
-            type: line.category
-          }));
-        }
-
+        // Ensure backward compatibility for team display (read-only sections)
         if (newMatch.teams && !newMatch.teamA) {
           newMatch.teamA = newMatch.teams.home || { name: 'Équipe A', score: 0 };
           newMatch.teamB = newMatch.teams.away || { name: 'Équipe B', score: 0 };
         }
 
-        if (newMatch.match_id && !newMatch.id) {
-          newMatch.id = newMatch.match_id;
-        }
-      },
-      immediate: true,
-      deep: false
-    }
-  },
-  watch: {
-    // Adapt backend schema to frontend expectations
-    currentMatch: {
-      handler(newMatch) {
-        if (!newMatch) return;
-
-        // Add compatibility fields if using new backend schema
+        // Ensure backward compatibility for improv overview (read-only section)
         if (newMatch.lines && !newMatch.improvs) {
-          newMatch.improvs = newMatch.lines.map(line => ({
-            id: line.line_id,
-            title: line.title,
-            duration: line.duration_planned,
-            theme: line.theme,
-            status: line.status,
-            music: line.music,
-            type: line.category
-          }));
-        }
-
-        if (newMatch.teams && !newMatch.teamA) {
-          newMatch.teamA = newMatch.teams.home || { name: 'Équipe A', score: 0 };
-          newMatch.teamB = newMatch.teams.away || { name: 'Équipe B', score: 0 };
-        }
-
-        if (newMatch.match_id && !newMatch.id) {
-          newMatch.id = newMatch.match_id;
+          newMatch.improvs = newMatch.lines;
         }
       },
       immediate: true,
@@ -751,51 +688,43 @@ export default {
       this.playMusicHook(randomMusic);
     },
 
-    // Drag & Drop
+    // Music Assignment (3-point system)
+    async updateMatchLines(updatedLines) {
+      if (!this.currentMatch) return;
+
+      // Update current match with new lines
+      this.currentMatch.lines = updatedLines;
+
+      // Save to backend
+      await this.saveMatch();
+
+      // Notify MC interface via WebSocket
+      if (this.socket) {
+        this.socket.emit('music-assigned', {
+          matchId: this.currentMatch.match_id || this.currentMatch.id,
+          lines: updatedLines
+        });
+      }
+    },
+
+    // Drag & Drop (kept for music library, removed for line assignment)
     onDragStart(event, music) {
       this.draggedMusic = music;
       event.dataTransfer.effectAllowed = 'move';
     },
 
-    onDrop(event, improvIndex) {
-      event.preventDefault();
-
-      if (!this.draggedMusic || !this.currentMatch) return;
-
-      // Assigner la musique à l'improv
-      this.currentMatch.improvs[improvIndex].music = this.draggedMusic.id;
-
-      // Sauvegarder le match
-      this.saveMatch();
-
-      // Notifier l'interface MC
-      if (this.socket) {
-        this.socket.emit('music-assigned', {
-          matchId: this.currentMatch.id,
-          improvId: this.currentMatch.improvs[improvIndex].id,
-          musicId: this.draggedMusic.id
-        });
-      }
-
-      this.draggedMusic = null;
-    },
-
-    removeMusic(improvIndex) {
-      if (!this.currentMatch) return;
-
-      this.currentMatch.improvs[improvIndex].music = null;
-      this.saveMatch();
-    },
-
     async saveMatch() {
       if (!this.currentMatch) return;
 
+      const matchId = this.currentMatch.match_id || this.currentMatch.id;
+
       try {
-        await fetch(`/api/matches/${this.currentMatch.id}`, {
+        await fetch(`/api/matches/${matchId}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(this.currentMatch)
         });
+        console.log('Match sauvegardé avec succès');
       } catch (error) {
         console.error('Erreur lors de la sauvegarde:', error);
       }
