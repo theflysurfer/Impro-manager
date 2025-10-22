@@ -1,8 +1,8 @@
 # 🎯 Action Plan - Impro Manager v2.0
 
 **Date**: 22 octobre 2025
-**État actuel**: 30-40% complété
-**Version**: Consolidé basé sur exploration réelle de la codebase
+**État actuel**: 60-70% complété
+**Version**: Consolidé - Sprint 1 & 2 terminés
 
 ---
 
@@ -60,9 +60,10 @@
 
 ## 🎯 Plan d'Action Prioritaire
 
-### 🔴 Sprint 1 (3-4 jours) - MVP Live Mode
+### ✅ Sprint 1 (TERMINÉ) - MVP Live Mode
 
-#### Tâche 1.1 : Intégrer Live Mode dans Router (1 jour)
+#### ✅ Tâche 1.1 : Intégrer Live Mode dans Router (TERMINÉ)
+**Commit**: `35208e6`
 **Objectif** : Rendre les pages Live Mode accessibles
 
 **Actions** :
@@ -102,8 +103,8 @@
 
 ---
 
-#### Tâche 1.2 : Connecter WebSocket Frontend (2 jours)
-
+#### ✅ Tâche 1.2 : Connecter WebSocket Frontend (TERMINÉ)
+**Commit**: `61a84dc`
 **Objectif** : Établir connexion temps réel MC ↔ Serveur ↔ Son
 
 **Actions** :
@@ -182,8 +183,8 @@
 
 ---
 
-#### Tâche 1.3 : Fixer Schema Mismatch (1 jour)
-
+#### ✅ Tâche 1.3 : Fixer Schema Mismatch (TERMINÉ)
+**Commits**: `ef1f23e` (migration script), `f6fda63` (cleanup)
 **Objectif** : Aligner frontend et backend sur nouveau schema
 
 **Option A - Migration complète data** (recommandé) :
@@ -243,10 +244,10 @@
 
 ---
 
-### 🟡 Sprint 2 (3-4 jours) - Fonctionnalités Essentielles
+### ✅ Sprint 2 (TERMINÉ) - Fonctionnalités Essentielles
 
-#### Tâche 2.1 : Extension Schema 3 Points Musicaux (1 jour)
-
+#### ✅ Tâche 2.1 : Extension Schema 3 Points Musicaux (TERMINÉ)
+**Commit**: `c918f11`
 **Objectif** : Permettre assignation INTRO/OUTRO/TRANSITION
 
 **Actions** :
@@ -277,8 +278,8 @@
 
 ---
 
-#### Tâche 2.2 : Implémenter 8 Types de Lignes (2 jours)
-
+#### ✅ Tâche 2.2 : Implémenter 8 Types de Lignes (TERMINÉ)
+**Commit**: `71e8c0a`
 **Objectif** : Permettre création feuilles de match complètes
 
 **Types à implémenter** :
@@ -313,8 +314,8 @@
 
 ---
 
-#### Tâche 2.3 : Templates de Match (1 jour)
-
+#### ✅ Tâche 2.3 : Templates de Match (TERMINÉ)
+**Commit**: `b8f4172`
 **Objectif** : Créer matchs rapidement
 
 **Actions** :
@@ -366,7 +367,76 @@
 
 ---
 
-### 🟢 Sprint 3+ (Après MVP) - Nice-to-Have
+### 🔵 Sprint 3 (EN COURS) - Intégration & Tests
+
+#### Tâche 3.1 : Intégrer Composants dans Interfaces (2 jours)
+
+**Objectif** : Connecter les nouveaux composants Sprint 2 aux interfaces existantes
+
+**Actions** :
+
+1. **Intégrer MusicAssignmentPanel dans SoundInterface.vue** :
+   - Remplacer l'assignation musicale simple par MusicAssignmentPanel
+   - Permettre gestion des 3 points par ligne (INTRO/OUTRO/TRANSITION)
+   - Synchroniser avec backend via API PUT /api/matches/:id
+
+2. **Intégrer LineEditor dans MCInterface.vue** :
+   - Ajouter modal pour éditer/créer lignes avec tous types
+   - Remplacer formulaire simple actuel par LineEditor
+   - Gérer les 8 types de lignes avec champs conditionnels
+
+3. **Intégrer Sélecteur de Templates** :
+   - Ajouter bouton "Charger un template" dans MCInterface
+   - Appeler GET /api/templates
+   - Pré-remplir feuille de match avec template sélectionné
+
+**Livrable** : Interfaces utilisent tous les nouveaux composants
+
+---
+
+#### Tâche 3.2 : Backend Event Handlers pour Live Sync (1 jour)
+
+**Objectif** : Gérer tous les événements WebSocket pour synchronisation
+
+**Actions** :
+
+1. **Renforcer handlers Socket.IO dans backend/app.js** :
+   - Ajouter validation des événements
+   - Ajouter logging structuré
+   - Gérer déconnexions/reconnexions
+   - Broadcaster état à nouveaux clients rejoignant match
+
+2. **Persistance état live** :
+   - Sauvegarder `live_state` dans matches.json
+   - Restaurer état après crash serveur
+   - Gérer sessions multiples (plusieurs MC/Son sur même match)
+
+**Livrable** : Synchronisation robuste et fiable
+
+---
+
+#### Tâche 3.3 : Tests End-to-End (2 jours)
+
+**Objectif** : Valider tous les workflows utilisateurs
+
+**Actions** :
+
+1. **Tests Playwright** :
+   - Scénario 1: Julie crée match complet avec template
+   - Scénario 2: Marc assigne musiques 3 points
+   - Scénario 3: Mode Live - Julie lance chrono, Marc voit sync
+   - Scénario 4: Gestion score en temps réel
+
+2. **Tests manuels** :
+   - Exécuter tous les scénarios de TEST_SCENARIOS.md
+   - Tester sur devices différents (desktop, tablet)
+   - Vérifier latence réseau
+
+**Livrable** : Suite de tests automatisés + rapport validation
+
+---
+
+### 🟢 Sprint 4+ (Après MVP) - Nice-to-Have
 
 #### Fonctionnalités Futures
 - PWA + Service Worker
@@ -501,15 +571,24 @@ git push origin master
 - Socket.IO CORS : localhost:5173
 - Stockage : JSON files (`/data/`)
 
-### Prochains Commits Attendus
-1. `✨ feat: Integrate Live Mode pages into router`
-2. `🔧 fix: Resolve schema mismatch frontend/backend`
-3. `✨ feat: Connect WebSocket in frontend`
-4. `✨ feat: Implement 3-point music assignment`
-5. `✨ feat: Add 8 line types support`
+### Commits Récents (Sprint 1-2)
+1. ✅ `35208e6` - Integrate Live Mode pages into router
+2. ✅ `61a84dc` - Create useWebSocket composable for real-time sync
+3. ✅ `ef1f23e` - Migrate schema to new format
+4. ✅ `f6fda63` - Clean frontend schema workarounds
+5. ✅ `8186541` - Create comprehensive test scenarios for personas
+6. ✅ `c918f11` - Implement 3-point music assignment UI (Sprint 2.1)
+7. ✅ `71e8c0a` - Implement 8 line types with conditional forms (Sprint 2.2)
+8. ✅ `b8f4172` - Create match templates with API routes (Sprint 2.3)
+
+### Prochains Commits Attendus (Sprint 3)
+1. `✨ feat: Integrate MusicAssignmentPanel into SoundInterface`
+2. `✨ feat: Integrate LineEditor into MCInterface`
+3. `✨ feat: Add template selector to MCInterface`
+4. `🧪 test: Add Playwright E2E tests for core workflows`
 
 ---
 
 **Dernière mise à jour** : 22 octobre 2025
-**État** : Plan consolidé basé sur exploration réelle de la codebase
-**Prochaine action** : Sprint 1 - Tâche 1.1 (Intégrer Live Mode)
+**État** : Sprint 1 & 2 TERMINÉS (60-70% projet complété)
+**Prochaine action** : Sprint 3 - Tâche 3.1 (Intégrer composants dans interfaces)
