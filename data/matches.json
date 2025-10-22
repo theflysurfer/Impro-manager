@@ -1,130 +1,188 @@
 [
   {
-    "id": "match-001",
+    "match_id": "match-001",
     "title": "Match vs Les Fous du Rire",
     "date": "2025-10-03T00:33:04.380Z",
-    "teamA": {
-      "name": "Notre Troupe",
-      "score": 0
+    "location": null,
+    "teams": {
+      "home": {
+        "name": "Notre Troupe",
+        "score": 0
+      },
+      "away": {
+        "name": "Les Fous du Rire",
+        "score": 0
+      }
     },
-    "teamB": {
-      "name": "Les Fous du Rire",
-      "score": 0
-    },
-    "improvs": [
+    "lines": [
       {
-        "id": "improv-001",
+        "line_id": "improv-001",
+        "type": "SEQUENCE",
         "title": "Libre",
-        "duration": 120,
-        "status": "pending",
+        "duration_planned": 120,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       }
     ],
-    "status": "active"
+    "personnel": {
+      "mc": null,
+      "sound": null,
+      "referee": null,
+      "light": null
+    },
+    "live_state": {
+      "current_line_id": null,
+      "chrono_elapsed": 0,
+      "chrono_status": "stopped"
+    },
+    "status": "active",
+    "created_at": "2025-10-03T00:33:04.380Z",
+    "updated_at": "2025-10-22T16:06:37.546Z"
   },
   {
-    "id": "match-1759453381097",
+    "match_id": "match-1759453381097",
     "title": "match",
-    "teamA": {
-      "name": "Notre Troupe",
-      "score": 0
+    "date": "2025-10-03T01:03:01.097Z",
+    "location": null,
+    "teams": {
+      "home": {
+        "name": "Notre Troupe",
+        "score": 0
+      },
+      "away": {
+        "name": "equipe",
+        "score": 0
+      }
     },
-    "teamB": {
-      "name": "equipe",
-      "score": 0
-    },
-    "improvs": [
+    "lines": [
       {
-        "id": "improv-1759453380996-0",
+        "line_id": "improv-1759453380996-0",
+        "type": "SEQUENCE",
         "title": "Libre",
-        "duration": 120,
-        "type": "libre",
-        "status": "pending",
+        "duration_planned": 120,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       },
       {
-        "id": "improv-1759453380996-1",
+        "line_id": "improv-1759453380996-1",
+        "type": "SEQUENCE",
         "title": "Contrainte",
-        "duration": 180,
-        "type": "contrainte",
-        "status": "pending",
+        "duration_planned": 180,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       },
       {
-        "id": "improv-1759453380996-2",
+        "line_id": "improv-1759453380996-2",
+        "type": "SEQUENCE",
         "title": "Émotion",
-        "duration": 120,
-        "type": "emotion",
-        "status": "pending",
+        "duration_planned": 120,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       },
       {
-        "id": "improv-1759453380996-3",
+        "line_id": "improv-1759453380996-3",
+        "type": "SEQUENCE",
         "title": "Finale",
-        "duration": 240,
-        "type": "finale",
-        "status": "pending",
+        "duration_planned": 240,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       }
     ],
+    "personnel": {
+      "mc": null,
+      "sound": null,
+      "referee": null,
+      "light": null
+    },
+    "live_state": {
+      "current_line_id": null,
+      "chrono_elapsed": 0,
+      "chrono_status": "stopped"
+    },
     "status": "active",
-    "date": "2025-10-03T01:03:01.097Z"
+    "created_at": "2025-10-03T01:03:01.097Z",
+    "updated_at": "2025-10-22T16:06:37.559Z"
   },
   {
-    "id": "match-1759481401165",
+    "match_id": "match-1759481401165",
     "title": "match",
-    "teamA": {
-      "name": "Notre Troupe",
-      "score": 0
+    "date": "2025-10-03T08:50:01.165Z",
+    "location": null,
+    "teams": {
+      "home": {
+        "name": "Notre Troupe",
+        "score": 0
+      },
+      "away": {
+        "name": "equipe",
+        "score": 0
+      }
     },
-    "teamB": {
-      "name": "equipe",
-      "score": 0
-    },
-    "improvs": [
+    "lines": [
       {
-        "id": "improv-1759481400937-0",
+        "line_id": "improv-1759481400937-0",
+        "type": "SEQUENCE",
         "title": "Libre",
-        "duration": 120,
-        "type": "libre",
-        "status": "pending",
+        "duration_planned": 120,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       },
       {
-        "id": "improv-1759481400937-1",
+        "line_id": "improv-1759481400937-1",
+        "type": "SEQUENCE",
         "title": "Contrainte",
-        "duration": 180,
-        "type": "contrainte",
-        "status": "pending",
+        "duration_planned": 180,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       },
       {
-        "id": "improv-1759481400937-2",
+        "line_id": "improv-1759481400937-2",
+        "type": "SEQUENCE",
         "title": "Émotion",
-        "duration": 120,
-        "type": "emotion",
-        "status": "pending",
+        "duration_planned": 120,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       },
       {
-        "id": "improv-1759481400937-3",
+        "line_id": "improv-1759481400937-3",
+        "type": "SEQUENCE",
         "title": "Finale",
-        "duration": 240,
-        "type": "finale",
-        "status": "pending",
+        "duration_planned": 240,
+        "theme": null,
+        "constraint": null,
         "music": null,
-        "theme": ""
+        "status": "pending"
       }
     ],
+    "personnel": {
+      "mc": null,
+      "sound": null,
+      "referee": null,
+      "light": null
+    },
+    "live_state": {
+      "current_line_id": null,
+      "chrono_elapsed": 0,
+      "chrono_status": "stopped"
+    },
     "status": "active",
-    "date": "2025-10-03T08:50:01.165Z"
+    "created_at": "2025-10-03T08:50:01.165Z",
+    "updated_at": "2025-10-22T16:06:37.560Z"
   }
 ]

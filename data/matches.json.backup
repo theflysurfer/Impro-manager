@@ -1,0 +1,130 @@
+[
+  {
+    "id": "match-001",
+    "title": "Match vs Les Fous du Rire",
+    "date": "2025-10-03T00:33:04.380Z",
+    "teamA": {
+      "name": "Notre Troupe",
+      "score": 0
+    },
+    "teamB": {
+      "name": "Les Fous du Rire",
+      "score": 0
+    },
+    "improvs": [
+      {
+        "id": "improv-001",
+        "title": "Libre",
+        "duration": 120,
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      }
+    ],
+    "status": "active"
+  },
+  {
+    "id": "match-1759453381097",
+    "title": "match",
+    "teamA": {
+      "name": "Notre Troupe",
+      "score": 0
+    },
+    "teamB": {
+      "name": "equipe",
+      "score": 0
+    },
+    "improvs": [
+      {
+        "id": "improv-1759453380996-0",
+        "title": "Libre",
+        "duration": 120,
+        "type": "libre",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      },
+      {
+        "id": "improv-1759453380996-1",
+        "title": "Contrainte",
+        "duration": 180,
+        "type": "contrainte",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      },
+      {
+        "id": "improv-1759453380996-2",
+        "title": "Émotion",
+        "duration": 120,
+        "type": "emotion",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      },
+      {
+        "id": "improv-1759453380996-3",
+        "title": "Finale",
+        "duration": 240,
+        "type": "finale",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      }
+    ],
+    "status": "active",
+    "date": "2025-10-03T01:03:01.097Z"
+  },
+  {
+    "id": "match-1759481401165",
+    "title": "match",
+    "teamA": {
+      "name": "Notre Troupe",
+      "score": 0
+    },
+    "teamB": {
+      "name": "equipe",
+      "score": 0
+    },
+    "improvs": [
+      {
+        "id": "improv-1759481400937-0",
+        "title": "Libre",
+        "duration": 120,
+        "type": "libre",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      },
+      {
+        "id": "improv-1759481400937-1",
+        "title": "Contrainte",
+        "duration": 180,
+        "type": "contrainte",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      },
+      {
+        "id": "improv-1759481400937-2",
+        "title": "Émotion",
+        "duration": 120,
+        "type": "emotion",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      },
+      {
+        "id": "improv-1759481400937-3",
+        "title": "Finale",
+        "duration": 240,
+        "type": "finale",
+        "status": "pending",
+        "music": null,
+        "theme": ""
+      }
+    ],
+    "status": "active",
+    "date": "2025-10-03T08:50:01.165Z"
+  }
+]
