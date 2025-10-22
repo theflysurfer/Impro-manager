@@ -260,6 +260,7 @@ export default {
 
 <style scoped>
 .music-library {
+  min-height: 100vh;
   padding-bottom: 80px; /* Space for fixed player */
 }
 
@@ -339,6 +340,7 @@ export default {
 }
 
 .library-content {
+  min-height: calc(100vh - 200px);
   display: grid;
   grid-template-columns: 280px 1fr;
   gap: 24px;
@@ -418,6 +420,7 @@ export default {
 /* Responsive */
 @media (max-width: 1024px) {
   .library-content {
+  min-height: calc(100vh - 200px);
     grid-template-columns: 1fr;
   }
 
