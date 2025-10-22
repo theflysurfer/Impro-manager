@@ -155,7 +155,7 @@ export default {
       this.error = null;
 
       try {
-        const response = await fetch('http://localhost:3001/api/music');
+        const response = await fetch('/api/music');
         if (!response.ok) {
           throw new Error('Erreur lors du chargement de la bibliothèque');
         }
