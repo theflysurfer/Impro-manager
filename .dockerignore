@@ -1,0 +1,75 @@
+# Node modules
+node_modules/
+client/node_modules/
+backend/node_modules/
+
+# Build outputs
+client/dist/
+*.log
+logs/
+
+# Development files
+.git/
+.gitignore
+.env
+.env.local
+*.md
+!README.md
+
+# Test files
+test/
+tests/
+*.test.js
+playwright-report/
+test-results/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Temporary files
+*.tmp
+.cache/
+.mcp.json
+.claude/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Local music files (will use rclone mount in production)
+music/
+*.mp3
+*.wav
+*.flac
+
+# Documentation and research
+RESEARCH_FINDINGS.md
+WIREFRAMES.md
+PRD.md
+ACTION_PLAN.md
+FRONTEND_RULES.md
+FICHIERS_GENERES.txt
+library_report.py
+library_report.txt
+generate_music_library.py
+music_examples.json
+music_library_stats.json
+MUSIC_LIBRARY_README.txt
+
+# Scripts
+simple-start.bat
+start.bat
+test-api.sh
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+music-analyzer/
+
+# Playwright
+playwright.config.js

@@ -1,9 +1,48 @@
+# Dependencies
 node_modules/
+
+# Build outputs
 dist/
+client/dist/
+
+# Environment
 .env
+.env.local
+.env.production
+
+# Logs
+logs/
 *.log
+
+# OS
 .DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Uploads
 uploads/*
 !uploads/.gitkeep
-data/*.json
+
+# Data files (JSON runtime data)
+data/matches/*.json
+data/personnel/*.json
+data/music/*.json
 !data/templates.json
+
+# Music files (too large for Git)
+music/
+public/music/
+music_library.json
+
+# Test results
+playwright-report/
+test-results/
+.playwright/
+
+# Local config
+.mcp.json
