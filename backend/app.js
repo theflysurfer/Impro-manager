@@ -166,53 +166,273 @@ app.get('/api/health', (req, res) => {
 // WEBSOCKET (MODE LIVE)
 // ======================
 
+// Store active connections per match
+const activeConnections = new Map(); // matchId -> Set of socket.id
+
+// Helper: Validate event data
+function validateEventData(eventName, data) {
+  if (!data || typeof data !== 'object') {
+    return { valid: false, error: 'Data must be an object' };
+  }
+
+  // Common validation: matchId required
+  if (!data.matchId) {
+    return { valid: false, error: 'matchId is required' };
+  }
+
+  // Event-specific validation
+  switch (eventName) {
+    case 'join_match':
+      if (!data.role || !['mc', 'sound'].includes(data.role)) {
+        return { valid: false, error: 'role must be "mc" or "sound"' };
+      }
+      break;
+
+    case 'line_started':
+    case 'line_completed':
+      if (!data.lineId) {
+        return { valid: false, error: 'lineId is required' };
+      }
+      break;
+
+    case 'chrono_update':
+      if (typeof data.elapsed !== 'number') {
+        return { valid: false, error: 'elapsed must be a number' };
+      }
+      if (data.status && !['running', 'paused', 'stopped'].includes(data.status)) {
+        return { valid: false, error: 'status must be running, paused, or stopped' };
+      }
+      break;
+
+    case 'music_assigned':
+      if (!data.lines && !data.lineId) {
+        return { valid: false, error: 'lines or lineId is required' };
+      }
+      break;
+
+    case 'music_play':
+      if (!data.musicId) {
+        return { valid: false, error: 'musicId is required' };
+      }
+      break;
+  }
+
+  return { valid: true };
+}
+
+// Helper: Persist live state to match file
+async function persistLiveState(matchId, liveState) {
+  try {
+    const matchesPath = path.join(__dirname, '../data/matches.json');
+    const matchesData = await fs.readFile(matchesPath, 'utf8');
+    const matches = JSON.parse(matchesData);
+
+    const matchIndex = matches.findIndex(m => m.match_id === matchId);
+    if (matchIndex === -1) {
+      console.warn(`Match ${matchId} not found for state persistence`);
+      return;
+    }
+
+    // Update live_state
+    if (!matches[matchIndex].live_state) {
+      matches[matchIndex].live_state = {};
+    }
+
+    matches[matchIndex].live_state = {
+      ...matches[matchIndex].live_state,
+      ...liveState,
+      last_updated: new Date().toISOString()
+    };
+
+    await fs.writeFile(matchesPath, JSON.stringify(matches, null, 2));
+  } catch (error) {
+    console.error('Error persisting live state:', error);
+  }
+}
+
+// Helper: Get current live state for a match
+async function getLiveState(matchId) {
+  try {
+    const matchesPath = path.join(__dirname, '../data/matches.json');
+    const matchesData = await fs.readFile(matchesPath, 'utf8');
+    const matches = JSON.parse(matchesData);
+
+    const match = matches.find(m => m.match_id === matchId);
+    return match?.live_state || {
+      current_line_id: null,
+      chrono_elapsed: 0,
+      chrono_status: 'stopped'
+    };
+  } catch (error) {
+    console.error('Error getting live state:', error);
+    return null;
+  }
+}
+
 io.on('connection', (socket) => {
   console.log('✅ Client connecté:', socket.id);
 
   // Rejoindre un match
-  socket.on('join_match', (data) => {
+  socket.on('join_match', async (data) => {
+    const validation = validateEventData('join_match', data);
+    if (!validation.valid) {
+      socket.emit('error', { event: 'join_match', error: validation.error });
+      console.error(`❌ Validation error (join_match):`, validation.error);
+      return;
+    }
+
     const { matchId, role } = data;
-    socket.join(`match_${matchId}`);
+    const roomName = `match_${matchId}`;
+
+    socket.join(roomName);
+
+    // Track connection
+    if (!activeConnections.has(matchId)) {
+      activeConnections.set(matchId, new Set());
+    }
+    activeConnections.get(matchId).add(socket.id);
+    socket.matchId = matchId;
+    socket.role = role;
+
     console.log(`📍 Client ${socket.id} (${role}) a rejoint le match ${matchId}`);
+    console.log(`   Total clients dans match ${matchId}: ${activeConnections.get(matchId).size}`);
+
+    // Send current state to new client
+    const currentState = await getLiveState(matchId);
+    if (currentState) {
+      socket.emit('state_sync', {
+        matchId,
+        liveState: currentState
+      });
+      console.log(`🔄 État synchronisé envoyé au client ${socket.id}`);
+    }
+
+    // Notify others in room
+    socket.to(roomName).emit('client_joined', {
+      matchId,
+      role,
+      totalClients: activeConnections.get(matchId).size
+    });
   });
 
   // Mode Live activé
   socket.on('live_mode_activated', (data) => {
+    const validation = validateEventData('live_mode_activated', data);
+    if (!validation.valid) {
+      socket.emit('error', { event: 'live_mode_activated', error: validation.error });
+      return;
+    }
+
     socket.to(`match_${data.matchId}`).emit('live_mode_activated', data);
     console.log(`🔴 Mode Live activé pour match ${data.matchId}`);
   });
 
   // Ligne démarrée
-  socket.on('line_started', (data) => {
+  socket.on('line_started', async (data) => {
+    const validation = validateEventData('line_started', data);
+    if (!validation.valid) {
+      socket.emit('error', { event: 'line_started', error: validation.error });
+      return;
+    }
+
+    // Persist state
+    await persistLiveState(data.matchId, {
+      current_line_id: data.lineId,
+      chrono_elapsed: 0,
+      chrono_status: 'running'
+    });
+
     socket.to(`match_${data.matchId}`).emit('line_started', data);
     console.log(`▶️  Ligne ${data.lineId} démarrée (match ${data.matchId})`);
   });
 
   // Mise à jour chrono
-  socket.on('chrono_update', (data) => {
+  socket.on('chrono_update', async (data) => {
+    const validation = validateEventData('chrono_update', data);
+    if (!validation.valid) {
+      socket.emit('error', { event: 'chrono_update', error: validation.error });
+      return;
+    }
+
+    // Persist state every 10 seconds to avoid excessive writes
+    if (data.elapsed % 10 === 0) {
+      await persistLiveState(data.matchId, {
+        chrono_elapsed: data.elapsed,
+        chrono_status: data.status || 'running'
+      });
+    }
+
     socket.to(`match_${data.matchId}`).emit('chrono_update', data);
     // Ne pas logger chaque seconde (trop verbeux)
   });
 
   // Ligne terminée
-  socket.on('line_completed', (data) => {
+  socket.on('line_completed', async (data) => {
+    const validation = validateEventData('line_completed', data);
+    if (!validation.valid) {
+      socket.emit('error', { event: 'line_completed', error: validation.error });
+      return;
+    }
+
+    // Persist state
+    await persistLiveState(data.matchId, {
+      current_line_id: null,
+      chrono_elapsed: 0,
+      chrono_status: 'stopped'
+    });
+
     socket.to(`match_${data.matchId}`).emit('line_completed', data);
     console.log(`⏹️  Ligne ${data.lineId} terminée (match ${data.matchId})`);
   });
 
   // Musique assignée (synchronisation)
   socket.on('music_assigned', (data) => {
+    const validation = validateEventData('music_assigned', data);
+    if (!validation.valid) {
+      socket.emit('error', { event: 'music_assigned', error: validation.error });
+      return;
+    }
+
     socket.to(`match_${data.matchId}`).emit('music_assigned', data);
+    console.log(`🎵 Musique assignée (match ${data.matchId})`);
   });
 
   // Musique jouée (synchronisation)
   socket.on('music_play', (data) => {
+    const validation = validateEventData('music_play', data);
+    if (!validation.valid) {
+      socket.emit('error', { event: 'music_play', error: validation.error });
+      return;
+    }
+
     socket.to(`match_${data.matchId}`).emit('music_play', data);
+    console.log(`▶️  Musique ${data.musicId} jouée (match ${data.matchId})`);
   });
 
   // Déconnexion
   socket.on('disconnect', () => {
     console.log('❌ Client déconnecté:', socket.id);
+
+    // Clean up tracking
+    if (socket.matchId && activeConnections.has(socket.matchId)) {
+      activeConnections.get(socket.matchId).delete(socket.id);
+
+      const remainingClients = activeConnections.get(socket.matchId).size;
+      console.log(`   Clients restants dans match ${socket.matchId}: ${remainingClients}`);
+
+      // Notify others
+      socket.to(`match_${socket.matchId}`).emit('client_left', {
+        matchId: socket.matchId,
+        role: socket.role,
+        totalClients: remainingClients
+      });
+
+      // Clean up map if no clients left
+      if (remainingClients === 0) {
+        activeConnections.delete(socket.matchId);
+        console.log(`   Match ${socket.matchId} n'a plus de clients connectés`);
+      }
+    }
   });
 });
 
