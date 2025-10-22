@@ -19,9 +19,9 @@
           <i class="fas fa-plus"></i> Nouveau Match
         </button>
 
-        <select v-model="selectedTemplate" class="form-input" style="width: auto;">
+        <select v-model="selectedTemplate" @change="applyTemplate" class="form-input" style="width: auto;">
           <option value="">Choisir un template...</option>
-          <option v-for="template in templates" :key="template.id" :value="template.id">
+          <option v-for="template in templates" :key="template.template_id" :value="template.template_id">
             {{ template.name }}
           </option>
         </select>
@@ -354,10 +354,58 @@ export default {
       try {
         const response = await fetch('/api/templates');
         const data = await response.json();
-        this.templates = Array.isArray(data) ? data : [];
+        // API returns { success, count, templates }
+        this.templates = data.templates || [];
+        console.log(`Loaded ${this.templates.length} templates`);
       } catch (error) {
         console.error('Erreur lors du chargement des templates:', error);
         this.templates = [];
+      }
+    },
+
+    async applyTemplate() {
+      if (!this.selectedTemplate || !this.currentMatch) return;
+
+      try {
+        // Fetch the specific template
+        const response = await fetch(`/api/templates/${this.selectedTemplate}`);
+        const data = await response.json();
+
+        if (!data.success || !data.template) {
+          console.error('Template not found');
+          return;
+        }
+
+        const template = data.template;
+
+        // Replace current match lines with template lines
+        this.currentMatch.lines = template.lines.map((line, index) => ({
+          ...line,
+          line_id: line.line_id || `line_${Date.now()}_${index}`,
+          status: 'pending',
+          music: line.music || {
+            intro: null,
+            outro: null,
+            transition: null
+          }
+        }));
+
+        // Update improvs for backward compatibility
+        if (this.currentMatch.lines) {
+          this.currentMatch.improvs = this.currentMatch.lines;
+        }
+
+        // Save the updated match
+        await this.saveMatch();
+
+        console.log(`Applied template: ${template.name} with ${template.lines.length} lines`);
+        alert(`Template "${template.name}" appliqué avec succès (${template.lines.length} lignes)`);
+
+        // Reset selection
+        this.selectedTemplate = '';
+      } catch (error) {
+        console.error('Erreur lors de l\'application du template:', error);
+        alert('Erreur lors de l\'application du template');
       }
     },
 
