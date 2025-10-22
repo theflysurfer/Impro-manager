@@ -1,28 +1,310 @@
 [
   {
-    "id": "template-match-classique",
-    "name": "Match Classique",
-    "description": "Structure standard de match d'impro",
-    "improvs": [
+    "template_id": "standard_19",
+    "name": "Match Standard (19 lignes)",
+    "description": "Template complet pour un match standard avec entracte",
+    "lines": [
       {
-        "title": "Libre",
-        "duration": 120,
-        "type": "libre"
+        "type": "ARRIVÉE",
+        "title": "Arrivée Arbitre",
+        "duration_planned": 300,
+        "who": "arbitre"
       },
       {
-        "title": "Contrainte",
-        "duration": 180,
-        "type": "contrainte"
+        "type": "ARRIVÉE",
+        "title": "Arrivée Équipe A",
+        "duration_planned": 300,
+        "who": "team_home"
       },
       {
-        "title": "Émotion",
-        "duration": 120,
-        "type": "emotion"
+        "type": "ARRIVÉE",
+        "title": "Arrivée Équipe B",
+        "duration_planned": 300,
+        "who": "team_away"
       },
       {
-        "title": "Finale",
-        "duration": 240,
-        "type": "finale"
+        "type": "ARRIVÉE",
+        "title": "Arrivée MC",
+        "duration_planned": 120,
+        "who": "mc"
+      },
+      {
+        "type": "ÉCHAUFFEMENT",
+        "title": "Échauffement Public",
+        "duration_planned": 600,
+        "warmup_type": "public"
+      },
+      {
+        "type": "PRÉSENTATION",
+        "title": "Présentation Équipes",
+        "duration_planned": 300,
+        "presentation_order": "home_first"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #1",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #2",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #3",
+        "duration_planned": 300,
+        "format": "compared",
+        "players_count": 1
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #4",
+        "duration_planned": 240,
+        "format": "compared",
+        "players_count": 3
+      },
+      {
+        "type": "ANNONCE_INTERMEDIAIRE",
+        "title": "Annonce Score Mi-Temps",
+        "duration_planned": 60,
+        "announcement_type": "score"
+      },
+      {
+        "type": "PAUSE",
+        "title": "Entracte",
+        "duration_planned": 900,
+        "pause_type": "intermission"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #5",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #6",
+        "duration_planned": 300,
+        "format": "compared",
+        "players_count": 1
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #7",
+        "duration_planned": 240,
+        "format": "mixed",
+        "players_count": 4
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #8",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "ANNONCE_FIN",
+        "title": "Annonce Score Final",
+        "duration_planned": 120,
+        "final_announcement_type": "score"
+      },
+      {
+        "type": "ANNONCE_FIN",
+        "title": "Remerciements",
+        "duration_planned": 120,
+        "final_announcement_type": "thanks"
+      },
+      {
+        "type": "FIN",
+        "title": "Fin de Match",
+        "duration_planned": 60
+      }
+    ]
+  },
+  {
+    "template_id": "court_12",
+    "name": "Match Court (12 lignes)",
+    "description": "Template simplifié sans entracte pour matchs courts",
+    "lines": [
+      {
+        "type": "ARRIVÉE",
+        "title": "Arrivée Public",
+        "duration_planned": 300,
+        "who": "public"
+      },
+      {
+        "type": "ÉCHAUFFEMENT",
+        "title": "Échauffement Public",
+        "duration_planned": 300,
+        "warmup_type": "public"
+      },
+      {
+        "type": "PRÉSENTATION",
+        "title": "Présentation Équipes",
+        "duration_planned": 180,
+        "presentation_order": "home_first"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #1",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #2",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #3",
+        "duration_planned": 240,
+        "format": "compared",
+        "players_count": 3
+      },
+      {
+        "type": "ANNONCE_INTERMEDIAIRE",
+        "title": "Annonce Score",
+        "duration_planned": 60,
+        "announcement_type": "score"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #4",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Séquence #5",
+        "duration_planned": 240,
+        "format": "mixed",
+        "players_count": 4
+      },
+      {
+        "type": "ANNONCE_FIN",
+        "title": "Annonce Finale",
+        "duration_planned": 120,
+        "final_announcement_type": "score"
+      },
+      {
+        "type": "FIN",
+        "title": "Fin",
+        "duration_planned": 60
+      }
+    ]
+  },
+  {
+    "template_id": "training",
+    "name": "Entraînement (8 lignes)",
+    "description": "Template pour séance d'entraînement",
+    "lines": [
+      {
+        "type": "ÉCHAUFFEMENT",
+        "title": "Échauffement Équipe",
+        "duration_planned": 600,
+        "warmup_type": "teams"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Exercice Libre",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Exercice Contrainte",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2,
+        "constraint": "Sans paroles"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Exercice Émotion",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 1
+      },
+      {
+        "type": "PAUSE",
+        "title": "Pause",
+        "duration_planned": 300,
+        "pause_type": "break"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Exercice Mixte",
+        "duration_planned": 240,
+        "format": "mixed",
+        "players_count": 4
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Exercice Final",
+        "duration_planned": 300,
+        "format": "caucus",
+        "players_count": 6
+      },
+      {
+        "type": "FIN",
+        "title": "Fin Entraînement",
+        "duration_planned": 60
+      }
+    ]
+  },
+  {
+    "template_id": "demo",
+    "name": "Démo / Découverte (6 lignes)",
+    "description": "Template court pour démonstrations publiques",
+    "lines": [
+      {
+        "type": "PRÉSENTATION",
+        "title": "Présentation de l'Impro",
+        "duration_planned": 300,
+        "presentation_order": "together"
+      },
+      {
+        "type": "ÉCHAUFFEMENT",
+        "title": "Échauffement Interactif",
+        "duration_planned": 300,
+        "warmup_type": "public"
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Démonstration #1",
+        "duration_planned": 180,
+        "format": "compared",
+        "players_count": 2
+      },
+      {
+        "type": "SEQUENCE",
+        "title": "Démonstration #2",
+        "duration_planned": 240,
+        "format": "mixed",
+        "players_count": 4
+      },
+      {
+        "type": "ANNONCE_FIN",
+        "title": "Questions / Réponses",
+        "duration_planned": 300,
+        "final_announcement_type": "thanks"
+      },
+      {
+        "type": "FIN",
+        "title": "Fin Démo",
+        "duration_planned": 60
       }
     ]
   }
