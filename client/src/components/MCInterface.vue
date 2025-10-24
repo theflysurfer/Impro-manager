@@ -48,15 +48,15 @@
 
           <div class="score-board" style="display: flex; gap: 20px; align-items: center;">
             <div class="team">
-              <label class="form-label">Équipe A</label>
-              <input v-model="currentMatch.teamA.name" class="form-input" style="margin-bottom: 5px;">
-              <input v-model.number="currentMatch.teamA.score" type="number" min="0" class="form-input" style="width: 80px;">
+              <label class="form-label">Équipe Domicile</label>
+              <input v-model="currentMatch.teams.home.name" class="form-input" style="margin-bottom: 5px;">
+              <input v-model.number="currentMatch.teams.home.score" type="number" min="0" class="form-input" style="width: 80px;">
             </div>
             <div class="vs" style="font-size: 1.5em; font-weight: bold; color: #718096;">VS</div>
             <div class="team">
-              <label class="form-label">Équipe B</label>
-              <input v-model="currentMatch.teamB.name" class="form-input" style="margin-bottom: 5px;">
-              <input v-model.number="currentMatch.teamB.score" type="number" min="0" class="form-input" style="width: 80px;">
+              <label class="form-label">Équipe Extérieur</label>
+              <input v-model="currentMatch.teams.away.name" class="form-input" style="margin-bottom: 5px;">
+              <input v-model.number="currentMatch.teams.away.score" type="number" min="0" class="form-input" style="width: 80px;">
             </div>
           </div>
         </div>
@@ -183,7 +183,7 @@
 
         <div class="form-group">
           <label class="form-label">Équipe adverse :</label>
-          <input v-model="newMatch.teamB" class="form-input" placeholder="Nom de l'équipe adverse">
+          <input v-model="newMatch.teams.away.name" class="form-input" placeholder="Nom de l'équipe adverse">
         </div>
 
         <div class="form-group">
@@ -249,7 +249,10 @@ export default {
       showNewMatchModal: false,
       newMatch: {
         title: '',
-        teamB: '',
+        teams: {
+          home: { name: 'Notre Troupe', score: 0 },
+          away: { name: '', score: 0 }
+        },
         template: ''
       },
       // Timer
@@ -293,10 +296,7 @@ export default {
           }));
         }
 
-        if (newMatch.teams && !newMatch.teamA) {
-          newMatch.teamA = newMatch.teams.home || { name: 'Équipe A', score: 0 };
-          newMatch.teamB = newMatch.teams.away || { name: 'Équipe B', score: 0 };
-        }
+        // ✅ Watcher temporaire supprimé - schema unifié teams.home/away
 
         if (newMatch.match_id && !newMatch.id) {
           newMatch.id = newMatch.match_id;
@@ -446,7 +446,7 @@ export default {
     },
 
     async createMatch() {
-      if (!this.newMatch.title || !this.newMatch.teamB) {
+      if (!this.newMatch.title || !this.newMatch.teams.away.name) {
         alert('Veuillez remplir tous les champs obligatoires');
         return;
       }
@@ -459,7 +459,7 @@ export default {
         location: '',
         teams: {
           home: { name: 'Notre Troupe', score: 0 },
-          away: { name: this.newMatch.teamB, score: 0 }
+          away: { name: this.newMatch.teams.away.name, score: 0 }
         },
         lines: template && template.lines ? template.lines.map((line, index) => ({
           line_id: `line_${String(Date.now() + index).padStart(3, '0')}`,
@@ -494,7 +494,14 @@ export default {
         this.currentMatch = await response.json();
         this.selectedMatchId = this.currentMatch.id || this.currentMatch.match_id;
         this.showNewMatchModal = false;
-        this.newMatch = { title: '', teamB: '', template: '' };
+        this.newMatch = {
+          title: '',
+          teams: {
+            home: { name: 'Notre Troupe', score: 0 },
+            away: { name: '', score: 0 }
+          },
+          template: ''
+        };
 
         // Recharger la liste des matchs disponibles
         await this.loadAvailableMatches();

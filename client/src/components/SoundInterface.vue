@@ -133,15 +133,15 @@
             <div class="match-info" style="margin-bottom: 15px;">
               <h4>{{ currentMatch.title }}</h4>
               <div style="display: flex; justify-content: space-between; color: #718096;">
-                <span>{{ currentMatch.teams?.home?.name || currentMatch.teamA?.name || 'Équipe A' }} ({{ currentMatch.teams?.home?.score || currentMatch.teamA?.score || 0 }})</span>
+                <span>{{ currentMatch.teams?.home?.name || 'Équipe A' }} ({{ currentMatch.teams?.home?.score || 0 }})</span>
                 <span>VS</span>
-                <span>{{ currentMatch.teams?.away?.name || currentMatch.teamB?.name || 'Équipe B' }} ({{ currentMatch.teams?.away?.score || currentMatch.teamB?.score || 0 }})</span>
+                <span>{{ currentMatch.teams?.away?.name || 'Équipe B' }} ({{ currentMatch.teams?.away?.score || 0 }})</span>
               </div>
             </div>
 
             <div class="improvs-overview" style="max-height: 300px; overflow-y: auto;">
               <div
-                v-for="(line, index) in (currentMatch.lines || currentMatch.improvs || [])"
+                v-for="(line, index) in (currentMatch.lines || [])"
                 :key="line.line_id || line.id || index"
                 class="improv-overview"
                 :class="line.status"
@@ -424,9 +424,9 @@
         <div class="match-info" style="margin-bottom: 15px;">
           <h4>{{ currentMatch.title }}</h4>
           <div style="display: flex; justify-content: space-between; color: #718096;">
-            <span>{{ currentMatch.teamA.name }} ({{ currentMatch.teamA.score }})</span>
+            <span>{{ currentMatch.teams?.home?.name || 'Équipe A' }} ({{ currentMatch.teams?.home?.score || 0 }})</span>
             <span>VS</span>
-            <span>{{ currentMatch.teamB.name }} ({{ currentMatch.teamB.score }})</span>
+            <span>{{ currentMatch.teams?.away?.name || 'Équipe B' }} ({{ currentMatch.teams?.away?.score || 0 }})</span>
           </div>
         </div>
 
@@ -568,26 +568,7 @@ export default {
       return Array.from(moods).sort();
     }
   },
-  watch: {
-    currentMatch: {
-      handler(newMatch) {
-        if (!newMatch) return;
-
-        // Ensure backward compatibility for team display (read-only sections)
-        if (newMatch.teams && !newMatch.teamA) {
-          newMatch.teamA = newMatch.teams.home || { name: 'Équipe A', score: 0 };
-          newMatch.teamB = newMatch.teams.away || { name: 'Équipe B', score: 0 };
-        }
-
-        // Ensure backward compatibility for improv overview (read-only section)
-        if (newMatch.lines && !newMatch.improvs) {
-          newMatch.improvs = newMatch.lines;
-        }
-      },
-      immediate: true,
-      deep: false
-    }
-  },
+  // ✅ Watcher temporaire supprimé - schema unifié teams.home/away et lines
   async mounted() {
     await this.initializeSocket();
     await this.loadMusicLibrary();
