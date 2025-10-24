@@ -20,7 +20,7 @@ router.post('/check-dependencies', async (req, res) => {
 
   try {
     // Check Python and yt-dlp
-    const pythonCheck = spawn('python', ['-c', 'import yt_dlp; print("OK")']);
+    const pythonCheck = spawn('python3', ['-c', 'import yt_dlp; print("OK")']);
 
     const ytdlpPromise = new Promise((resolve) => {
       let output = '';
@@ -43,7 +43,7 @@ router.post('/check-dependencies', async (req, res) => {
     });
 
     // Check librosa
-    const librosaCheck = spawn('python', ['-c', 'import librosa; print("OK")']);
+    const librosaCheck = spawn('python3', ['-c', 'import librosa; print("OK")']);
 
     const librosaPromise = new Promise((resolve) => {
       let output = '';
@@ -189,10 +189,10 @@ async function downloadYouTubeAudio(downloadId, url, type, metadata) {
       args.push('--energy', metadata.energy.toString());
     }
 
-    console.log(`🐍 Calling Python script: python ${scriptPath} ${args.join(' ')}`);
+    console.log(`🐍 Calling Python script: python3 ${scriptPath} ${args.join(' ')}`);
 
     // Spawn Python process
-    const pythonProcess = spawn('python', [scriptPath, ...args]);
+    const pythonProcess = spawn('python3', [scriptPath, ...args]);
 
     let output = '';
     let errorOutput = '';
