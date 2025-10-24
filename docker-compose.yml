@@ -12,8 +12,8 @@ services:
       - ./data:/app/data
       - /opt/impro-manager/logs:/app/logs
       - /opt/impro-manager/uploads:/app/uploads
-      # Music from Dropbox (via rclone mount)
-      - /opt/impro-manager/music:/app/public/music:ro
+      # Music from OneDrive (via rclone mount) - Read/Write for YouTube downloads
+      - /opt/impro-manager/music:/app/music
     environment:
       - NODE_ENV=production
       - PORT=3001
