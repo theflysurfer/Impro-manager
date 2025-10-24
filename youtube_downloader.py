@@ -19,12 +19,16 @@ import argparse
 import hashlib
 from pathlib import Path
 import subprocess
+import urllib.request
+import urllib.parse
+import re
 
 try:
     import yt_dlp
+    HAS_YTDLP = True
 except ImportError:
-    print("❌ yt-dlp n'est pas installé. Installez avec: pip install yt-dlp")
-    sys.exit(1)
+    print("⚠️  yt-dlp n'est pas installé - mode Invidious activé")
+    HAS_YTDLP = False
 
 try:
     from mutagen.mp3 import MP3
@@ -55,6 +59,219 @@ else:
     LIBRARY_FILE = Path("/app/music_library.json")
 
 DOWNLOAD_SUBDIR = "YouTube Downloads"
+
+# Invidious instances (fallback order)
+INVIDIOUS_INSTANCES = [
+    "https://vid.puffyan.us",
+    "https://invidious.snopyta.org",
+    "https://yewtu.be",
+    "https://invidious.kavin.rocks",
+]
+
+
+def extract_video_id(url):
+    """
+    Extrait l'ID vidéo depuis une URL YouTube.
+
+    Args:
+        url: URL YouTube ou ID direct
+
+    Returns:
+        str: ID de la vidéo ou None
+    """
+    # Si c'est déjà un ID (11 caractères)
+    if len(url) == 11 and re.match(r'^[A-Za-z0-9_-]{11}$', url):
+        return url
+
+    # Patterns d'URL YouTube
+    patterns = [
+        r'(?:youtube\.com\/watch\?v=|youtu\.be\/)([A-Za-z0-9_-]{11})',
+        r'youtube\.com\/embed\/([A-Za-z0-9_-]{11})',
+        r'youtube\.com\/v\/([A-Za-z0-9_-]{11})'
+    ]
+
+    for pattern in patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+
+    return None
+
+
+def fetch_invidious_video_info(video_id, instance_index=0):
+    """
+    Récupère les informations d'une vidéo via Invidious API.
+
+    Args:
+        video_id: ID de la vidéo YouTube
+        instance_index: Index de l'instance Invidious à utiliser
+
+    Returns:
+        dict: Informations de la vidéo ou None
+    """
+    if instance_index >= len(INVIDIOUS_INSTANCES):
+        print("❌ Toutes les instances Invidious ont échoué")
+        return None
+
+    instance = INVIDIOUS_INSTANCES[instance_index]
+    api_url = f"{instance}/api/v1/videos/{video_id}"
+
+    try:
+        print(f"🔍 Récupération via Invidious: {instance}")
+        req = urllib.request.Request(api_url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+
+        with urllib.request.urlopen(req, timeout=10) as response:
+            data = json.loads(response.read().decode('utf-8'))
+            return data
+
+    except Exception as e:
+        print(f"⚠️  Instance {instance} échouée: {e}")
+        # Essayer l'instance suivante
+        return fetch_invidious_video_info(video_id, instance_index + 1)
+
+
+def download_audio_stream(audio_url, output_path, title="audio"):
+    """
+    Télécharge un flux audio depuis une URL.
+
+    Args:
+        audio_url: URL du flux audio
+        output_path: Chemin de sortie
+        title: Titre pour le message de progression
+
+    Returns:
+        bool: True si succès
+    """
+    try:
+        print(f"📥 Téléchargement de: {title}")
+
+        req = urllib.request.Request(audio_url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+
+        with urllib.request.urlopen(req, timeout=30) as response:
+            total_size = int(response.headers.get('Content-Length', 0))
+            downloaded = 0
+            chunk_size = 8192
+
+            with open(output_path, 'wb') as f:
+                while True:
+                    chunk = response.read(chunk_size)
+                    if not chunk:
+                        break
+                    f.write(chunk)
+                    downloaded += len(chunk)
+
+                    if total_size > 0:
+                        percent = (downloaded / total_size) * 100
+                        print(f"\r   Progression: {percent:.1f}%", end='', flush=True)
+
+        print("\n   ✓ Téléchargement terminé")
+        return True
+
+    except Exception as e:
+        print(f"\n❌ Erreur téléchargement: {e}")
+        return False
+
+
+def download_youtube_audio_invidious(url, output_dir):
+    """
+    Télécharge l'audio d'une vidéo YouTube via Invidious API.
+
+    Args:
+        url: URL de la vidéo YouTube
+        output_dir: Dossier de destination
+
+    Returns:
+        tuple: (Path du fichier MP3, dict métadonnées) ou (None, None)
+    """
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    # Extraire l'ID vidéo
+    video_id = extract_video_id(url)
+    if not video_id:
+        print(f"❌ Impossible d'extraire l'ID vidéo de: {url}")
+        return None, None
+
+    print(f"🎬 ID vidéo: {video_id}")
+
+    # Récupérer les infos via Invidious
+    video_info = fetch_invidious_video_info(video_id)
+    if not video_info:
+        return None, None
+
+    title = video_info.get('title', 'Unknown')
+    author = video_info.get('author', 'Unknown')
+    duration = video_info.get('lengthSeconds', 0)
+
+    print(f"🎵 Titre: {title}")
+    print(f"👤 Auteur: {author}")
+    print(f"⏱️  Durée: {duration}s")
+
+    # Trouver le meilleur flux audio
+    audio_formats = [f for f in video_info.get('adaptiveFormats', [])
+                     if f.get('type', '').startswith('audio/')]
+
+    if not audio_formats:
+        print("❌ Aucun flux audio trouvé")
+        return None, None
+
+    # Trier par bitrate (meilleure qualité)
+    audio_formats.sort(key=lambda x: x.get('bitrate', 0), reverse=True)
+    best_audio = audio_formats[0]
+    audio_url = best_audio.get('url')
+
+    if not audio_url:
+        print("❌ URL audio introuvable")
+        return None, None
+
+    print(f"🎧 Format audio: {best_audio.get('type')} - {best_audio.get('bitrate')} bps")
+
+    # Nettoyer le titre pour le nom de fichier
+    safe_title = "".join(c for c in title if c.isalnum() or c in (' ', '-', '_')).strip()
+    temp_file = output_dir / f"{safe_title}.webm"
+    mp3_path = output_dir / f"{safe_title}.mp3"
+
+    # Télécharger le flux audio
+    if not download_audio_stream(audio_url, temp_file, title):
+        return None, None
+
+    # Convertir en MP3 avec ffmpeg
+    print("🔄 Conversion en MP3...")
+    try:
+        subprocess.run([
+            'ffmpeg', '-i', str(temp_file),
+            '-vn',  # Pas de vidéo
+            '-acodec', 'libmp3lame',
+            '-b:a', '192k',
+            '-y',  # Overwrite
+            str(mp3_path)
+        ], check=True, capture_output=True)
+
+        # Supprimer le fichier temporaire
+        temp_file.unlink()
+        print(f"   ✓ Converti: {mp3_path.name}")
+
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Erreur conversion ffmpeg: {e}")
+        if temp_file.exists():
+            temp_file.unlink()
+        return None, None
+
+    # Préparer les métadonnées
+    metadata = {
+        'title': title,
+        'artist': author,
+        'duration': duration,
+        'description': video_info.get('description', ''),
+        'view_count': video_info.get('viewCount', 0),
+        'upload_date': '',
+        'youtube_id': video_id,
+        'youtube_url': f"https://youtube.com/watch?v={video_id}"
+    }
+
+    return mp3_path, metadata
 
 
 def create_audio_clips(audio_path, cues, output_dir=None):
@@ -241,6 +458,7 @@ def detect_music_cues(audio_path):
 def download_youtube_audio(url, output_dir):
     """
     Télécharge l'audio d'une vidéo YouTube en MP3 et extrait les métadonnées.
+    Utilise Invidious API par défaut, fallback sur yt-dlp si disponible.
 
     Args:
         url: URL de la vidéo YouTube
@@ -249,6 +467,20 @@ def download_youtube_audio(url, output_dir):
     Returns:
         tuple: (Path du fichier MP3, dict métadonnées) ou (None, None) en cas d'erreur
     """
+    # Essayer d'abord avec Invidious
+    print("🔄 Tentative de téléchargement via Invidious API...")
+    mp3_path, metadata = download_youtube_audio_invidious(url, output_dir)
+
+    if mp3_path and mp3_path.exists():
+        return mp3_path, metadata
+
+    # Fallback sur yt-dlp si disponible
+    if not HAS_YTDLP:
+        print("❌ Invidious a échoué et yt-dlp n'est pas disponible")
+        return None, None
+
+    print("⚠️  Invidious a échoué, tentative avec yt-dlp...")
+
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
