@@ -13,25 +13,21 @@ COPY client/ ./
 # Build frontend
 RUN npm run build
 
-# Stage 2: Production image
-FROM node:18-alpine
+# Stage 2: Production image (Debian-based for better Python compatibility)
+FROM node:18-slim
 
 WORKDIR /app
 
-# Install Python, pip, ffmpeg and build dependencies for Python packages
-RUN apk add --no-cache \
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
     python3 \
-    py3-pip \
+    python3-pip \
+    python3-dev \
     ffmpeg \
     gcc \
     g++ \
     make \
-    cmake \
-    python3-dev \
-    musl-dev \
-    linux-headers \
-    llvm-dev \
-    && ln -sf python3 /usr/bin/python
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy root package files and install production dependencies
 COPY package*.json ./
