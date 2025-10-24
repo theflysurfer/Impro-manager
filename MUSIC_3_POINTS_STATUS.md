@@ -158,7 +158,7 @@ Le composant que j'ai créé duplique les fonctionnalités de `MusicAssignment.v
 | **UI Panel** | Container 3 points | ✅ | MusicAssignmentPanel.vue |
 | **Backend schema** | Object avec 3 clés | ✅ | intro/outro/transition |
 | **Rétrocompatibilité** | Support ancien format | ⚠️ | Migration manuelle requise |
-| **Tests Playwright** | E2E tests | ❌ | À créer |
+| **Tests Playwright** | E2E tests | ✅ | `tests/e2e/music-3-points.spec.js` |
 
 ---
 
@@ -201,11 +201,23 @@ if (typeof line.music === 'string') {
 }
 ```
 
-### 3. Tests E2E
+### 3. Tests E2E ✅
 
-**Manquant** : Pas de tests Playwright pour MusicAssignmentPanel
+**Statut** : Tests Playwright créés et fonctionnels
 
-**À créer** : `tests/e2e/music-3-points.spec.js`
+**Fichier** : `tests/e2e/music-3-points.spec.js`
+
+**Tests couverts** :
+- ✅ MusicAssignmentPanel visibility
+- ✅ 3 points par ligne (INTRO/OUTRO/TRANSITION)
+- ✅ Ouverture modal sélecteur
+- ✅ Settings modal avec play_type options
+- ✅ Status indicator validation
+- ✅ Backend schema validation (API POST)
+
+**Tests production** : `tests/e2e/production-health.spec.js`
+- ✅ API health endpoint (4/4 tests passés)
+- ✅ Endpoints /api/music et /api/matches
 
 ---
 
@@ -214,10 +226,11 @@ if (typeof line.music === 'string') {
 ### Immédiat
 
 1. ✅ ~~Documenter système existant~~ - CE DOCUMENT
-2. ⏭️ Supprimer `MusicPointAssignment.vue` (redondant)
-3. ⏭️ Désactiver drag-drop legacy dans SoundInterface
-4. ⏭️ Créer script migration données
-5. ⏭️ Tests Playwright
+2. ✅ ~~Supprimer `MusicPointAssignment.vue`~~ - FAIT (commit 1c855bc)
+3. ✅ ~~Tests Playwright~~ - FAIT (`music-3-points.spec.js` + `production-health.spec.js`)
+4. ✅ ~~Déploiement production~~ - FAIT (Docker, tests 4/4 passés)
+5. ⏭️ Désactiver drag-drop legacy dans SoundInterface
+6. ⏭️ Créer script migration données
 
 ### Après MVP
 
@@ -230,15 +243,20 @@ if (typeof line.music === 'string') {
 
 ## 📝 Conclusion
 
-Le système 3 points musicaux est **FONCTIONNEL** et **PRÊT POUR PRODUCTION**.
+Le système 3 points musicaux est **FONCTIONNEL** et **DÉPLOYÉ EN PRODUCTION** ✅.
 
-Il suffit de :
-1. Nettoyer le code legacy drag-drop
-2. Migrer données existantes
-3. Ajouter tests E2E
-4. Déployer
+**État actuel** :
+- ✅ UI complète (MusicAssignment + MusicAssignmentPanel)
+- ✅ Backend support 3 points (intro/outro/transition)
+- ✅ WebSocket sync temps réel
+- ✅ Tests E2E Playwright (6 tests 3-points + 4 tests production)
+- ✅ Déployé en production (Docker, root@69.62.108.82:8504)
 
-**Estimation** : ~4h de travail pour finalisation complète.
+**Reste à faire** :
+1. Désactiver drag-drop legacy (SoundInterface.vue lignes 903-923)
+2. Créer script migration données (ancien → nouveau format)
+
+**Estimation** : ~2h de travail pour nettoyage final.
 
 ---
 
