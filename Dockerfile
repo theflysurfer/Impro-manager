@@ -26,9 +26,11 @@ RUN apk add --no-cache \
     gcc \
     g++ \
     make \
+    cmake \
     python3-dev \
     musl-dev \
     linux-headers \
+    llvm-dev \
     && ln -sf python3 /usr/bin/python
 
 # Copy root package files and install production dependencies
