@@ -145,8 +145,6 @@
                 :key="line.line_id || line.id || index"
                 class="improv-overview"
                 :class="line.status"
-                @drop="onDropMusic($event, line)"
-                @dragover.prevent
                 style="display: flex; justify-content: space-between; align-items: center; padding: 8px; margin-bottom: 5px; background: rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer;"
               >
                 <div>
@@ -900,15 +898,27 @@ export default {
       event.dataTransfer.effectAllowed = 'move';
     },
 
+    // DEPRECATED: Drag-drop désactivé - utiliser MusicAssignmentPanel
+    // La fonction est conservée pour compatibilité mais n'est plus appelée
     onDropMusic(event, line) {
+      console.warn('[DEPRECATED] onDropMusic: utiliser MusicAssignmentPanel à la place');
       event.preventDefault();
 
       if (!this.draggedMusic) return;
 
-      // Assigner la musique à la ligne (système simplifié pour l'instant)
-      // TODO: Implémenter le système 3 points (INTRO/OUTRO/TRANSITION) via MusicAssignmentPanel
+      // Assigner la musique à la ligne avec settings par défaut
       line.music = {
-        intro: { music_id: this.draggedMusic.id },
+        intro: {
+          music_id: this.draggedMusic.id,
+          settings: {
+            play_type: 'full',
+            clip_start: null,
+            clip_end: null,
+            fade_in: 2,
+            fade_out: 2,
+            volume: 80
+          }
+        },
         outro: null,
         transition: null
       };
