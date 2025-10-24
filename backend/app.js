@@ -9,6 +9,7 @@ const socketIo = require('socket.io');
 const matchRoutes = require('./routes/matchRoutes');
 const personnelRoutes = require('./routes/personnelRoutes');
 const templateRoutes = require('./routes/templateRoutes');
+const youtubeRoutes = require('./routes/youtubeRoutes');
 
 const app = express();
 const server = http.createServer(app);
@@ -83,23 +84,151 @@ app.use('/api/personnel', personnelRoutes);
 // Routes templates
 app.use('/api/templates', templateRoutes);
 
+// Routes YouTube downloader
+app.use('/api/youtube', youtubeRoutes);
+
+// Route historique musical - Tracks all music usage across matches
+app.get('/api/music-history', async (req, res) => {
+  try {
+    const musicUsage = new Map();
+
+    // Lire les matchs depuis le fichier
+    let matches = [];
+    try {
+      const matchesData = await fs.readFile(path.join(__dirname, 'data', 'matches.json'), 'utf8');
+      const parsedData = JSON.parse(matchesData);
+      matches = parsedData.matches || [];
+    } catch (error) {
+      console.warn('⚠️  No matches data found, returning empty history');
+      return res.json([]);
+    }
+
+    // Parcourir tous les matchs
+    matches.forEach(match => {
+      if (!match.lines) return;
+
+      match.lines.forEach(line => {
+        // Gérer ancien et nouveau schema
+        const musicPoints = line.music_assignment || line.music;
+
+        if (!musicPoints) return;
+
+        // Si c'est l'ancien format (simple string)
+        if (typeof musicPoints === 'string') {
+          const existing = musicUsage.get(musicPoints) || { count: 0, matches: [] };
+          existing.count++;
+          if (!existing.matches.includes(match.match_id)) {
+            existing.matches.push(match.match_id);
+          }
+          musicUsage.set(musicPoints, existing);
+        }
+        // Nouveau format (3 points)
+        else if (typeof musicPoints === 'object') {
+          ['INTRO', 'OUTRO', 'TRANSITION'].forEach(point => {
+            if (musicPoints[point]?.track_id) {
+              const trackId = musicPoints[point].track_id;
+              const existing = musicUsage.get(trackId) || { count: 0, matches: [] };
+              existing.count++;
+              if (!existing.matches.includes(match.match_id)) {
+                existing.matches.push(match.match_id);
+              }
+              musicUsage.set(trackId, existing);
+            }
+          });
+        }
+      });
+    });
+
+    // Enrichir avec les données des tracks
+    const history = Array.from(musicUsage.entries()).map(([trackId, usage]) => {
+      const track = musicLibrary.find(t => t.id === trackId);
+      return {
+        track_id: trackId,
+        track: track || { id: trackId, title: 'Unknown', artist: 'Unknown' },
+        usage_count: usage.count,
+        used_in_matches: usage.matches
+      };
+    });
+
+    // Trier par usage décroissant
+    history.sort((a, b) => b.usage_count - a.usage_count);
+
+    res.json(history);
+  } catch (error) {
+    console.error('Error fetching music history:', error);
+    res.status(500).json({ error: 'Failed to fetch music history' });
+  }
+});
+
 // Route bibliothèque musicale
 app.get('/api/music', (req, res) => {
   try {
     let filtered = musicLibrary;
 
-    // Filtres query params (à implémenter en Sprint 4)
+    // Filtre par scénarios
     if (req.query.scenarios) {
-      // TODO: Filtrer par scenarios
+      const scenarios = req.query.scenarios.split(',').map(s => s.trim().toLowerCase());
+      filtered = filtered.filter(track => {
+        if (!track.impro_context || !track.impro_context.scenarios) return false;
+        return track.impro_context.scenarios.some(s =>
+          scenarios.includes(s.toLowerCase())
+        );
+      });
     }
-    if (req.query.tempo_min || req.query.tempo_max) {
-      // TODO: Filtrer par tempo
+
+    // Filtre par mood (ambiance)
+    if (req.query.mood) {
+      const moods = req.query.mood.split(',').map(m => m.trim().toLowerCase());
+      filtered = filtered.filter(track => {
+        if (!track.tags || !track.tags.mood) return false;
+        return track.tags.mood.some(m => moods.includes(m.toLowerCase()));
+      });
     }
+
+    // Filtre par energy (niveau d'énergie)
+    if (req.query.energy_min || req.query.energy_max) {
+      const minEnergy = parseInt(req.query.energy_min) || 0;
+      const maxEnergy = parseInt(req.query.energy_max) || 10;
+      filtered = filtered.filter(track => {
+        if (!track.tags || typeof track.tags.energy !== 'number') return false;
+        return track.tags.energy >= minEnergy && track.tags.energy <= maxEnergy;
+      });
+    }
+
+    // Filtre par tempo
+    if (req.query.tempo) {
+      const tempo = req.query.tempo.toLowerCase();
+      filtered = filtered.filter(track => {
+        if (!track.tags || !track.tags.tempo) return false;
+        return track.tags.tempo.toLowerCase() === tempo;
+      });
+    }
+
+    // Filtre par genre
+    if (req.query.genre) {
+      const genres = req.query.genre.split(',').map(g => g.trim().toLowerCase());
+      filtered = filtered.filter(track => {
+        if (!track.tags || !track.tags.genre) return false;
+        return track.tags.genre.some(g => genres.includes(g.toLowerCase()));
+      });
+    }
+
+    // Filtre par durée
+    if (req.query.duration_min || req.query.duration_max) {
+      const minDuration = parseInt(req.query.duration_min) || 0;
+      const maxDuration = parseInt(req.query.duration_max) || Infinity;
+      filtered = filtered.filter(track => {
+        return track.duration >= minDuration && track.duration <= maxDuration;
+      });
+    }
+
+    // Recherche textuelle
     if (req.query.search) {
       const searchLower = req.query.search.toLowerCase();
       filtered = filtered.filter(track =>
         (track.title && track.title.toLowerCase().includes(searchLower)) ||
-        (track.artist && track.artist.toLowerCase().includes(searchLower))
+        (track.artist && track.artist.toLowerCase().includes(searchLower)) ||
+        (track.filename && track.filename.toLowerCase().includes(searchLower))
       );
     }
 

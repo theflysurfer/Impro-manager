@@ -21,6 +21,9 @@
           <router-link to="/music" class="btn btn-small">
             <i class="fas fa-compact-disc"></i> Bibliothèque
           </router-link>
+          <router-link to="/youtube" class="btn btn-small" style="background: linear-gradient(135deg, #ff0000, #c00);">
+            <i class="fab fa-youtube"></i> YouTube
+          </router-link>
         </div>
       </div>
     </nav>
@@ -40,6 +43,7 @@ export default {
       if (path.startsWith('/mc')) return 'MC';
       if (path.startsWith('/sound')) return 'Son';
       if (path.startsWith('/music')) return 'Bibliothèque';
+      if (path.startsWith('/youtube')) return 'YouTube';
       return 'Accueil';
     }
   }

@@ -1,0 +1,15 @@
+# Python dependencies for Impro Manager Music Tools
+
+# YouTube downloader
+yt-dlp>=2024.1.0
+
+# Audio metadata
+mutagen>=1.47.0
+
+# Music analysis (moments forts detection)
+librosa>=0.10.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Audio file handling
+soundfile>=0.12.1
