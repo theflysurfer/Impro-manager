@@ -79,23 +79,41 @@ Application web PWA pour gérer matchs d'improvisation théâtrale avec musique 
 
 ---
 
-## 🔴 Problèmes Critiques Actuels
+## ✅ Fonctionnalités Implémentées
 
-1. **Mode Live absent** (0%) - Bloquant pour production
-   - Pas de page `/matches/:id/live/mc`
-   - Pas de page `/matches/:id/live/sound`
-   - Pas de synchronisation WebSocket
+1. **Mode Live** (100%) - COMPLET
+   - ✅ Page `/matches/:id/live/mc` (MCLive.vue)
+   - ✅ Page `/matches/:id/live/sound` (SoundLive.vue)
+   - ✅ Synchronisation WebSocket complète (Socket.IO)
+   - ✅ Events: `join_match`, `line_started`, `chrono_update`, `line_completed`, `music_assigned`, `music_play`
+   - ✅ Persistance état live dans fichiers JSON
+   - ✅ Validation des données événements
 
-2. **Schema musical incomplet**
+2. **YouTube Downloader** (100%) - COMPLET
+   - ✅ Interface téléchargement YouTube (YouTubeDownloader.vue)
+   - ✅ Backend Python avec yt-dlp + librosa
+   - ✅ Analyse audio automatique (cue points: hook, climax, outro)
+   - ✅ Player vidéo embarqué
+   - ✅ Métadonnées enrichies
+   - ✅ Tests Playwright (15/16 passent)
+
+## 🔴 Problèmes Critiques Restants
+
+1. **Schema musical incomplet**
    - Actuel : 1 point simple par ligne
    - Attendu : 3 points (INTRO/OUTRO/TRANSITION) avec settings (clip, fade, volume)
+   - **Priorité P0** - En cours d'implémentation
 
-3. **Schema incompatibilité frontend/backend**
+2. **Schema incompatibilité frontend/backend**
    - Backend : `teams.home/away`, `lines`
    - Frontend attend : `teamA/teamB`, `improvs`
    - Patches temporaires via Vue watchers
+   - **Priorité P1** - À refactorer après 3 points musicaux
 
-4. **PWA offline absent** - Pas de Service Worker, pas de cache
+3. **PWA offline absent**
+   - Pas de Service Worker actif
+   - Pas de cache IndexedDB pour musiques
+   - **Priorité P2** - Nice-to-have
 
 ---
 
@@ -128,20 +146,23 @@ Format : `🎨 Description` ou `feat: Description`
 
 ## Prochaines Étapes Prioritaires
 
-### Sprint Immédiat (P0 - 12 jours)
-1. Setup Socket.IO (server + client)
-2. Créer pages Mode Live :
-   - `/matches/:id/live/mc` (chronomètre, score, progression)
-   - `/matches/:id/live/sound` (lecteur audio sync)
-3. Synchronisation WebSocket :
-   - Events : `line_started`, `chrono_update`
-4. Extension schema 3 points musicaux
+### Sprint Immédiat (P0 - EN COURS)
+1. ✅ ~~Setup Socket.IO~~ - COMPLET
+2. ✅ ~~Pages Mode Live~~ - COMPLET
+3. ✅ ~~Synchronisation WebSocket~~ - COMPLET
+4. **🚧 Extension schema 3 points musicaux** - EN COURS
+   - Modifier schema backend (`line.music`)
+   - Adapter SoundInterface.vue pour 3 assignations
+   - Créer composant MusicPointAssignment.vue
+   - Ajouter settings (clip, fade, volume)
+   - Tester avec Playwright
 
-### Après MVP (P1)
+### Après 3 points musicaux (P1)
 - 8 types de lignes (actuellement seul SEQUENCE)
 - Drag & drop assignation musiques
-- Filtres bibliothèque fonctionnels
+- Filtres bibliothèque fonctionnels avancés
 - PWA + cache offline
+- Refactoring schema frontend/backend
 
 ---
 

@@ -99,7 +99,16 @@
         <p style="font-size: 0.9em;">Choisissez une musique dans la bibliothèque ci-dessous</p>
       </div>
 
-      <!-- Élément audio HTML5 caché -->
+      <!-- Waveform Player (when track is selected) -->
+      <WaveformPlayer
+        v-if="currentTrack"
+        :audioUrl="`/uploads/${currentTrack.filename}`"
+        :cues="currentTrack.cues"
+        @finished="onTrackEnded"
+        style="margin-top: 20px;"
+      />
+
+      <!-- Élément audio HTML5 caché (fallback) -->
       <audio
         ref="audioPlayer"
         @timeupdate="updateProgress"
@@ -108,29 +117,174 @@
       ></audio>
     </div>
 
-    <!-- Raccourcis rapides -->
-    <div class="quick-actions card">
-      <h3 class="card-title">
-        <i class="fas fa-bolt"></i>
-        Lancement Rapide
-      </h3>
+    <!-- Layout 2 colonnes : Feuille de match | Bibliothèque musicale -->
+    <div v-if="currentMatch" class="two-column-layout" style="display: grid; grid-template-columns: 40% 60%; gap: 20px; margin-top: 20px;">
 
-      <div class="quick-buttons" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
-        <button
-          v-for="quick in quickLaunchButtons"
-          :key="quick.id"
-          @click="quickPlay(quick)"
-          class="btn"
-          :style="{ background: quick.color }"
-        >
-          <i :class="quick.icon"></i>
-          {{ quick.label }}
-        </button>
+      <!-- COLONNE GAUCHE : Feuille de match + Fav List -->
+      <div class="left-column">
+        <!-- Feuille MC (lecture seule) -->
+        <div class="mc-sync card" style="margin-bottom: 20px;">
+          <h3 class="card-title">
+            <i class="fas fa-clipboard-list"></i>
+            Feuille de Match
+          </h3>
+
+          <div class="match-overview">
+            <div class="match-info" style="margin-bottom: 15px;">
+              <h4>{{ currentMatch.title }}</h4>
+              <div style="display: flex; justify-content: space-between; color: #718096;">
+                <span>{{ currentMatch.teams?.home?.name || currentMatch.teamA?.name || 'Équipe A' }} ({{ currentMatch.teams?.home?.score || currentMatch.teamA?.score || 0 }})</span>
+                <span>VS</span>
+                <span>{{ currentMatch.teams?.away?.name || currentMatch.teamB?.name || 'Équipe B' }} ({{ currentMatch.teams?.away?.score || currentMatch.teamB?.score || 0 }})</span>
+              </div>
+            </div>
+
+            <div class="improvs-overview" style="max-height: 300px; overflow-y: auto;">
+              <div
+                v-for="(line, index) in (currentMatch.lines || currentMatch.improvs || [])"
+                :key="line.line_id || line.id || index"
+                class="improv-overview"
+                :class="line.status"
+                @drop="onDropMusic($event, line)"
+                @dragover.prevent
+                style="display: flex; justify-content: space-between; align-items: center; padding: 8px; margin-bottom: 5px; background: rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer;"
+              >
+                <div>
+                  <span style="font-weight: 600;">{{ index + 1 }}. {{ line.title }}</span>
+                  <span v-if="line.theme" style="margin-left: 10px; color: rgba(255,255,255,0.7);">({{ line.theme }})</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span style="font-size: 0.9em;">{{ formatTime(line.duration_planned || line.duration || 180) }}</span>
+                  <span v-if="line.music?.intro || line.music" style="color: #48bb78;">
+                    <i class="fas fa-music"></i>
+                  </span>
+                  <span v-else style="color: rgba(255,255,255,0.5);">
+                    <i class="fas fa-music-slash"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fav List (Tampon) -->
+        <div class="favorites-list card">
+          <h3 class="card-title">
+            <i class="fas fa-star"></i>
+            Favoris ({{ favoritesList.length }})
+            <button v-if="favoritesList.length > 0" @click="clearFavorites" class="btn btn-small btn-danger" style="margin-left: auto;">
+              <i class="fas fa-trash"></i> Vider
+            </button>
+          </h3>
+
+          <div v-if="favoritesList.length === 0" style="text-align: center; padding: 30px; color: rgba(255,255,255,0.5);">
+            <i class="fas fa-star" style="font-size: 2em; opacity: 0.3; margin-bottom: 10px;"></i>
+            <p>Aucun favori</p>
+            <p style="font-size: 0.9em;">Cliquez sur ⭐ dans la bibliothèque</p>
+          </div>
+
+          <div v-else class="favorites-items" style="max-height: 250px; overflow-y: auto;">
+            <div
+              v-for="fav in favoritesList"
+              :key="fav.id"
+              class="favorite-item"
+              @dragstart="onDragStart($event, fav)"
+              draggable="true"
+              style="display: flex; justify-content: space-between; align-items: center; padding: 8px; margin-bottom: 5px; background: rgba(255,255,255,0.1); border-radius: 6px; cursor: move;"
+            >
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">{{ fav.title }}</div>
+                <div style="font-size: 0.85em; color: rgba(255,255,255,0.7);">{{ fav.artist || 'Artiste inconnu' }}</div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button @click.stop="playMusic(fav)" class="btn btn-small">
+                  <i class="fas fa-play"></i>
+                </button>
+                <button @click.stop="removeFromFavorites(fav)" class="btn btn-small btn-danger">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Historique Musical -->
+        <div class="music-history card" style="margin-top: 20px;">
+          <h3 class="card-title">
+            <i class="fas fa-history"></i>
+            Historique ({{ musicHistory.length }})
+            <button @click="loadMusicHistory" class="btn btn-small" style="margin-left: auto;">
+              <i class="fas fa-sync"></i> Rafraîchir
+            </button>
+          </h3>
+
+          <div v-if="loadingHistory" style="text-align: center; padding: 20px; color: rgba(255,255,255,0.6);">
+            <i class="fas fa-spinner fa-spin" style="font-size: 1.5em;"></i>
+            <p style="margin-top: 10px;">Chargement...</p>
+          </div>
+
+          <div v-else-if="musicHistory.length === 0" style="text-align: center; padding: 30px; color: rgba(255,255,255,0.5);">
+            <i class="fas fa-history" style="font-size: 2em; opacity: 0.3; margin-bottom: 10px;"></i>
+            <p>Aucun historique</p>
+            <p style="font-size: 0.9em;">Les musiques utilisées apparaîtront ici</p>
+          </div>
+
+          <div v-else class="history-items" style="max-height: 250px; overflow-y: auto;">
+            <div
+              v-for="item in musicHistory.slice(0, 10)"
+              :key="item.track_id"
+              class="history-item"
+              @dragstart="onDragStart($event, item.track)"
+              draggable="true"
+              style="display: flex; justify-content: space-between; align-items: center; padding: 8px; margin-bottom: 5px; background: rgba(255,255,255,0.08); border-radius: 6px; cursor: move;"
+            >
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">{{ item.track.title }}</div>
+                <div style="font-size: 0.85em; color: rgba(255,255,255,0.7);">
+                  {{ item.track.artist || 'Artiste inconnu' }}
+                </div>
+                <div style="font-size: 0.75em; color: rgba(255,255,255,0.5); margin-top: 3px;">
+                  <i class="fas fa-repeat"></i> Utilisé {{ item.usage_count }}×
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <button @click.stop="playMusic(item.track)" class="btn btn-small">
+                  <i class="fas fa-play"></i>
+                </button>
+                <button @click.stop="addToFavorites(item.track)" class="btn btn-small" :disabled="isFavorite(item.track)">
+                  <i :class="isFavorite(item.track) ? 'fas fa-star' : 'far fa-star'"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <!-- Bibliothèque musicale -->
-    <div class="music-library card">
+      <!-- COLONNE DROITE : Bibliothèque musicale -->
+      <div class="right-column">
+        <!-- Raccourcis rapides -->
+        <div class="quick-actions card" style="margin-bottom: 20px;">
+          <h3 class="card-title">
+            <i class="fas fa-bolt"></i>
+            Lancement Rapide
+          </h3>
+
+          <div class="quick-buttons" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px;">
+            <button
+              v-for="quick in quickLaunchButtons"
+              :key="quick.id"
+              @click="quickPlay(quick)"
+              class="btn"
+              :style="{ background: quick.color }"
+            >
+              <i :class="quick.icon"></i>
+              {{ quick.label }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Bibliothèque musicale -->
+        <div class="music-library card">
       <div class="library-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h3 class="card-title" style="margin: 0;">
           <i class="fas fa-folder-open"></i>
@@ -231,8 +385,8 @@
             <button @click.stop="playMusicHook(music)" class="btn btn-small btn-secondary">
               <i class="fas fa-fire"></i> Hook
             </button>
-            <button @click.stop="addToFavorites(music)" class="btn btn-small" :class="{ 'btn-warning': music.favorite }">
-              <i class="fas fa-star"></i>
+            <button @click.stop="addToFavorites(music)" class="btn btn-small" :class="{ 'btn-warning': isFavorite(music) }">
+              <i class="fas fa-star" :style="{ color: isFavorite(music) ? '#f6ad55' : 'rgba(255,255,255,0.5)' }"></i>
             </button>
           </div>
 
@@ -248,7 +402,10 @@
         </div>
       </div>
 
-    </div>
+        </div>
+      </div><!-- fin right-column -->
+
+    </div><!-- fin two-column-layout -->
 
     <!-- Music Assignment Panel (3 Points: INTRO/OUTRO/TRANSITION) -->
     <MusicAssignmentPanel
@@ -258,8 +415,8 @@
       @update:lines="updateMatchLines"
     />
 
-    <!-- Feuille MC (lecture seule) -->
-    <div v-if="currentMatch" class="mc-sync card">
+    <!-- ANCIENNE section supprimée - maintenant dans colonne gauche -->
+    <div v-if="false" class="mc-sync card">
       <h3 class="card-title">
         <i class="fas fa-clipboard-list"></i>
         Feuille de Match (Sync MC)
@@ -309,11 +466,13 @@
 <script>
 import { io } from 'socket.io-client';
 import MusicAssignmentPanel from './MusicAssignmentPanel.vue';
+import WaveformPlayer from './WaveformPlayer.vue';
 
 export default {
   name: 'SoundInterface',
   components: {
-    MusicAssignmentPanel
+    MusicAssignmentPanel,
+    WaveformPlayer
   },
   props: ['matchId'],
   data() {
@@ -334,6 +493,13 @@ export default {
       filterMood: '',
       filterEnergy: '',
       filterType: '',  // '' = tout, 'music' = musiques, 'sound_effect' = bruitages
+
+      // Favorites List (tampon avant assignation)
+      favoritesList: [],
+
+      // Music History (from previous matches)
+      musicHistory: [],
+      loadingHistory: false,
 
       // Drag & Drop
       draggedMusic: null,
@@ -428,11 +594,15 @@ export default {
     await this.initializeSocket();
     await this.loadMusicLibrary();
     await this.loadAvailableMatches();
+    await this.loadMusicHistory();
 
     if (this.matchId) {
       this.selectedMatchId = this.matchId;
       await this.loadMatch();
     }
+
+    // Load favorites from localStorage
+    this.loadFavorites();
 
     // Keyboard shortcuts
     window.addEventListener('keydown', this.handleKeyboard);
@@ -465,6 +635,9 @@ export default {
       try {
         const response = await fetch('/api/music');
         this.musicLibrary = await response.json();
+
+        // Charger les favoris après le chargement de la bibliothèque
+        this.loadFavorites();
       } catch (error) {
         console.error('Erreur lors du chargement de la bibliothèque musicale:', error);
       }
@@ -476,6 +649,20 @@ export default {
         this.availableMatches = await response.json();
       } catch (error) {
         console.error('Erreur lors du chargement des matchs:', error);
+      }
+    },
+
+    async loadMusicHistory() {
+      this.loadingHistory = true;
+      try {
+        const response = await fetch('/api/music-history');
+        this.musicHistory = await response.json();
+        console.log(`📊 Historique musical chargé: ${this.musicHistory.length} entrées`);
+      } catch (error) {
+        console.error('Erreur lors du chargement de l\'historique musical:', error);
+        this.musicHistory = [];
+      } finally {
+        this.loadingHistory = false;
       }
     },
 
@@ -713,6 +900,28 @@ export default {
       event.dataTransfer.effectAllowed = 'move';
     },
 
+    onDropMusic(event, line) {
+      event.preventDefault();
+
+      if (!this.draggedMusic) return;
+
+      // Assigner la musique à la ligne (système simplifié pour l'instant)
+      // TODO: Implémenter le système 3 points (INTRO/OUTRO/TRANSITION) via MusicAssignmentPanel
+      line.music = {
+        intro: { music_id: this.draggedMusic.id },
+        outro: null,
+        transition: null
+      };
+
+      console.log(`Musique "${this.draggedMusic.title}" assignée à "${line.title}"`);
+
+      // Reset
+      this.draggedMusic = null;
+
+      // Sauvegarder le match
+      this.saveMatch();
+    },
+
     async saveMatch() {
       if (!this.currentMatch) return;
 
@@ -759,8 +968,47 @@ export default {
     },
 
     addToFavorites(music) {
-      music.favorite = !music.favorite;
-      // TODO: Persister les favoris
+      // Vérifier si déjà dans les favoris
+      const exists = this.favoritesList.find(f => f.id === music.id);
+
+      if (exists) {
+        // Retirer des favoris
+        this.favoritesList = this.favoritesList.filter(f => f.id !== music.id);
+      } else {
+        // Ajouter aux favoris
+        this.favoritesList.push(music);
+      }
+
+      // Sauvegarder dans localStorage
+      localStorage.setItem('sound_favorites', JSON.stringify(this.favoritesList.map(f => f.id)));
+    },
+
+    removeFromFavorites(music) {
+      this.favoritesList = this.favoritesList.filter(f => f.id !== music.id);
+
+      // Sauvegarder dans localStorage
+      localStorage.setItem('sound_favorites', JSON.stringify(this.favoritesList.map(f => f.id)));
+    },
+
+    clearFavorites() {
+      if (confirm('Vider tous les favoris ?')) {
+        this.favoritesList = [];
+        localStorage.removeItem('sound_favorites');
+      }
+    },
+
+    loadFavorites() {
+      // Charger les favoris depuis localStorage
+      try {
+        const favIds = JSON.parse(localStorage.getItem('sound_favorites') || '[]');
+        this.favoritesList = this.musicLibrary.filter(m => favIds.includes(m.id));
+      } catch (e) {
+        console.error('Erreur chargement favoris:', e);
+      }
+    },
+
+    isFavorite(music) {
+      return this.favoritesList.some(f => f.id === music.id);
     },
 
     handleKeyboard(event) {

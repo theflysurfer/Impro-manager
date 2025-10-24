@@ -190,7 +190,7 @@
           <label class="form-label">Template :</label>
           <select v-model="newMatch.template" class="form-input">
             <option value="">Match vide</option>
-            <option v-for="template in templates" :key="template.id" :value="template.id">
+            <option v-for="template in templates" :key="template.template_id" :value="template.template_id">
               {{ template.name }}
             </option>
           </select>
@@ -451,22 +451,37 @@ export default {
         return;
       }
 
-      const template = Array.isArray(this.templates) ? this.templates.find(t => t.id === this.newMatch.template) : null;
+      const template = Array.isArray(this.templates) ? this.templates.find(t => t.template_id === this.newMatch.template) : null;
 
       const matchData = {
         title: this.newMatch.title,
-        teamA: { name: 'Notre Troupe', score: 0 },
-        teamB: { name: this.newMatch.teamB, score: 0 },
-        improvs: template ? template.improvs.map((improv, index) => ({
-          id: `improv-${Date.now()}-${index}`,
-          title: improv.title,
-          duration: improv.duration,
-          type: improv.type,
-          status: 'pending',
-          music: null,
-          theme: ''
+        date: new Date().toISOString(),
+        location: '',
+        teams: {
+          home: { name: 'Notre Troupe', score: 0 },
+          away: { name: this.newMatch.teamB, score: 0 }
+        },
+        lines: template && template.lines ? template.lines.map((line, index) => ({
+          line_id: `line_${String(Date.now() + index).padStart(3, '0')}`,
+          order: index + 1,
+          type: line.type || 'SEQUENCE',
+          title: line.title,
+          duration_planned: line.duration_planned || 180,
+          theme: line.theme || '',
+          category: line.category || '',
+          music: {
+            intro: null,
+            outro: null,
+            transition: null
+          }
         })) : [],
-        status: 'active'
+        personnel: {},
+        live_state: {
+          current_line_id: null,
+          chrono_elapsed: 0,
+          chrono_status: 'stopped'
+        },
+        status: 'draft'
       };
 
       try {

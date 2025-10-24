@@ -184,5 +184,350 @@
     "status": "active",
     "created_at": "2025-10-03T08:50:01.165Z",
     "updated_at": "2025-10-22T16:06:37.560Z"
+  },
+  {
+    "match_id": "match_1759481401166",
+    "title": "Test Match via Curl",
+    "date": "2025-10-23T10:00:00Z",
+    "location": "",
+    "teams": {
+      "home": {
+        "name": "Notre Troupe",
+        "score": 0
+      },
+      "away": {
+        "name": "Les Adversaires",
+        "score": 0
+      }
+    },
+    "lines": [
+      {
+        "line_id": "line_001",
+        "order": 1,
+        "type": "SEQUENCE",
+        "title": "Test Sequence",
+        "duration_planned": 180,
+        "theme": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      }
+    ],
+    "personnel": {},
+    "live_state": {
+      "current_line_id": null,
+      "chrono_elapsed": 0,
+      "chrono_status": "stopped"
+    },
+    "status": "draft",
+    "created_at": "2025-10-23T19:29:22.648Z",
+    "updated_at": "2025-10-23T19:29:22.648Z"
+  },
+  {
+    "match_id": "match_1759481401167",
+    "title": "Match Test Final - Julie & Marc",
+    "date": "2025-10-23T19:30:48.539Z",
+    "location": "",
+    "teams": {
+      "home": {
+        "name": "Notre Troupe",
+        "score": 0
+      },
+      "away": {
+        "name": "Les Improvisateurs Fous",
+        "score": 0
+      }
+    },
+    "lines": [],
+    "personnel": {},
+    "live_state": {
+      "current_line_id": null,
+      "chrono_elapsed": 0,
+      "chrono_status": "stopped"
+    },
+    "status": "draft",
+    "created_at": "2025-10-23T19:30:48.551Z",
+    "updated_at": "2025-10-23T19:30:48.551Z"
+  },
+  {
+    "match_id": "match_1759481401168",
+    "title": "Match Final avec Template Correct",
+    "date": "2025-10-23T19:33:16.996Z",
+    "location": "",
+    "teams": {
+      "home": {
+        "name": "Notre Troupe",
+        "score": 0
+      },
+      "away": {
+        "name": "Les Champions",
+        "score": 0
+      }
+    },
+    "lines": [
+      {
+        "line_id": "line_1761247996996",
+        "order": 1,
+        "type": "ARRIVEE",
+        "title": "Arrivée Équipe A",
+        "duration_planned": 60,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247996997",
+        "order": 2,
+        "type": "ARRIVEE",
+        "title": "Arrivée Équipe B",
+        "duration_planned": 60,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247996998",
+        "order": 3,
+        "type": "ARRIVEE",
+        "title": "Arrivée Arbitre",
+        "duration_planned": 30,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247996999",
+        "order": 4,
+        "type": "ECHAUFFEMENT",
+        "title": "Échauffement",
+        "duration_planned": 180,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997000",
+        "order": 5,
+        "type": "PRESENTATION",
+        "title": "Présentation",
+        "duration_planned": 120,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997001",
+        "order": 6,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #1",
+        "duration_planned": 180,
+        "theme": "",
+        "category": "comparée",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997002",
+        "order": 7,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #2",
+        "duration_planned": 180,
+        "theme": "",
+        "category": "mixte",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997003",
+        "order": 8,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #3",
+        "duration_planned": 300,
+        "theme": "",
+        "category": "libre",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997004",
+        "order": 9,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #4",
+        "duration_planned": 180,
+        "theme": "",
+        "category": "comparée",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997005",
+        "order": 10,
+        "type": "ANNONCE_INTERMEDIAIRE",
+        "title": "Annonce Mi-Temps",
+        "duration_planned": 60,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997007",
+        "order": 11,
+        "type": "PAUSE",
+        "title": "Pause",
+        "duration_planned": 600,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997008",
+        "order": 12,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #5",
+        "duration_planned": 180,
+        "theme": "",
+        "category": "mixte",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997009",
+        "order": 13,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #6",
+        "duration_planned": 300,
+        "theme": "",
+        "category": "libre",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997010",
+        "order": 14,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #7",
+        "duration_planned": 180,
+        "theme": "",
+        "category": "comparée",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997011",
+        "order": 15,
+        "type": "SEQUENCE",
+        "title": "SÉQUENCE #8",
+        "duration_planned": 240,
+        "theme": "",
+        "category": "finale",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997012",
+        "order": 16,
+        "type": "ANNONCE_FIN",
+        "title": "Annonce Résultats",
+        "duration_planned": 120,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997013",
+        "order": 17,
+        "type": "FIN",
+        "title": "Salutations",
+        "duration_planned": 60,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      },
+      {
+        "line_id": "line_1761247997014",
+        "order": 18,
+        "type": "FIN",
+        "title": "Sortie Public",
+        "duration_planned": 180,
+        "theme": "",
+        "category": "",
+        "music": {
+          "intro": null,
+          "outro": null,
+          "transition": null
+        }
+      }
+    ],
+    "personnel": {},
+    "live_state": {
+      "current_line_id": null,
+      "chrono_elapsed": 0,
+      "chrono_status": "stopped"
+    },
+    "status": "draft",
+    "created_at": "2025-10-23T19:33:17.008Z",
+    "updated_at": "2025-10-23T19:33:17.008Z"
   }
 ]

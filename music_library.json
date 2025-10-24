@@ -837,8 +837,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -846,8 +846,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -1327,8 +1327,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": [
@@ -2701,8 +2701,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -2710,9 +2710,9 @@
       },
       "impro_context": {
         "scenarios": [
+          "cabaret-télé",
           "romance",
-          "amour",
-          "cabaret-télé"
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -2826,9 +2826,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
+          "match-impro",
           "guerre",
-          "match-impro"
+          "conflit"
         ],
         "emotions": [],
         "contraintes": [
@@ -2859,8 +2859,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -2868,9 +2868,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
           "match-impro",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -6505,9 +6505,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -6544,9 +6544,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -6583,9 +6583,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -6622,9 +6622,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -6661,9 +6661,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -6700,9 +6700,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -6731,13 +6731,13 @@
       },
       "tags": {
         "mood": [
-          "suspense",
           "calme",
           "atmosphérique",
-          "effet-sonore",
-          "épique",
           "tension",
-          "aventure"
+          "aventure",
+          "effet-sonore",
+          "suspense",
+          "épique"
         ],
         "genre": [],
         "energy": 7,
@@ -6745,13 +6745,13 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
-          "sérénité",
-          "héroïsme"
+          "héroïsme",
+          "sérénité"
         ],
         "contraintes": []
       },
@@ -6779,11 +6779,11 @@
       },
       "tags": {
         "mood": [
-          "effet-sonore",
-          "épique",
-          "dynamique",
           "aventure",
-          "intense"
+          "effet-sonore",
+          "dynamique",
+          "intense",
+          "épique"
         ],
         "genre": [],
         "energy": 7,
@@ -6791,9 +6791,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme",
@@ -6826,8 +6826,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -6835,9 +6835,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -6869,8 +6869,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -6878,9 +6878,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -6912,8 +6912,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -6921,9 +6921,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -6955,8 +6955,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -6964,9 +6964,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -6998,8 +6998,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -7007,9 +7007,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7041,8 +7041,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -7050,9 +7050,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7084,8 +7084,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [
           "hip-hop"
@@ -7095,10 +7095,10 @@
       },
       "impro_context": {
         "scenarios": [
-          "jungle",
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "jungle",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7130,8 +7130,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -7139,10 +7139,10 @@
       },
       "impro_context": {
         "scenarios": [
-          "jungle",
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "jungle",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7174,8 +7174,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -7183,9 +7183,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7218,9 +7218,9 @@
         "mood": [
           "calme",
           "atmosphérique",
+          "aventure",
           "effet-sonore",
-          "épique",
-          "aventure"
+          "épique"
         ],
         "genre": [],
         "energy": 7,
@@ -7228,13 +7228,13 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
-          "sérénité",
-          "héroïsme"
+          "héroïsme",
+          "sérénité"
         ],
         "contraintes": []
       },
@@ -7263,8 +7263,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -7272,9 +7272,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7306,8 +7306,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 7,
@@ -7315,9 +7315,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7349,8 +7349,8 @@
       "tags": {
         "mood": [
           "aventure",
-          "effet-sonore",
-          "épique"
+          "épique",
+          "effet-sonore"
         ],
         "genre": [
           "reggae"
@@ -7360,9 +7360,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -7998,8 +7998,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "funérailles",
-          "deuil"
+          "deuil",
+          "funérailles"
         ],
         "emotions": [],
         "contraintes": []
@@ -8456,8 +8456,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "jungle",
-          "aventure"
+          "aventure",
+          "jungle"
         ],
         "emotions": [],
         "contraintes": []
@@ -8661,9 +8661,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -9304,8 +9304,8 @@
       "tags": {
         "mood": [
           "suspense",
-          "effet-sonore",
-          "tension"
+          "tension",
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 3,
@@ -9517,8 +9517,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9553,8 +9553,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9589,8 +9589,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9625,8 +9625,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9661,8 +9661,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9697,8 +9697,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9733,8 +9733,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9769,8 +9769,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9805,8 +9805,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9841,8 +9841,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9877,8 +9877,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9913,8 +9913,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9949,8 +9949,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -9985,8 +9985,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -10021,8 +10021,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -10057,8 +10057,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -10093,8 +10093,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -10129,8 +10129,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -10165,8 +10165,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [
           "country"
@@ -10176,8 +10176,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "far-west",
-          "western"
+          "western",
+          "far-west"
         ],
         "emotions": [],
         "contraintes": []
@@ -10206,8 +10206,8 @@
       },
       "tags": {
         "mood": [
-          "reconnaissable",
-          "effet-sonore"
+          "effet-sonore",
+          "reconnaissable"
         ],
         "genre": [],
         "energy": 6,
@@ -10242,9 +10242,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10285,9 +10285,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10328,9 +10328,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10371,9 +10371,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10414,9 +10414,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10457,9 +10457,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10500,9 +10500,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10543,9 +10543,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10586,9 +10586,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10629,9 +10629,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10672,9 +10672,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10715,9 +10715,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10758,9 +10758,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10801,9 +10801,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10844,9 +10844,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10887,9 +10887,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10930,9 +10930,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -10973,9 +10973,9 @@
       },
       "tags": {
         "mood": [
+          "inquiétant",
           "sombre",
-          "effet-sonore",
-          "inquiétant"
+          "effet-sonore"
         ],
         "genre": [],
         "energy": 6,
@@ -11833,9 +11833,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -11872,9 +11872,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -11911,9 +11911,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -11950,9 +11950,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -11989,9 +11989,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12028,9 +12028,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12067,9 +12067,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12106,9 +12106,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12145,9 +12145,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12184,9 +12184,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12223,9 +12223,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12262,9 +12262,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12301,9 +12301,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12340,9 +12340,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12379,9 +12379,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12418,9 +12418,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12457,9 +12457,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12498,9 +12498,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -12537,9 +12537,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "guerre",
+          "action",
           "western",
-          "action"
+          "guerre"
         ],
         "emotions": [],
         "contraintes": []
@@ -13058,8 +13058,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -13067,8 +13067,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -13375,8 +13375,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -13570,8 +13570,8 @@
       },
       "tags": {
         "mood": [
-          "dansant",
-          "festif"
+          "festif",
+          "dansant"
         ],
         "genre": [],
         "energy": 9,
@@ -14275,8 +14275,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -14284,8 +14284,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -14716,9 +14716,9 @@
       },
       "tags": {
         "mood": [
-          "triste",
-          "joyeux",
           "mélancolique",
+          "joyeux",
+          "triste",
           "énergique"
         ],
         "genre": [],
@@ -14729,8 +14729,8 @@
         "scenarios": [],
         "emotions": [
           "nostalgie",
-          "joie",
-          "tristesse"
+          "tristesse",
+          "joie"
         ],
         "contraintes": []
       },
@@ -14989,8 +14989,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -14998,8 +14998,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -16995,8 +16995,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -17004,8 +17004,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -17108,8 +17108,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -17245,8 +17245,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -17440,8 +17440,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 5,
@@ -17449,8 +17449,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -17646,8 +17646,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -17655,8 +17655,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -17918,8 +17918,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -17927,8 +17927,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -18091,8 +18091,8 @@
       },
       "tags": {
         "mood": [
-          "dansant",
-          "festif"
+          "festif",
+          "dansant"
         ],
         "genre": [],
         "energy": 9,
@@ -18328,8 +18328,8 @@
       },
       "tags": {
         "mood": [
-          "grandiose",
-          "épique"
+          "épique",
+          "grandiose"
         ],
         "genre": [],
         "energy": 5,
@@ -18498,8 +18498,8 @@
       },
       "tags": {
         "mood": [
-          "aventure",
-          "épique"
+          "épique",
+          "aventure"
         ],
         "genre": [],
         "energy": 7,
@@ -18507,9 +18507,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -18540,8 +18540,8 @@
       },
       "tags": {
         "mood": [
-          "aventure",
-          "épique"
+          "épique",
+          "aventure"
         ],
         "genre": [],
         "energy": 7,
@@ -18549,9 +18549,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -18582,8 +18582,8 @@
       },
       "tags": {
         "mood": [
-          "aventure",
-          "épique"
+          "épique",
+          "aventure"
         ],
         "genre": [],
         "energy": 7,
@@ -18591,9 +18591,9 @@
       },
       "impro_context": {
         "scenarios": [
-          "aventure",
           "exploration",
-          "voyage"
+          "voyage",
+          "aventure"
         ],
         "emotions": [
           "héroïsme"
@@ -18822,10 +18822,10 @@
       },
       "tags": {
         "mood": [
-          "sombre",
           "calme",
-          "relaxant",
-          "inquiétant"
+          "inquiétant",
+          "sombre",
+          "relaxant"
         ],
         "genre": [],
         "energy": 6,
@@ -18834,8 +18834,8 @@
       "impro_context": {
         "scenarios": [],
         "emotions": [
-          "sérénité",
-          "peur"
+          "peur",
+          "sérénité"
         ],
         "contraintes": []
       },
@@ -19034,8 +19034,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -19202,8 +19202,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -19232,10 +19232,10 @@
       },
       "tags": {
         "mood": [
-          "sombre",
           "calme",
-          "relaxant",
-          "inquiétant"
+          "inquiétant",
+          "sombre",
+          "relaxant"
         ],
         "genre": [],
         "energy": 6,
@@ -19244,8 +19244,8 @@
       "impro_context": {
         "scenarios": [],
         "emotions": [
-          "sérénité",
-          "peur"
+          "peur",
+          "sérénité"
         ],
         "contraintes": []
       },
@@ -19444,8 +19444,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -20108,8 +20108,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -20117,8 +20117,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -20382,8 +20382,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20420,10 +20420,10 @@
       },
       "tags": {
         "mood": [
-          "sombre",
           "calme",
-          "atmosphérique",
-          "inquiétant"
+          "inquiétant",
+          "sombre",
+          "atmosphérique"
         ],
         "genre": [],
         "energy": 6,
@@ -20432,8 +20432,8 @@
       "impro_context": {
         "scenarios": [],
         "emotions": [
-          "sérénité",
-          "peur"
+          "peur",
+          "sérénité"
         ],
         "contraintes": []
       },
@@ -20461,8 +20461,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20499,10 +20499,10 @@
       },
       "tags": {
         "mood": [
-          "sombre",
           "calme",
-          "atmosphérique",
-          "inquiétant"
+          "inquiétant",
+          "sombre",
+          "atmosphérique"
         ],
         "genre": [],
         "energy": 6,
@@ -20511,8 +20511,8 @@
       "impro_context": {
         "scenarios": [],
         "emotions": [
-          "sérénité",
-          "peur"
+          "peur",
+          "sérénité"
         ],
         "contraintes": []
       },
@@ -20540,8 +20540,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20578,8 +20578,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20616,8 +20616,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20654,8 +20654,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20692,8 +20692,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20730,10 +20730,10 @@
       },
       "tags": {
         "mood": [
-          "sombre",
           "calme",
-          "atmosphérique",
-          "inquiétant"
+          "inquiétant",
+          "sombre",
+          "atmosphérique"
         ],
         "genre": [],
         "energy": 6,
@@ -20742,8 +20742,8 @@
       "impro_context": {
         "scenarios": [],
         "emotions": [
-          "sérénité",
-          "peur"
+          "peur",
+          "sérénité"
         ],
         "contraintes": []
       },
@@ -20771,8 +20771,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20809,8 +20809,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20847,8 +20847,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20885,8 +20885,8 @@
       },
       "tags": {
         "mood": [
-          "sombre",
-          "inquiétant"
+          "inquiétant",
+          "sombre"
         ],
         "genre": [],
         "energy": 6,
@@ -20995,9 +20995,9 @@
       },
       "impro_context": {
         "scenarios": [
+          "plage",
           "océan",
-          "mer",
-          "plage"
+          "mer"
         ],
         "emotions": [],
         "contraintes": []
@@ -21103,9 +21103,9 @@
       },
       "impro_context": {
         "scenarios": [
+          "plage",
           "océan",
-          "mer",
-          "plage"
+          "mer"
         ],
         "emotions": [],
         "contraintes": []
@@ -21421,8 +21421,8 @@
       },
       "tags": {
         "mood": [
-          "grandiose",
-          "épique"
+          "épique",
+          "grandiose"
         ],
         "genre": [],
         "energy": 5,
@@ -22523,8 +22523,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "far-west",
-          "western"
+          "western",
+          "far-west"
         ],
         "emotions": [],
         "contraintes": []
@@ -22561,8 +22561,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "far-west",
-          "western"
+          "western",
+          "far-west"
         ],
         "emotions": [],
         "contraintes": []
@@ -23029,8 +23029,8 @@
       },
       "tags": {
         "mood": [
-          "dansant",
-          "festif"
+          "festif",
+          "dansant"
         ],
         "genre": [],
         "energy": 5,
@@ -23369,8 +23369,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -23378,8 +23378,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -23944,8 +23944,8 @@
       },
       "tags": {
         "mood": [
-          "dansant",
-          "festif"
+          "festif",
+          "dansant"
         ],
         "genre": [],
         "energy": 9,
@@ -24688,8 +24688,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "compétition",
-          "sport"
+          "sport",
+          "compétition"
         ],
         "emotions": [],
         "contraintes": []
@@ -24790,8 +24790,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "compétition",
-          "sport"
+          "sport",
+          "compétition"
         ],
         "emotions": [],
         "contraintes": []
@@ -24886,8 +24886,8 @@
       },
       "tags": {
         "mood": [
-          "dansant",
-          "festif"
+          "festif",
+          "dansant"
         ],
         "genre": [],
         "energy": 9,
@@ -25257,8 +25257,8 @@
       },
       "tags": {
         "mood": [
-          "doux",
-          "romantique"
+          "romantique",
+          "doux"
         ],
         "genre": [],
         "energy": 3,
@@ -25266,8 +25266,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "amour",
-          "romance"
+          "romance",
+          "amour"
         ],
         "emotions": [
           "amour"
@@ -25700,8 +25700,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -26070,8 +26070,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -26139,8 +26139,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []
@@ -26604,8 +26604,8 @@
       },
       "impro_context": {
         "scenarios": [
-          "conflit",
-          "guerre"
+          "guerre",
+          "conflit"
         ],
         "emotions": [],
         "contraintes": []

@@ -41,6 +41,18 @@ public/music/
 playwright-report/
 test-results/
 .playwright/
+.playwright-mcp/
+
+# Temporary files
+nul
+*.tmp
+
+# Package manager lock files (keep only npm)
+pnpm-lock.yaml
+yarn.lock
+
+# Player script artifacts
+backend/*-player-script.js
 
 # Local config
 .mcp.json

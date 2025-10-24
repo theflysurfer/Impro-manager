@@ -74,12 +74,15 @@ Music {
 - Interface SoundInterface.vue (bibliothèque + assignation simple)
 - Bibliothèque musicale ~30 pistes
 
-### 🔴 Bloquants Critiques (0% implémenté)
-1. **Mode Live** (MC + Son) - RIEN
-2. **WebSocket sync temps réel** - RIEN
-3. **3 points musicaux** (INTRO/OUTRO/TRANSITION) - Seul 1 point simple
-4. **PWA offline** (IndexedDB cache) - RIEN
-5. **8 types de lignes** - Seul SEQUENCE
+### ✅ Fonctionnalités Complètes (40% implémenté)
+1. ✅ **Mode Live** (MC + Son) - COMPLET
+2. ✅ **WebSocket sync temps réel** - COMPLET (Socket.IO + validation + persistance)
+3. ✅ **YouTube Downloader** - COMPLET (Python yt-dlp + librosa + analyse audio)
+
+### 🔴 Bloquants Critiques Restants
+1. **3 points musicaux** (INTRO/OUTRO/TRANSITION) - Seul 1 point simple (P0 - EN COURS)
+2. **PWA offline** (IndexedDB cache) - RIEN (P2)
+3. **8 types de lignes** - Seul SEQUENCE (P1)
 
 ### 🟡 Limitations Actuelles
 - Schema backend incompatible frontend (patches temporaires)
@@ -123,20 +126,19 @@ Music {
 
 ## 5️⃣ Prochaines Étapes Immédiates
 
-### Sprint 1-2 semaines (MVP Live)
+### Sprint EN COURS (3 Points Musicaux)
 **Priorité P0** :
-1. Setup Socket.IO (server + client)
-2. Page `/matches/:id/live/mc` + composants :
-   - LiveTimer.vue (chronomètre)
-   - ProgressionList.vue (liste lignes)
-   - ScoreBoard.vue (score)
-3. Page `/matches/:id/live/sound` + composants :
-   - SoundLivePlayer.vue (lecteur audio)
-   - LiveMusicAssignments.vue (musiques ligne actuelle)
-4. Sync WebSocket : `line_started`, `chrono_update`
-5. Extension schema 3 points musicaux
+1. ✅ ~~Setup Socket.IO~~ - COMPLET
+2. ✅ ~~Page `/matches/:id/live/mc`~~ - COMPLET (MCLive.vue)
+3. ✅ ~~Page `/matches/:id/live/sound`~~ - COMPLET (SoundLive.vue)
+4. ✅ ~~Sync WebSocket~~ - COMPLET
+5. **🚧 Extension schema 3 points musicaux** - EN COURS
+   - Modifier backend schema
+   - Adapter SoundInterface.vue
+   - Créer MusicPointAssignment.vue
+   - Tests Playwright
 
-**Effort estimé** : ~12 jours dev
+**Effort estimé** : ~3 jours dev
 
 ---
 
