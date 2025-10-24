@@ -44,8 +44,16 @@ except ImportError:
 
 
 # Configuration
-MUSIC_DIR = Path(r"C:\Users\JulienFernandez\OneDrive\Zic impro")
-LIBRARY_FILE = Path("./music_library.json")
+# Détection de l'environnement (local Windows vs production Linux)
+if os.path.exists(r"C:\Users\JulienFernandez\OneDrive\Zic impro"):
+    # Environnement local Windows
+    MUSIC_DIR = Path(r"C:\Users\JulienFernandez\OneDrive\Zic impro")
+    LIBRARY_FILE = Path("./music_library.json")
+else:
+    # Environnement production (conteneur Docker)
+    MUSIC_DIR = Path("/app/music")
+    LIBRARY_FILE = Path("/app/music_library.json")
+
 DOWNLOAD_SUBDIR = "YouTube Downloads"
 
 
