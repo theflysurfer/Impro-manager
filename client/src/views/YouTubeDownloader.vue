@@ -96,8 +96,8 @@
           />
         </div>
 
-        <!-- Metadata -->
-        <div class="metadata-section">
+        <!-- Metadata - Temporairement masqué (cause confusion) -->
+        <div v-if="false" class="metadata-section">
           <h3>📝 Métadonnées (optionnel)</h3>
 
           <div class="form-row">
@@ -576,6 +576,7 @@ export default {
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   background: white;
+  color: #4a5568;
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 600;
