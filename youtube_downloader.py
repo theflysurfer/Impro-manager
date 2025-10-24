@@ -61,12 +61,24 @@ else:
 DOWNLOAD_SUBDIR = "YouTube Downloads"
 
 # Invidious instances (fallback order)
-INVIDIOUS_INSTANCES = [
-    "https://vid.puffyan.us",
-    "https://invidious.snopyta.org",
-    "https://yewtu.be",
-    "https://invidious.kavin.rocks",
-]
+# Détecter si on est en production (conteneur Docker) pour utiliser l'instance locale
+if os.path.exists("/app/music"):
+    # Production: Instance Invidious locale en priorité
+    INVIDIOUS_INSTANCES = [
+        "http://host.docker.internal:9520",  # Instance locale Invidious (PRIMARY)
+        "https://vid.puffyan.us",
+        "https://invidious.snopyta.org",
+        "https://yewtu.be",
+        "https://invidious.kavin.rocks",
+    ]
+else:
+    # Local Windows: Instances publiques uniquement
+    INVIDIOUS_INSTANCES = [
+        "https://vid.puffyan.us",
+        "https://invidious.snopyta.org",
+        "https://yewtu.be",
+        "https://invidious.kavin.rocks",
+    ]
 
 
 def extract_video_id(url):
