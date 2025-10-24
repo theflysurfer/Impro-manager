@@ -8,6 +8,7 @@ const socketIo = require('socket.io');
 // Import routes
 const matchRoutes = require('./routes/matchRoutes');
 const personnelRoutes = require('./routes/personnelRoutes');
+const youtubeRoutes = require('./routes/youtubeRoutes');
 
 const app = express();
 const server = http.createServer(app);
@@ -85,6 +86,9 @@ app.use('/api/matches', matchRoutes);
 
 // Routes personnel
 app.use('/api/personnel', personnelRoutes);
+
+// Routes YouTube
+app.use('/api/youtube', youtubeRoutes);
 
 // Route bibliothèque musicale
 app.get('/api/music', (req, res) => {
